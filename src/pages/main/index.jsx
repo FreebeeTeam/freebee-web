@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { withStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 
 import {
@@ -40,17 +41,20 @@ const MainPage = ({ classes }) => (
           <div className={classes.plateBottom}>
             <div className={cn(classes.plateInner, classes.yellow)}>
               <h3 className={classes.mapRedirect}>
-                <a className={classes.mapRedirectLink} href="./map.html">
+                <Link
+                  className={classes.mapRedirectLink}
+                  to="/map"
+                >
                   {'Карта'}
-                </a>
+                </Link>
               </h3>
-              <a href="./map.html">
+              <Link to="/map">
                 <img
                   alt="map marker"
                   className={cn(classes.plateImage, classes.misc)}
                   src={misc}
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -65,7 +69,7 @@ const MainPage = ({ classes }) => (
           </h1>
           <p>
             {'Мы разрабатываем сервис, который представляет собой '}
-            <a href="./map.html">карту</a>
+            <Link to="/map">карту</Link>
             {' с отметками о различных бесплатных возможностях — от общедоступных розеток, wifi точек и туалетов, до бесплатных мероприятий.'}
           </p>
           <blockquote className={classes.blockquote}>
@@ -91,16 +95,16 @@ const MainPage = ({ classes }) => (
               >
                 {''}
               </a>
-              <a
+              <Link
                 className={cn(classes.icon, classes.mapIcon)}
-                href="./map.html"
+                to="/map"
               >
                 <img
                   className={classes.mapIconImg}
                   src={map}
                   alt="Карта с бесплатными возможностями"
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </section>

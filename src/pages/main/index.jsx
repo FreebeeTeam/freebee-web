@@ -4,9 +4,11 @@ import cn from 'classnames';
 import { withStyles } from '@material-ui/core';
 import styles from './styles';
 
-import miscImg from '../../images/misc.png';
-import freebeeImg from '../../images/freebee.png';
-import mapImg from '../../images/map.png';
+import {
+  misc,
+  freebee,
+  map,
+} from '../../themes/images';
 
 const MainPage = ({ classes }) => (
   <div className={classes.sky}>
@@ -30,7 +32,7 @@ const MainPage = ({ classes }) => (
                 <img
                   className={cn(classes.plateImage, classes.freebee)}
                   alt="freebee cyclowiki"
-                  src={freebeeImg}
+                  src={freebee}
                 />
               </a>
             </div>
@@ -46,7 +48,7 @@ const MainPage = ({ classes }) => (
                 <img
                   alt="map marker"
                   className={cn(classes.plateImage, classes.misc)}
-                  src={miscImg}
+                  src={misc}
                 />
               </a>
             </div>
@@ -95,7 +97,7 @@ const MainPage = ({ classes }) => (
               >
                 <img
                   className={classes.mapIconImg}
-                  src={mapImg}
+                  src={map}
                   alt="Карта с бесплатными возможностями"
                 />
               </a>

@@ -1,5 +1,4 @@
-import vkImg from '../../images/vk.svg';
-import githubImg from '../../images/github.svg';
+import { vk, github } from '../../themes/images';
 
 export default () => ({
   textCenter: {
@@ -282,10 +281,10 @@ export default () => ({
     },
   },
   github: {
-    backgroundImage: `url(${githubImg})`,
+    backgroundImage: `url(${github})`,
   },
   vk: {
-    backgroundImage: `url(${vkImg})`,
+    backgroundImage: `url(${vk})`,
   },
   mapIcon: {
     outline: 'none',

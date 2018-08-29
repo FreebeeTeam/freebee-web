@@ -7,10 +7,8 @@ import {
   Popup,
 } from 'react-leaflet';
 import { withStyles } from '@material-ui/core';
+import { map as mapConfig } from '../../config';
 import styles from './styles';
-
-const mapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-const mapAttribution = '&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors';
 
 class FreebeeMap extends Component {
   static propTypes = {
@@ -47,8 +45,8 @@ class FreebeeMap extends Component {
         minZoom={minZoom}
       >
         <TileLayer
-          attribution={mapAttribution}
-          url={mapUrl}
+          attribution={mapConfig.MAP_ATTRIBUTION}
+          url={mapConfig.TILE_LAYER_URL}
         >
           <Marker position={position}>
             <Popup>

@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import {
-  Main,
+  Index as IndexPage,
   FreebeeMap,
 } from './pages';
 
@@ -13,7 +13,7 @@ const App = () => (
   <Router>
     <React.Fragment>
       <Switch>
-        <Route exact path="/" component={Main} />
+        <Route exact path="/" component={IndexPage} />
         <Route path="/map" component={FreebeeMap} />
       </Switch>
     </React.Fragment>

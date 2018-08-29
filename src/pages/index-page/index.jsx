@@ -4,14 +4,14 @@ import cn from 'classnames';
 import { withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import styles from './styles';
-import IntroducingPanel from '../../components/introducing-panel'
+import { IntroducingPanel } from '../../components';
 
 import {
   misc,
   freebee,
 } from '../../themes/images';
 
-const MainPage = ({ classes }) => (
+const IndexPage = ({ classes }) => (
   <div className={classes.sky}>
     <div className={classes.sign}>
       <div className={classes.grass}>
@@ -65,8 +65,8 @@ const MainPage = ({ classes }) => (
   </div>
 );
 
-MainPage.propTypes = {
+IndexPage.propTypes = {
   classes: PropTypes.shape({}).isRequired,
 };
 
-export default withStyles(styles)(MainPage);
+export default withStyles(styles)(IndexPage);

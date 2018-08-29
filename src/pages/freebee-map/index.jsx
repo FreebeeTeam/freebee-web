@@ -1,90 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core';
+import {
+  withStyles,
+  Button,
+  Grid,
+} from '@material-ui/core';
+import {
+  ArrowBack,
+} from '@material-ui/icons';
+import {
+  FreebeeMap as Map,
+  FeedbackSidebar as Feedback,
+} from '../../components';
 import styles from './styles';
 
-const FreebeeaMap = ({ classes }) => (
-  <div>
-    <div id="map" className="map" />
-    <Link
-      to="/"
-      aria-label="return to index page"
-      className="btn-floating btn-large waves-effect waves-light amber accent-3 to-index "
+const ToIndexLink = props => (<Link to="/" {...props} />);
+
+const FreebeeMap = ({ classes }) => (
+  <React.Fragment>
+    <Map />
+    <Button
+      className={classes.toIndexLink}
+      variant="fab"
+      color="primary"
+      aria-label="Return"
+      component={ToIndexLink}
     >
-      <i className="large material-icons">arrow_back</i>
-    </Link>
+      <ArrowBack color="action" />
+    </Button>
+    <Feedback />
 
-    <ul id="slide-out" className="sidenav">
-      <li className="user-view">
-        <h5 className="sidebar-title">
-          {'Поделитесь халявой с другими!'}
-        </h5>
-        <form className="row">
-          <div id="feedback" className="col s12">
-            <div className="row">
-              <div className="input-field col s12">
-                <input id="feedback_address" placeholder="ул. Халявина, 7" type="text" required />
-                <label htmlFor="feedback_address">
-                  {'Место халявы'}
-                </label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  id="feedback_type"
-                  placeholder="Туалет"
-                  type="text"
-                  className="validate"
-                />
-                <label htmlFor="feedback_type" className="active">
-                  {'Вид халявы'}
-                </label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  id="feedback_author"
-                  placeholder="Freebeeman"
-                  type="text"
-                  className="validate"
-                />
-                <label htmlFor="feedback_author">
-                  {'Автор'}
-                </label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input placeholder="Описание найденной халявы" id="feedback_description" type="text" className="validate" />
-                <label htmlFor="feedback_description">
-                  {'Описание'}
-                </label>
-              </div>
-            </div>
-            <div className="container">
-              <div className="row">
-                <button
-                  className="cancel s5 btn waves-effect waves-light red accent-2 col"
-                  type="button"
-                >
-                  {'Отменить'}
-                </button>
-                <button
-                  className="submit offset-s2 s5 btn waves-effect waves-light amber accent-3 col"
-                  type="submit"
-                >
-                  {'Отправить'}
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </li>
-    </ul>
-
-    <div className="freebee-filter fixed-action-btn">
+    {/* <div className="freebee-filter fixed-action-btn">
       <button type="button" className="btn-floating btn-large amber accent-3">
         <i className="large material-icons black-text">filter_list</i>
       </button>
@@ -109,16 +56,25 @@ const FreebeeaMap = ({ classes }) => (
           </button>
         </li>
       </ul>
-    </div>
+    </div> */}
 
-    <div className="row hide-on-large-only">
-      <button data-target="slide-out" type="button" className="contact-us sidenav-trigger btn waves-effect waves-light amber accent-3 col s12"> Нашли халяву? </button>
-    </div>
-    <button data-target="slide-out" type="button" className="contact-us-desktop hide-on-small-only hide-on-med-only sidenav-trigger btn waves-effect waves-light amber accent-3">
+    <Button
+      variant="contained"
+      className={classes.contactUs}
+    >
+      Нашли халяву?
+    </Button>
+    <Button
+      variant="contained"
+      className={classes.contactUsDesktop}
+    >
       {'Нашли халяву?'}
-    </button>
-
-  </div>
+    </Button>
+  </React.Fragment>
 );
 
-export default withStyles(styles)(FreebeeaMap);
+FreebeeMap.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+};
+
+export default withStyles(styles)(FreebeeMap);

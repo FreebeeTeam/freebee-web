@@ -4,20 +4,21 @@ import { Link } from 'react-router-dom';
 import {
   withStyles,
   Button,
-  Grid,
 } from '@material-ui/core';
 import {
   ArrowBack,
 } from '@material-ui/icons';
 import {
   FreebeeMap as Map,
-  FeedbackSidebar as Feedback,
 } from '../../components';
+import {
+  FeedbackSidebar as Feedback,
+} from '../../containers';
 import styles from './styles';
 
 const ToIndexLink = props => (<Link to="/" {...props} />);
 
-const FreebeeMap = ({ classes }) => (
+const FreebeeMap = ({ classes, openFeedbackSidebar }) => (
   <React.Fragment>
     <Map />
     <Button
@@ -31,41 +32,16 @@ const FreebeeMap = ({ classes }) => (
     </Button>
     <Feedback />
 
-    {/* <div className="freebee-filter fixed-action-btn">
-      <button type="button" className="btn-floating btn-large amber accent-3">
-        <i className="large material-icons black-text">filter_list</i>
-      </button>
-      <ul>
-        <li>
-          <button type="button" id="filter-by-wifis" className="btn-floating grey lighten-1">
-            <i className="material-icons black-text">wifi</i>
-          </button>
-        </li>
-        <li>
-          <button type="button" id="filter-by-toilets" className="btn-floating grey lighten-1">
-            <i className="material-icons black-text">wc</i>
-          </button>
-        </li>
-        <li>
-          <button type="button" id="filter-clear" className="btn-floating grey lighten-1">
-            <img
-              className="default-filter active-filter"
-              src="./image/default-filter.png"
-              alt="default filter"
-            />
-          </button>
-        </li>
-      </ul>
-    </div> */}
-
     <Button
       variant="contained"
+      onClick={openFeedbackSidebar}
       className={classes.contactUs}
     >
       Нашли халяву?
     </Button>
     <Button
       variant="contained"
+      onClick={openFeedbackSidebar}
       className={classes.contactUsDesktop}
     >
       {'Нашли халяву?'}
@@ -75,6 +51,7 @@ const FreebeeMap = ({ classes }) => (
 
 FreebeeMap.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  openFeedbackSidebar: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(FreebeeMap);

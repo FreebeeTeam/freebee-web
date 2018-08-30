@@ -1,19 +1,24 @@
+// @flow
 import { handleActions } from 'redux-actions';
 import { feedbackSidebarActions } from '../../actions/ui';
 
+type State = {
+  +open: boolean,
+};
+
 const { open, close } = feedbackSidebarActions;
 
-const defaultState = {
+const defaultState: State = {
   open: false,
 };
 
 const reducer = handleActions(
   {
-    [open]: state => ({
+    [open]: (state: State) => ({
       ...state,
       open: true,
     }),
-    [close]: state => ({
+    [close]: (state: State) => ({
       ...state,
       open: false,
     }),

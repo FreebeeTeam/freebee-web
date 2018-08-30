@@ -1,12 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import cn from 'classnames';
 import { map } from '../../themes/images';
 import styles from './styles';
+import type { Styles } from '../../types/styles';
 
-const IntroducingPanel = ({ classes }) => (
+type Props = {
+  +classes: Styles,
+};
+
+const IntroducingPanel = ({ classes }: Props) => (
   <div className={classes.panel}>
     <article className={classes.article}>
       <section className={classes.section}>
@@ -57,9 +62,5 @@ const IntroducingPanel = ({ classes }) => (
     </article>
   </div>
 );
-
-IntroducingPanel.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-};
 
 export default withStyles(styles)(IntroducingPanel);

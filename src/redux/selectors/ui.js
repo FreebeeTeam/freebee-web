@@ -1,3 +1,5 @@
+// @flow
+
 import { createSelector } from 'reselect';
 
 const rootSelector = state => state.ui;

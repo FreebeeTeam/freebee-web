@@ -1,3 +1,5 @@
+// @flow
+
 import { feedbackSidebarActions } from './ui';
 import wifiActions from './wifi';
 

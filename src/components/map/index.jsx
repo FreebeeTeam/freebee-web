@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { withStyles } from '@material-ui/core';
 import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -7,16 +7,26 @@ import { map as mapConfig } from '../../config';
 import WifiMarker from '../wifi-marker';
 import styles from './styles';
 
-class FreebeeMap extends Component {
+import type { Classes } from '../../types/styles';
+import type { Wifi } from '../../types/models';
+
+type Props = {
+  classes: Classes,
+  wifis?: Wifi[],
+  getWifis: () => any,
+};
+
+type State = {
+  center: {
+    lat: number,
+    lng: number,
+  },
+  zoom: number,
+};
+
+class FreebeeMap extends React.PureComponent<Props, State> {
   static defaultProps = {
     wifis: [],
-  }
-
-  static propTypes = {
-    classes: PropTypes.shape({}).isRequired,
-    getWifis: PropTypes.func.isRequired,
-    wifis: PropTypes.arrayOf(PropTypes.shape({
-    })),
   }
 
   state = {

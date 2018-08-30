@@ -1,17 +1,21 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import styles from './styles';
 import { IntroducingPanel } from '../../components';
-
 import {
   misc,
   freebee,
 } from '../../themes/images';
+import type { Classes } from '../../types/styles';
 
-const IndexPage = ({ classes }) => (
+type Props = {
+  classes: Classes,
+};
+
+const IndexPage = ({ classes }: Props) => (
   <div className={classes.sky}>
     <div className={classes.sign}>
       <div className={classes.grass}>
@@ -60,13 +64,8 @@ const IndexPage = ({ classes }) => (
         </div>
       </div>
     </div>
-
     <IntroducingPanel />
   </div>
 );
-
-IndexPage.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-};
 
 export default withStyles(styles)(IndexPage);

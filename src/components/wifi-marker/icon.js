@@ -1,10 +1,15 @@
+// @flow
 import L from 'leaflet';
+import type { Icon } from 'leaflet';
 import { wifi } from '../../themes/images';
 import { markerIcon } from '../../themes/sizes';
+import type { IconOptions } from '../../types/markers';
 
-const wifiIcon = new L.Icon({
+const options: IconOptions = {
   iconUrl: wifi,
   iconSize: markerIcon,
-});
+};
+
+const wifiIcon: Icon = new L.Icon(options);
 
 export default wifiIcon;

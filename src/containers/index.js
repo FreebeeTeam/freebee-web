@@ -1,3 +1,5 @@
+// @flow
+
 import FeedbackSidebar from './feedback-sidebar';
 import MapPage from './map-page';
 import Map from './map';

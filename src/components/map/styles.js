@@ -1,4 +1,7 @@
-export default () => ({
+// @flow
+import type { Styles } from '../../types/styles';
+
+export default (): Styles => ({
   map: {
     width: '100%',
     // 36px - medium height button

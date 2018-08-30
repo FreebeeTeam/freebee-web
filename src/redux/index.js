@@ -1,3 +1,5 @@
+// @flow
+
 import createStore from './store';
 
 /* eslint-disable import/prefer-default-export */

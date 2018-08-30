@@ -1,7 +1,11 @@
+// @flow
+import type { Theme } from '@material-ui/core';
+import type { Styles } from '../../types/styles';
+
 const sideMargin = 12;
 const sidebarDesctopSize = 340;
 
-export default theme => ({
+export default (theme: Theme): Styles => ({
   sidebarRoot: {
     width: '100%',
     overflowX: 'hidden',

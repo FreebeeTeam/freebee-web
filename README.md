@@ -21,6 +21,46 @@ $ git clone https://github.com/FreebeeTeam/freebee-web.git
 
 To start with Freebee WEB, you should have [Node](https://nodejs.org/en/download/package-manager/) installed.
 
+### Code style
+
+To save code style we are using eslint and config from airbnb.
+You should configure your editor for highlighting style errors.
+
+## Types
+
+We are using flow to provide types in javascript.
+You should configure your editor for highlighting type errors.
+
+Install flow globally
+
+```
+$ yarn add global flow
+```
+
+Run this for install stubs for dependencies. (after running `yarn install`)
+
+```
+$ yarn flow-typed install
+```
+
+To run background type checking run
+
+```
+$ flow
+```
+
+To stop background type checking run
+
+```
+$ flow stop
+```
+
+To single time checking run
+
+```
+$ flow check
+```
+
 ### Installing
 
 Install all dependencies.

@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import {
   withStyles,
   SwipeableDrawer,
@@ -9,13 +9,22 @@ import {
   Grid,
 } from '@material-ui/core';
 import styles from './styles';
+import type { Classes } from '../../types/styles';
+
+
+type Props = {
+  +classes: Classes,
+  +isOpen: boolean,
+  +close: () => void,
+  +open: () => void,
+};
 
 const FeedbackSidebar = ({
   classes,
   isOpen,
-  open,
   close,
-}) => (
+  open,
+}: Props) => (
   <React.Fragment>
     <SwipeableDrawer
       open={isOpen}
@@ -93,12 +102,8 @@ const FeedbackSidebar = ({
           </Grid>
           <Grid item xs={12}>
             <Grid container className={classes.buttonsContainer}>
-              <Button onClick={close} variant="contained" color="secondary">
-                  Отменить
-              </Button>
-              <Button variant="contained" type="submit" color="primary" onClick={close}>
-                  Отправить
-              </Button>
+              <Button onClick={close} variant="contained" color="secondary">Отменить</Button>
+              <Button variant="contained" type="submit" color="primary" onClick={close}>Отправить</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -106,12 +111,5 @@ const FeedbackSidebar = ({
     </SwipeableDrawer>
   </React.Fragment>
 );
-
-FeedbackSidebar.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  open: PropTypes.func.isRequired,
-  close: PropTypes.func.isRequired,
-  classes: PropTypes.shape({}).isRequired,
-};
 
 export default withStyles(styles)(FeedbackSidebar);

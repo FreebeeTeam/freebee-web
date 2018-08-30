@@ -1,1 +1,3 @@
-export const markerIcon = [25, 37];
+// @flow
+
+export const markerIcon: number[] = [25, 37];

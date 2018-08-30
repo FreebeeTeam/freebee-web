@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import {
   withStyles,
@@ -8,16 +8,22 @@ import {
 import {
   ArrowBack,
 } from '@material-ui/icons';
-
 import {
   FeedbackSidebar as Feedback,
   Map,
 } from '../../containers';
 import styles from './styles';
+import type { Classes } from '../../types/styles';
 
-const ToIndexLink = props => (<Link to="/" {...props} />);
 
-const FreebeeMap = ({ classes, openFeedbackSidebar }) => (
+const ToIndexLink = (props: Object) => (<Link to="/" {...props} />);
+
+type Props = {
+  classes: Classes,
+  openFeedbackSidebar: () => void,
+};
+
+const FreebeeMap = ({ classes, openFeedbackSidebar }: Props) => (
   <React.Fragment>
     <Map />
     <Button
@@ -37,7 +43,7 @@ const FreebeeMap = ({ classes, openFeedbackSidebar }) => (
       onClick={openFeedbackSidebar}
       className={classes.contactUs}
     >
-      Нашли халяву?
+      {'Нашли халяву?'}
     </Button>
     <Button
       variant="contained"
@@ -48,10 +54,5 @@ const FreebeeMap = ({ classes, openFeedbackSidebar }) => (
     </Button>
   </React.Fragment>
 );
-
-FreebeeMap.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  openFeedbackSidebar: PropTypes.func.isRequired,
-};
 
 export default withStyles(styles)(FreebeeMap);

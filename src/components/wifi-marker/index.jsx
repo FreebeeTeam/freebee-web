@@ -1,11 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import { withStyles } from '@material-ui/core';
 import icon from './icon';
 import styles from './styles';
+import type { Wifi } from '../../types/models';
+import type { Classes } from '../../types/styles';
 
-const WifiMarker = ({ wifi, classes }) => (
+type Props = {
+  classes: Classes,
+  wifi: Wifi,
+};
+
+const WifiMarker = ({ wifi, classes }: Props) => (
   <Marker
     icon={icon}
     position={wifi.location}
@@ -32,15 +39,5 @@ const WifiMarker = ({ wifi, classes }) => (
     </Popup>
   </Marker>
 );
-
-WifiMarker.propTypes = {
-  wifi: PropTypes.shape({
-    location: PropTypes.arrayOf(PropTypes.number).isRequired,
-    title: PropTypes.string.isRequired,
-    address: PropTypes.string,
-    description: PropTypes.string,
-  }).isRequired,
-  classes: PropTypes.shape({}).isRequired,
-};
 
 export default withStyles(styles)(WifiMarker);

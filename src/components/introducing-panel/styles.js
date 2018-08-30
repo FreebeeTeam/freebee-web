@@ -1,7 +1,10 @@
 
+// @flow
 import { vk, github } from '../../themes/images';
 
-export default () => ({
+import type { Styles } from '../../types/styles';
+
+export default (): Styles => ({
   panel: {
     position: 'relative',
     top: '8%',

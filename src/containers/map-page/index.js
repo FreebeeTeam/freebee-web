@@ -1,3 +1,4 @@
+// @flow
 import { connect } from 'react-redux';
 import FreebeeMap from '../../pages/freebee-map';
 import { open } from '../../redux/actions/ui/feedback-sidebar';

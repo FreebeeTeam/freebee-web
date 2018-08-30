@@ -1,3 +1,4 @@
+// @flow
 import { connect } from 'react-redux';
 import { FeedbackSidebar } from '../../components';
 import { open, close } from '../../redux/actions/ui/feedback-sidebar';

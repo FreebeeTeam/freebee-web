@@ -1,3 +1,4 @@
+// @flow
 import { connect } from 'react-redux';
 import { FreebeeMap } from '../../components';
 import { wifiActions } from '../../redux/actions';

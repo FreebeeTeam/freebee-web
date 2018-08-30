@@ -1,3 +1,5 @@
+// @flow
+
 import * as feedbackSidebarActions from './feedback-sidebar';
 
 /* eslint-disable import/prefer-default-export */

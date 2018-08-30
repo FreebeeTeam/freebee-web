@@ -1,11 +1,3 @@
-.freebee-title {
-  font-weight: bold;
-}
-
-.freebee-point {
-  font-weight: bold;
-}
-
 div.freebee-filter {
   position: absolute;
   top: 2%;
@@ -31,24 +23,8 @@ div.freebee-type  {
   margin-bottom: 0px;
 }
 
-div.leaflet-popup-content {
-  width: 250px;
-
-  font-size: 13px;
-}
-
-@media only screen and (min-width: 375px) {
-  div.leaflet-popup-content {
-    width: 300px;
-  }
-}
-
 @media only screen and (min-width: 768px) {
   div.freebee-filter {
     left: 2%;
-  }
-
-  ul.sidenav {
-    width: 400px;
   }
 }

@@ -8,11 +8,10 @@ import {
 import {
   ArrowBack,
 } from '@material-ui/icons';
-import {
-  FreebeeMap as Map,
-} from '../../components';
+
 import {
   FeedbackSidebar as Feedback,
+  Map,
 } from '../../containers';
 import styles from './styles';
 
@@ -30,6 +29,7 @@ const FreebeeMap = ({ classes, openFeedbackSidebar }) => (
     >
       <ArrowBack color="action" />
     </Button>
+
     <Feedback />
 
     <Button

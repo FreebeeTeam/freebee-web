@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import ui from './ui';
-import markers from './markers';
+import wifis from './wifi';
 
 export default combineReducers({
-  ui,
-  markers,
+  wifis,
 });

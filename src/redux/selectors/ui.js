@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
-const uiSelector = state => state.ui;
+const rootSelector = state => state.ui;
 
 const feedbackSidebarSelector = createSelector(
-  uiSelector,
+  rootSelector,
   ui => ui.feedbackSidebar,
 );
 const isFeedbackSidebarOpenSelector = createSelector(
@@ -12,7 +12,6 @@ const isFeedbackSidebarOpenSelector = createSelector(
 );
 
 export {
-  uiSelector,
   feedbackSidebarSelector,
   isFeedbackSidebarOpenSelector,
 };

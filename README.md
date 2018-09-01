@@ -1,6 +1,14 @@
 <p align="center"> 
   <img src='https://drive.google.com/uc?id=1albVAA6GrHQaG0EvN3a1WFCs9irSv5Lk' alt='Freebee logo' width="200" />
 </p>
+<p align="center"> 
+  <a href="https://codeclimate.com/github/FreebeeTeam/freebee-web/maintainability">
+   <img src="https://api.codeclimate.com/v1/badges/db6c5c49537d58e96455/maintainability" />
+  </a>
+  <a href="https://codeclimate.com/github/FreebeeTeam/freebee-web/test_coverage">
+    <img src="https://api.codeclimate.com/v1/badges/db6c5c49537d58e96455/test_coverage" />
+  </a>
+</p>
 
 # Freebee WEB
 

@@ -2,10 +2,10 @@
 
 import { feedbackSidebarActions } from './ui';
 import wifiActions from './wifi';
+import toiletsActions from './toilets';
 
-/* eslint-disable import/prefer-default-export */
 export {
   feedbackSidebarActions,
   wifiActions,
+  toiletsActions,
 };
-/* eslint-enable */

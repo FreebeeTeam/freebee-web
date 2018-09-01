@@ -1,11 +1,10 @@
 // @flow
 import { handleActions } from 'redux-actions';
-import { wifiActions } from '../../actions';
+import { toiletsActions } from '../../actions';
 
 type State = {
   +markers: Array<{
     +location: number[],
-    +title: string,
     +address: string,
     +description?: string,
   }>,
@@ -17,7 +16,7 @@ const {
   getMarkersRequest,
   getMarkersSuccess,
   getMarkersError,
-} = wifiActions;
+} = toiletsActions;
 
 const defaultState: State = {
   markers: [],
@@ -30,10 +29,10 @@ const reducer = handleActions({
     ...state,
     isFetching: true,
   }),
-  [getMarkersSuccess]: (state: State, { payload: { wifis } }) => ({
+  [getMarkersSuccess]: (state: State, { payload: { toilets } }) => ({
     ...state,
     isFetching: false,
-    markers: wifis,
+    markers: toilets,
   }),
   [getMarkersError]: (state: State, { payload: { error } }) => ({
     ...state,

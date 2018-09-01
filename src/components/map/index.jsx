@@ -5,15 +5,16 @@ import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { map as mapConfig } from '../../config';
 import WifiMarker from '../wifi-marker';
+import ToiletMarker from '../toilet-marker';
 import styles from './styles';
 
 import type { Classes } from '../../types/styles';
-import type { Wifi } from '../../types/models';
+import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
   classes: Classes,
   wifis?: Wifi[],
-  getWifis: () => any,
+  toilets?: Toilet[],
 };
 
 type State = {
@@ -27,6 +28,7 @@ type State = {
 class FreebeeMap extends React.PureComponent<Props, State> {
   static defaultProps = {
     wifis: [],
+    toilets: [],
   }
 
   state = {
@@ -37,15 +39,9 @@ class FreebeeMap extends React.PureComponent<Props, State> {
     zoom: 12,
   }
 
-  componentDidMount = () => {
-    const { getWifis } = this.props;
-
-    getWifis();
-  }
-
   render() {
     const { center, zoom } = this.state;
-    const { classes, wifis } = this.props;
+    const { classes, wifis, toilets } = this.props;
 
     const position = [center.lat, center.lng];
 
@@ -61,6 +57,9 @@ class FreebeeMap extends React.PureComponent<Props, State> {
         />
         {wifis.map(wifi => (
           <WifiMarker wifi={wifi} />
+        ))}
+        {toilets.map(toilet => (
+          <ToiletMarker toilet={toilet} />
         ))}
       </Map>
     );

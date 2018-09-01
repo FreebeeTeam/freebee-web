@@ -1,7 +1,6 @@
 // @flow
-export type Wifi = {
+export type Toilet = {
   location: number[],
-  title: string,
   address: string,
   description?: string,
 };

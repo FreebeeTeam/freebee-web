@@ -6,11 +6,12 @@ const rootSelector = state => state.markers;
 
 const wifisSelector = createSelector(
   rootSelector,
-  (markers: Wifi[]) => markers.wifis.markers,
+  (markers): Wifi[] => markers.wifis.markers,
 );
+
 const toiletsSelector = createSelector(
   rootSelector,
-  markers => markers.toilets,
+  markers => markers.toilets.markers,
 );
 
 export {

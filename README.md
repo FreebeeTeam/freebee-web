@@ -12,6 +12,8 @@
 
 # Freebee WEB
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a8f5440a7ad34da6b576359a4ec99086)](https://app.codacy.com/app/ArtemDadychenko/freebee-web?utm_source=github.com&utm_medium=referral&utm_content=FreebeeTeam/freebee-web&utm_campaign=Badge_Grade_Dashboard)
+
 It's a web client to help people finding free facilities (simply put, *freebies*) on the map 🌍.
 
 * [Small VK public page](https://vk.com/freebeeapp);

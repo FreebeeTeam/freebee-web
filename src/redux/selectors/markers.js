@@ -14,7 +14,16 @@ const toiletsSelector = createSelector(
   markers => markers.toilets.markers,
 );
 
+const isAllMarkersFetching = createSelector(
+  rootSelector,
+  markers => (
+    markers.wifis.isFetching
+    || markers.toilets.isFetching
+  ),
+);
+
 export {
   wifisSelector,
   toiletsSelector,
+  isAllMarkersFetching,
 };

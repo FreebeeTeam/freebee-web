@@ -46,6 +46,8 @@ Install flow globally
 $ yarn add global flow
 ```
 
+Set your value of PATH var to flow location
+
 Run this for install stubs for dependencies. (after running `yarn install`)
 
 ```

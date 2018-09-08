@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {
   withStyles,
   Button,
+  LinearProgress,
 } from '@material-ui/core';
 import {
   ArrowBack,
@@ -15,16 +16,20 @@ import {
 import styles from './styles';
 import type { Classes } from '../../types/styles';
 
-
 const ToIndexLink = (props: Object) => (<Link to="/" {...props} />);
 
 type Props = {
   classes: Classes,
   openFeedbackSidebar: () => void,
+  isFetching: boolean,
 };
 
-const FreebeeMap = ({ classes, openFeedbackSidebar }: Props) => (
+const FreebeeMap = ({ classes, openFeedbackSidebar, isFetching = true }: Props) => (
   <React.Fragment>
+    {isFetching
+      ? <LinearProgress className={classes.progress} />
+      : null
+    }
     <Map />
     <Button
       className={classes.toIndexLink}

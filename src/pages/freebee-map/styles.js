@@ -2,6 +2,11 @@
 import type { Styles } from '../../types/styles';
 
 export default (): Styles => ({
+  progress: {
+    position: 'absolute',
+    width: '100%',
+    zIndex: 1005,
+  },
   toIndexLink: {
     position: 'absolute',
     top: '2%',
@@ -26,7 +31,7 @@ export default (): Styles => ({
     contactUsDesktop: {
       display: 'inline-flex',
       position: 'absolute',
-      zIndex: '1001',
+      zIndex: 1001,
       right: '2%',
       bottom: '4%',
       color: 'black',

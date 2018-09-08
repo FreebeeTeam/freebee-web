@@ -10,20 +10,28 @@ import {
 } from '@material-ui/core';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
-
+import type { Feedback } from '../../types/models';
 
 type Props = {
-  +classes: Classes,
   +isOpen: boolean,
-  +close: () => void,
-  +open: () => void,
+  feedback: Feedback,
+  +classes: Classes,
+  open: () => void,
+  close: () => void,
+  +cancel: () => void,
+  +submit: () => void,
+  handleFieldChange: () => void,
 };
 
 const FeedbackSidebar = ({
-  classes,
+  feedback,
   isOpen,
-  close,
+  classes,
   open,
+  close,
+  cancel,
+  submit,
+  handleFieldChange,
 }: Props) => (
   <React.Fragment>
     <SwipeableDrawer
@@ -55,6 +63,8 @@ const FeedbackSidebar = ({
                 placeholder="ул. Халявина, 7"
                 label="Место халявы"
                 required
+                onChange={handleFieldChange('address')}
+                value={feedback.address}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -68,6 +78,8 @@ const FeedbackSidebar = ({
                 placeholder="Туалет"
                 label="Вид халявы"
                 required
+                onChange={handleFieldChange('type')}
+                value={feedback.type}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -81,6 +93,8 @@ const FeedbackSidebar = ({
                 placeholder="Автор"
                 label="Freebee"
                 required
+                onChange={handleFieldChange('author')}
+                value={feedback.author}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -93,6 +107,8 @@ const FeedbackSidebar = ({
               <TextField
                 placeholder="Описание найденной халявы"
                 label="Описание"
+                onChange={handleFieldChange('description')}
+                value={feedback.description}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -102,8 +118,8 @@ const FeedbackSidebar = ({
           </Grid>
           <Grid item xs={12}>
             <Grid container className={classes.buttonsContainer}>
-              <Button onClick={close} variant="contained" color="secondary">Отменить</Button>
-              <Button variant="contained" type="submit" color="primary" onClick={close}>Отправить</Button>
+              <Button onClick={cancel} variant="contained" color="secondary">Отменить</Button>
+              <Button variant="contained" type="submit" color="primary" onClick={submit}>Отправить</Button>
             </Grid>
           </Grid>
         </Grid>

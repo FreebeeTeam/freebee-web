@@ -2,13 +2,13 @@
 import * as React from 'react';
 import { withStyles } from '@material-ui/core';
 import { Map, TileLayer } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 import { map as mapConfig } from '../../config';
 import WifiMarker from '../wifi-marker';
 import ToiletMarker from '../toilet-marker';
 import styles from './styles';
 
 import type { Classes } from '../../types/styles';
+import 'leaflet/dist/leaflet.css';
 import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
@@ -50,6 +50,7 @@ class FreebeeMap extends React.PureComponent<Props, State> {
         className={classes.map}
         center={position}
         zoom={zoom}
+        zoomControl={false}
       >
         <TileLayer
           attribution={mapConfig.MAP_ATTRIBUTION}

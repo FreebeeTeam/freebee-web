@@ -8,7 +8,9 @@ import {
 } from '@material-ui/core';
 import {
   ArrowBack,
+  FilterList,
 } from '@material-ui/icons';
+import { FilterButton } from '../../components';
 import {
   FeedbackSidebar as Feedback,
   Map,
@@ -31,11 +33,12 @@ const FreebeeMap = ({ classes, openFeedbackSidebar, isFetching = true }: Props) 
       : null
     }
     <Map />
+    
+    <FilterButton />
     <Button
       className={classes.toIndexLink}
       variant="fab"
       color="primary"
-      aria-label="Return"
       component={ToIndexLink}
     >
       <ArrowBack color="action" />

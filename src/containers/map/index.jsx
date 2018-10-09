@@ -1,9 +1,9 @@
 // @flow
-import * as React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { FreebeeMap } from '../../components';
 import { wifiActions, toiletsActions } from '../../redux/actions';
-import { wifisSelector, toiletsSelector } from '../../redux/selectors/markers';
+import { wifisSelector, toiletsSelector, filterSelector } from '../../redux/selectors/markers';
 import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
   getToilets: () => void,
 };
 
-class MapContainer extends React.Component<Props> {
+class MapContainer extends PureComponent<Props> {
   static defaultProps = {
     wifis: [],
     toilets: [],
@@ -39,10 +39,30 @@ class MapContainer extends React.Component<Props> {
 }
 
 
-const mapStateToProps = state => ({
-  wifis: wifisSelector(state),
-  toilets: toiletsSelector(state),
-});
+const mapStateToProps = (state) => {
+  const filter = filterSelector(state);
+  let wifis = [];
+  let toilets = [];
+
+  if (filter === null) {
+    wifis = wifisSelector(state);
+    toilets = toiletsSelector(state);
+  }
+
+  if (filter === 'wifi') {
+    wifis = wifisSelector(state);
+  }
+
+  if (filter === 'toilet') {
+    toilets = toiletsSelector(state);
+  }
+
+  return {
+    wifis,
+    toilets,
+    filter,
+  };
+};
 
 const { getWifiMarkers } = wifiActions;
 const { getToiletMarkers } = toiletsActions;

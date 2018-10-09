@@ -2,7 +2,7 @@
 import { handleActions } from 'redux-actions';
 import { wifiActions } from '../../actions';
 
-type State = {
+export type State = {
   +markers: Array<{
     +location: number[],
     +title: string,

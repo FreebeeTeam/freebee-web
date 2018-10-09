@@ -2,7 +2,7 @@
 import { handleActions } from 'redux-actions';
 import { toiletsActions } from '../../actions';
 
-type State = {
+export type State = {
   +markers: Array<{
     +location: number[],
     +address: string,

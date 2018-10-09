@@ -3,11 +3,11 @@
 import FeedbackSidebar from './feedback-sidebar';
 import MapPage from './map-page';
 import Map from './map';
+import FilterButton from './filter-markers';
 
-/* eslint-disable import/prefer-default-export */
 export {
   FeedbackSidebar,
   MapPage,
   Map,
+  FilterButton,
 };
-/* eslint-enable */

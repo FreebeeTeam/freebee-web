@@ -5,8 +5,16 @@ import ui from './ui';
 import markers from './markers';
 import feedback from './feedback';
 
-export default combineReducers({
+type State = {
+  ui: {},
+  markers: {},
+  feedback: {}
+};
+
+const reducers: State = {
   ui,
   markers,
   feedback,
-});
+};
+
+export default combineReducers(reducers);

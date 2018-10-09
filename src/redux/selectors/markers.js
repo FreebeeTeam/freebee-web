@@ -1,29 +1,38 @@
 // @flow
 import { createSelector } from 'reselect';
 import type { Wifi } from '../../types/models';
+import type { State } from '../reducers/markers';
 
-const rootSelector = state => state.markers;
+type Selector = (state: {}) => any;
 
-const wifisSelector = createSelector(
+const rootSelector: Selector = (state): State => state.markers;
+
+const wifisSelector: Selector = createSelector(
   rootSelector,
-  (markers): Wifi[] => markers.wifis.markers,
+  (markers: State): Wifi[] => markers.wifis.markers,
 );
 
-const toiletsSelector = createSelector(
+const toiletsSelector: Selector = createSelector(
   rootSelector,
-  markers => markers.toilets.markers,
+  (markers: State) => markers.toilets.markers,
 );
 
-const isAllMarkersFetching = createSelector(
+const isAllMarkersFetching: Selector = createSelector(
   rootSelector,
-  markers => (
+  (markers: State): boolean => (
     markers.wifis.isFetching
     || markers.toilets.isFetching
   ),
+);
+
+const filterSelector: Selector = createSelector(
+  rootSelector,
+  (markers: State) => markers.filter.selected,
 );
 
 export {
   wifisSelector,
   toiletsSelector,
   isAllMarkersFetching,
+  filterSelector,
 };

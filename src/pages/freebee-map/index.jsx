@@ -7,10 +7,10 @@ import {
   LinearProgress,
 } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
-import { FilterButton } from '../../components';
 import {
   FeedbackSidebar as Feedback,
   Map,
+  FilterButton,
 } from '../../containers';
 import styles from './styles';
 import type { Classes } from '../../types/styles';

@@ -6,10 +6,7 @@ import {
   Button,
   LinearProgress,
 } from '@material-ui/core';
-import {
-  ArrowBack,
-  FilterList,
-} from '@material-ui/icons';
+import { ArrowBack } from '@material-ui/icons';
 import { FilterButton } from '../../components';
 import {
   FeedbackSidebar as Feedback,
@@ -33,7 +30,6 @@ const FreebeeMap = ({ classes, openFeedbackSidebar, isFetching = true }: Props) 
       : null
     }
     <Map />
-    
     <FilterButton />
     <Button
       className={classes.toIndexLink}

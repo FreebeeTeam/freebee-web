@@ -1,7 +1,7 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FreebeeMap } from '../../components';
+import FreebeeMap from './map';
 import { wifiActions, toiletsActions } from '../../redux/actions';
 import { wifisSelector, toiletsSelector, filterSelector } from '../../redux/selectors/markers';
 import type { Wifi, Toilet } from '../../types/models';
@@ -13,7 +13,7 @@ type Props = {
   getToilets: () => void,
 };
 
-class MapContainer extends PureComponent<Props> {
+class MapContainer extends Component<Props> {
   static defaultProps = {
     wifis: [],
     toilets: [],

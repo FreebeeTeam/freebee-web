@@ -1,14 +1,12 @@
 // @flow
-import * as React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core';
 import { Map, TileLayer } from 'react-leaflet';
 import { map as mapConfig } from '../../config';
-import WifiMarker from '../wifi-marker';
-import ToiletMarker from '../toilet-marker';
+import { ToiletMarker, WifiMarker } from '../../components';
 import styles from './styles';
-
-import type { Classes } from '../../types/styles';
 import 'leaflet/dist/leaflet.css';
+import type { Classes } from '../../types/styles';
 import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
@@ -25,7 +23,7 @@ type State = {
   zoom: number,
 };
 
-class FreebeeMap extends React.PureComponent<Props, State> {
+class FreebeeMap extends Component<Props, State> {
   static defaultProps = {
     wifis: [],
     toilets: [],

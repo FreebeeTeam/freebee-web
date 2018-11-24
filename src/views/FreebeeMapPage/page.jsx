@@ -9,9 +9,9 @@ import {
 import { ArrowBack } from '@material-ui/icons';
 import {
   FeedbackSidebar,
-  Map,
   FilterButton,
 } from '../../containers';
+import FreebeeMap from '../FreebeeMap';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
 
@@ -29,7 +29,7 @@ const FreebeeMapPage = ({ classes, openFeedbackSidebar, isFetching = true }: Pro
       ? <LinearProgress className={classes.progress} />
       : null
     }
-    <Map />
+    <FreebeeMap />
     <FilterButton />
     <Button
       className={classes.toIndexLink}

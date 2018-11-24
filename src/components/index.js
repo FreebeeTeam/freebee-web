@@ -1,11 +1,13 @@
 import FeedbackSidebar from './feedback-sidebar';
 import IntroducingPanel from './introducing-panel';
-import FreebeeMap from './map';
+import ToiletMarker from './ToiletMarker';
+import WifiMarker from './WifiMarker';
 import FilterButton from './filter-button';
 
 export {
   FeedbackSidebar,
   IntroducingPanel,
-  FreebeeMap,
+  ToiletMarker,
+  WifiMarker,
   FilterButton,
 };

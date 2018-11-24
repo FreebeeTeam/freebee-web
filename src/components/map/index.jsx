@@ -57,10 +57,10 @@ class FreebeeMap extends React.PureComponent<Props, State> {
           url={mapConfig.TILE_LAYER_URL}
         />
         {wifis.map(wifi => (
-          <WifiMarker wifi={wifi} />
+          <WifiMarker key={wifi._id} wifi={wifi} />
         ))}
         {toilets.map(toilet => (
-          <ToiletMarker toilet={toilet} />
+          <ToiletMarker key={toilet._id} toilet={toilet} />
         ))}
       </Map>
     );

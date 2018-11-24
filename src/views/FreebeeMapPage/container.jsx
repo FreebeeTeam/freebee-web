@@ -1,15 +1,15 @@
 // @flow
 import { connect } from 'react-redux';
-import FreebeeMap from '../../pages/freebee-map';
+import FreebeeMapPage from './page';
 import { open } from '../../redux/actions/ui/feedback-sidebar';
 import { isAllMarkersFetching } from '../../redux/selectors/markers';
 
-const mapPropsToState = state => ({
+const mapState = state => ({
   isFetching: isAllMarkersFetching(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatch = dispatch => ({
   openFeedbackSidebar: () => dispatch(open()),
 });
 
-export default connect(mapPropsToState, mapDispatchToProps)(FreebeeMap);
+export default connect(mapState, mapDispatch)(FreebeeMapPage);

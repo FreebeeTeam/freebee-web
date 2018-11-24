@@ -20,7 +20,7 @@ type Props = {
   close: () => void,
   +cancel: () => void,
   +submit: () => void,
-  handleFieldChange: () => void,
+  handleFieldChange: (fields: string) => void,
 };
 
 const FeedbackSidebar = ({
@@ -33,7 +33,7 @@ const FeedbackSidebar = ({
   submit,
   handleFieldChange,
 }: Props) => (
-  <React.Fragment>
+  <>
     <SwipeableDrawer
       open={isOpen}
       onClose={close}
@@ -125,7 +125,7 @@ const FeedbackSidebar = ({
         </Grid>
       </Grid>
     </SwipeableDrawer>
-  </React.Fragment>
+  </>
 );
 
 export default withStyles(styles)(FeedbackSidebar);

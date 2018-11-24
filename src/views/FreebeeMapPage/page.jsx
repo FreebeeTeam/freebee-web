@@ -8,14 +8,14 @@ import {
 } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import {
-  FeedbackSidebar as Feedback,
+  FeedbackSidebar,
   Map,
   FilterButton,
 } from '../../containers';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
 
-const ToIndexLink = (props: Object) => (<Link to="/" {...props} />);
+const ToIndexLink = (props: {}) => (<Link to="/" {...props} />);
 
 type Props = {
   classes: Classes,
@@ -23,8 +23,8 @@ type Props = {
   isFetching: boolean,
 };
 
-const FreebeeMap = ({ classes, openFeedbackSidebar, isFetching = true }: Props) => (
-  <React.Fragment>
+const FreebeeMapPage = ({ classes, openFeedbackSidebar, isFetching = true }: Props) => (
+  <>
     {isFetching
       ? <LinearProgress className={classes.progress} />
       : null
@@ -40,7 +40,7 @@ const FreebeeMap = ({ classes, openFeedbackSidebar, isFetching = true }: Props) 
       <ArrowBack color="action" />
     </Button>
 
-    <Feedback />
+    <FeedbackSidebar />
 
     <Button
       variant="contained"
@@ -56,7 +56,7 @@ const FreebeeMap = ({ classes, openFeedbackSidebar, isFetching = true }: Props) 
     >
       {'Нашли халяву?'}
     </Button>
-  </React.Fragment>
+  </>
 );
 
-export default withStyles(styles)(FreebeeMap);
+export default withStyles(styles)(FreebeeMapPage);

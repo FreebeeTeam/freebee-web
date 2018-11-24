@@ -91,14 +91,14 @@ class FeedbackSidebarContainer extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapState = state => ({
   isOpen: isFeedbackSidebarOpenSelector(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatch = dispatch => ({
   closeSidebar: () => dispatch(close()),
   openSidebar: () => dispatch(open()),
   sendFeedback: (feedback: Feedback) => dispatch(createFeedback(feedback)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedbackSidebarContainer);
+export default connect(mapState, mapDispatch)(FeedbackSidebarContainer);

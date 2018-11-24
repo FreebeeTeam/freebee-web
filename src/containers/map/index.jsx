@@ -39,7 +39,7 @@ class MapContainer extends PureComponent<Props> {
 }
 
 
-const mapStateToProps = (state) => {
+const mapState = (state) => {
   const filter = filterSelector(state);
   let wifis = [];
   let toilets = [];
@@ -67,9 +67,9 @@ const mapStateToProps = (state) => {
 const { getWifiMarkers } = wifiActions;
 const { getToiletMarkers } = toiletsActions;
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatch = dispatch => ({
   getWifis: () => dispatch(getWifiMarkers()),
   getToilets: () => dispatch(getToiletMarkers()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
+export default connect(mapState, mapDispatch)(MapContainer);

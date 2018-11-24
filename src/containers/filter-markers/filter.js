@@ -5,12 +5,12 @@ import { FilterButton } from '../../components';
 import { filterSelector } from '../../redux/selectors/markers';
 import { setFilter } from '../../redux/actions/markers';
 
-const mapStateToProps = (state: {}) => ({
+const mapState = (state: {}) => ({
   selectedFilter: filterSelector(state),
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatch = dispatch => bindActionCreators({
   setFilter,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterButton);
+export default connect(mapState, mapDispatch)(FilterButton);

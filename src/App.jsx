@@ -10,19 +10,19 @@ import {
 
 import { createStore } from './redux';
 
-import IndexPage from './pages/index-page';
-import { MapPage } from './containers';
+import IndexPage from './views/index-page';
+import FreebeeMapPage from './views/FreebeeMapPage';
 
 
 const App = () => (
   <Provider store={createStore()}>
     <Router>
-      <React.Fragment>
+      <>
         <Switch>
           <Route exact path="/" component={IndexPage} />
-          <Route path="/map" component={MapPage} />
+          <Route path="/map" component={FreebeeMapPage} />
         </Switch>
-      </React.Fragment>
+      </>
     </Router>
   </Provider>
 );

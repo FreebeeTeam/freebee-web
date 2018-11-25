@@ -7,6 +7,7 @@ import vk from '../images/vk.svg';
 import github from '../images/github.svg';
 import wifi from '../images/wifi.png';
 import toilet from '../images/toilet.png';
+import userMarker from '../images/userMarker.svg';
 import defaultFilter from '../images/default-filter.png';
 import defaultFilterInactive from '../images/default-filter-inactive.png';
 
@@ -18,6 +19,7 @@ export {
   github,
   wifi,
   toilet,
+  userMarker,
   defaultFilter,
   defaultFilterInactive,
 };

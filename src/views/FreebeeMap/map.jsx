@@ -12,7 +12,7 @@ import type { Wifi, Toilet } from '../../types/models';
 type Props = {
   classes: Classes,
   wifi?: Wifi[],
-  userLocation: Array<number> | null,
+  userLocation: number[] | null,
   toilets?: Toilet[],
 };
 
@@ -38,6 +38,19 @@ class FreebeeMap extends Component<Props, State> {
     zoom: 12,
   }
 
+  setMapRef = (element) => {
+    this.map = element;
+  }
+
+  componentDidUpdate = () => {
+    const { userLocation } = this.props;
+    const map = this.map.leafletElement;
+
+    if (userLocation !== null) {
+      map.panTo(userLocation);
+    }
+  }
+
   render() {
     const { center, zoom } = this.state;
     const {
@@ -55,6 +68,7 @@ class FreebeeMap extends Component<Props, State> {
         center={position}
         zoom={zoom}
         zoomControl={false}
+        ref={this.setMapRef}
       >
         <TileLayer
           attribution={mapConfig.MAP_ATTRIBUTION}

@@ -13,6 +13,12 @@ export default (): Styles => ({
     right: '4%',
     zIndex: 1001,
   },
+  userLocationButton: {
+    position: 'absolute',
+    right: '4%',
+    bottom: '10%',
+    zIndex: 1001,
+  },
   contactUs: {
     fontFamily: '\'Roboto Condensed\', Arial, Helvetica, sans-serif',
     fontWeight: 'bold',
@@ -27,6 +33,9 @@ export default (): Styles => ({
     },
     contactUs: {
       display: 'none',
+    },
+    userLocationButton: {
+      right: '2%',
     },
     contactUsDesktop: {
       display: 'inline-flex',

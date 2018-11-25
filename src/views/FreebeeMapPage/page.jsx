@@ -7,6 +7,7 @@ import {
   LinearProgress,
 } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
+import { UserLocationButton } from '../../components';
 import {
   FeedbackSidebar,
   FilterButton,
@@ -20,16 +21,23 @@ const ToIndexLink = (props: {}) => (<Link to="/" {...props} />);
 type Props = {
   classes: Classes,
   openFeedbackSidebar: () => void,
+  setUserLocation: () => void,
   isFetching: boolean,
 };
 
-const FreebeeMapPage = ({ classes, openFeedbackSidebar, isFetching = true }: Props) => (
+const FreebeeMapPage = ({
+  classes,
+  openFeedbackSidebar,
+  setUserLocation,
+  currentUserLocation,
+  isFetching = true,
+}: Props) => (
   <>
     {isFetching
       ? <LinearProgress className={classes.progress} />
       : null
     }
-    <FreebeeMap />
+    <FreebeeMap currentUserLocation={currentUserLocation} />
     <FilterButton />
     <Button
       className={classes.toIndexLink}
@@ -39,6 +47,10 @@ const FreebeeMapPage = ({ classes, openFeedbackSidebar, isFetching = true }: Pro
     >
       <ArrowBack color="action" />
     </Button>
+
+    <div className={classes.userLocationButton}>
+      <UserLocationButton onClick={setUserLocation} />
+    </div>
 
     <FeedbackSidebar />
 

@@ -11,9 +11,9 @@ type Props = {
   wifi?: Wifi[],
   toilets?: Toilet[],
   getWifi: () => void,
-  setCurrentLocation: (position: Array<number> | string) => void,
+  setCurrentLocation: (position: number[] | string) => void,
   getToilets: () => void,
-  currentUserLocation: Array<number> | null,
+  currentUserLocation: number[] | null,
   locationError: string | null,
 };
 
@@ -87,7 +87,6 @@ const mapState = (state) => {
     wifi,
     toilets,
     filter,
-    currentUserLocation: selectUserCurrentLocation(state),
     locationError: selectUserCurrentLocationError(state),
   };
 };

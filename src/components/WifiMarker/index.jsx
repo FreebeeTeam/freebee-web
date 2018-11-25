@@ -12,32 +12,34 @@ type Props = {
   wifi: Wifi,
 };
 
-const WifiMarker = ({ wifi, classes }: Props) => (
-  <Marker
-    icon={icon}
-    position={wifi.location}
-  >
-    <Popup>
-      <div className={classes.content}>
-        <span className={classes.point}>Название: </span>
-        <span className={classes.title}>
-          {wifi.title}
-        </span>
-        <br />
-        <br />
-        <span className={classes.point}>Адрес: </span>
-        <span>
-          {wifi.address}
-        </span>
-        <br />
-        <br />
-        <span className={classes.point}>Описание: </span>
-        <span>
-          {wifi.description}
-        </span>
-      </div>
-    </Popup>
-  </Marker>
-);
+const WifiMarker = ({ wifi, classes }: Props) => {
+  return (
+    <Marker
+      icon={icon}
+      position={wifi.location}
+    >
+      <Popup>
+        <div className={classes.content}>
+          <span className={classes.point}>Название: </span>
+          <span className={classes.title}>
+            {wifi.title}
+          </span>
+          <br />
+          <br />
+          <span className={classes.point}>Адрес: </span>
+          <span>
+            {wifi.address}
+          </span>
+          <br />
+          <br />
+          <span className={classes.point}>Описание: </span>
+          <span>
+            {wifi.description}
+          </span>
+        </div>
+      </Popup>
+    </Marker>
+  );
+};
 
 export default withStyles(styles)(WifiMarker);

@@ -2,6 +2,7 @@ import FeedbackSidebar from './feedback-sidebar';
 import IntroducingPanel from './introducing-panel';
 import ToiletMarker from './ToiletMarker';
 import WifiMarker from './WifiMarker';
+import UserMarker from './UserMarker';
 import FilterButton from './filter-button';
 
 export {
@@ -9,5 +10,6 @@ export {
   IntroducingPanel,
   ToiletMarker,
   WifiMarker,
+  UserMarker,
   FilterButton,
 };

@@ -4,53 +4,79 @@ import { connect } from 'react-redux';
 import FreebeeMap from './map';
 import { wifiActions, toiletsActions } from '../../redux/actions';
 import { wifisSelector, toiletsSelector, filterSelector } from '../../redux/selectors/markers';
+import { userActions, selectors as userSelectors } from '../../redux/user';
 import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
-  wifis?: Wifi[],
+  wifi?: Wifi[],
   toilets?: Toilet[],
-  getWifis: () => void,
+  getWifi: () => void,
+  setCurrentLocation: (position: Array<number> | string) => void,
   getToilets: () => void,
+  currentUserLocation: Array<number> | null,
+  locationError: string | null,
 };
 
 class MapContainer extends Component<Props> {
   static defaultProps = {
-    wifis: [],
+    wifi: [],
     toilets: [],
   }
 
   componentDidMount = () => {
-    const { getWifis, getToilets } = this.props;
+    const { getWifi, getToilets } = this.props;
 
-    getWifis();
+    getWifi();
     getToilets();
+    this.getUserLocation();
+  }
+
+  getUserLocation = () => {
+    const { setCurrentLocation } = this.props;
+    const nativeGeolocation = navigator.geolocation;
+    const successCallback = (position) => {
+      const { latitude, longitude } = position.coords;
+
+      setCurrentLocation([latitude, longitude]);
+    };
+    const errorCallback = (error) => {
+      console.error(error);
+      setCurrentLocation('Location information is unavailable.');
+    };
+
+    nativeGeolocation.getCurrentPosition(successCallback, errorCallback);
   }
 
   render() {
-    const { wifis, toilets } = this.props;
+    const {
+      wifi, toilets, currentUserLocation, locationError,
+    } = this.props;
 
     return (
       <FreebeeMap
-        wifis={wifis}
+        wifi={wifi}
         toilets={toilets}
+        userLocation={currentUserLocation}
+        locationError={locationError}
       />
     );
   }
 }
 
+const { selectUserCurrentLocation, selectUserCurrentLocationError } = userSelectors;
 
 const mapState = (state) => {
   const filter = filterSelector(state);
-  let wifis = [];
+  let wifi = [];
   let toilets = [];
 
   if (filter === null) {
-    wifis = wifisSelector(state);
+    wifi = wifisSelector(state);
     toilets = toiletsSelector(state);
   }
 
   if (filter === 'wifi') {
-    wifis = wifisSelector(state);
+    wifi = wifisSelector(state);
   }
 
   if (filter === 'toilet') {
@@ -58,18 +84,22 @@ const mapState = (state) => {
   }
 
   return {
-    wifis,
+    wifi,
     toilets,
     filter,
+    currentUserLocation: selectUserCurrentLocation(state),
+    locationError: selectUserCurrentLocationError(state),
   };
 };
 
 const { getWifiMarkers } = wifiActions;
 const { getToiletMarkers } = toiletsActions;
+const { setCurrentLocation } = userActions;
 
 const mapDispatch = dispatch => ({
-  getWifis: () => dispatch(getWifiMarkers()),
+  getWifi: () => dispatch(getWifiMarkers()),
   getToilets: () => dispatch(getToiletMarkers()),
+  setCurrentLocation: (position: [] | string) => dispatch(setCurrentLocation(position)),
 });
 
 export default connect(mapState, mapDispatch)(MapContainer);

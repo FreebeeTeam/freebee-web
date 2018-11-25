@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core';
 import { Map, TileLayer } from 'react-leaflet';
 import { map as mapConfig } from '../../config';
-import { ToiletMarker, WifiMarker } from '../../components';
+import { ToiletMarker, WifiMarker, UserMarker } from '../../components';
 import styles from './styles';
 import 'leaflet/dist/leaflet.css';
 import type { Classes } from '../../types/styles';
@@ -11,7 +11,8 @@ import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
   classes: Classes,
-  wifis?: Wifi[],
+  wifi?: Wifi[],
+  userLocation: Array<number> | null,
   toilets?: Toilet[],
 };
 
@@ -25,7 +26,7 @@ type State = {
 
 class FreebeeMap extends Component<Props, State> {
   static defaultProps = {
-    wifis: [],
+    wifi: [],
     toilets: [],
   }
 
@@ -39,7 +40,12 @@ class FreebeeMap extends Component<Props, State> {
 
   render() {
     const { center, zoom } = this.state;
-    const { classes, wifis, toilets } = this.props;
+    const {
+      classes,
+      wifi,
+      toilets,
+      userLocation,
+    } = this.props;
 
     const position = [center.lat, center.lng];
 
@@ -54,11 +60,13 @@ class FreebeeMap extends Component<Props, State> {
           attribution={mapConfig.MAP_ATTRIBUTION}
           url={mapConfig.TILE_LAYER_URL}
         />
-        {wifis.map(wifi => (
-          <WifiMarker key={wifi._id} wifi={wifi} />
+        {userLocation && <UserMarker location={userLocation} />}
+
+        {wifi.map(marker => (
+          <WifiMarker key={marker._id} wifi={marker} />
         ))}
-        {toilets.map(toilet => (
-          <ToiletMarker key={toilet._id} toilet={toilet} />
+        {toilets.map(marker => (
+          <ToiletMarker key={marker._id} toilet={marker} />
         ))}
       </Map>
     );

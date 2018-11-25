@@ -49,7 +49,7 @@ class MapContainer extends Component<Props> {
 
   render() {
     const {
-      wifi, toilets, currentUserLocation, locationError,
+      wifi, toilets, currentUserLocation,
     } = this.props;
 
     return (
@@ -57,13 +57,10 @@ class MapContainer extends Component<Props> {
         wifi={wifi}
         toilets={toilets}
         userLocation={currentUserLocation}
-        locationError={locationError}
       />
     );
   }
 }
-
-const { selectUserCurrentLocation, selectUserCurrentLocationError } = userSelectors;
 
 const mapState = (state) => {
   const filter = filterSelector(state);
@@ -87,7 +84,6 @@ const mapState = (state) => {
     wifi,
     toilets,
     filter,
-    locationError: selectUserCurrentLocationError(state),
   };
 };
 

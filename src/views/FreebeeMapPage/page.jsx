@@ -1,17 +1,10 @@
 // @flow
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  withStyles,
-  Button,
-  LinearProgress,
-} from '@material-ui/core';
+import { withStyles, Button, LinearProgress } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
-import { UserLocationButton } from '../../components';
-import {
-  FeedbackSidebar,
-  FilterButton,
-} from '../../containers';
+import { UserLocationButton, ErrorSnackbar } from '../../components';
+import { FeedbackSidebar, FilterButton } from '../../containers';
 import FreebeeMap from '../FreebeeMap';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
@@ -19,18 +12,25 @@ import type { Classes } from '../../types/styles';
 const ToIndexLink = (props: {}) => (<Link to="/" {...props} />);
 
 type Props = {
-  classes: Classes,
+  errorSnackbarIsOpen: boolean,
+  locationError: string | null,
   openFeedbackSidebar: () => void,
+  closeErrorSnackbar: () => void,
   setUserLocation: () => void,
   isFetching: boolean,
+  currentUserLocation: number[] | null,
+  classes: Classes,
 };
 
 const FreebeeMapPage = ({
-  classes,
   openFeedbackSidebar,
+  errorSnackbarIsOpen,
+  locationError,
+  closeErrorSnackbar,
   setUserLocation,
   currentUserLocation,
-  isFetching = true,
+  isFetching,
+  classes,
 }: Props) => (
   <>
     {isFetching
@@ -47,6 +47,7 @@ const FreebeeMapPage = ({
     >
       <ArrowBack color="action" />
     </Button>
+    <ErrorSnackbar isOpen={errorSnackbarIsOpen} message={locationError} handleClose={closeErrorSnackbar} />
 
     <div className={classes.userLocationButton}>
       <UserLocationButton onClick={setUserLocation} />
@@ -70,5 +71,9 @@ const FreebeeMapPage = ({
     </Button>
   </>
 );
+
+FreebeeMapPage.defaultProps = {
+  isFetching: true,
+};
 
 export default withStyles(styles)(FreebeeMapPage);

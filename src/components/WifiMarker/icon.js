@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import L from 'leaflet';
 import type { Icon } from 'leaflet';
 import { wifi } from '../../themes/images';

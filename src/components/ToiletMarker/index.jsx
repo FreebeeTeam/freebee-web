@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import * as React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import { withStyles } from '@material-ui/core';

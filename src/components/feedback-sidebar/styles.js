@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import type { Theme } from '@material-ui/core';
 import type { Styles } from '../../types/styles';
 

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 const base: string = process.env.REACT_APP_API;
 
 const buildUrl = url => `${base}${url}`;

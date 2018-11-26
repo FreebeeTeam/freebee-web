@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import axios from 'axios';
 import { feedback as api } from './api';
 

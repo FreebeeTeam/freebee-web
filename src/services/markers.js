@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import axios from 'axios';
 import { wifi as wifiApi, toilets as toiletsApi } from './api';
 

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { handleActions } from 'redux-actions';
 import { feedbackSidebarActions } from '../../actions/ui';
 

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { feedbackService } from '../../services';
 import {
   createFeedbackRequest,

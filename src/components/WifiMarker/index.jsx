@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import * as React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import { withStyles } from '@material-ui/core';
@@ -13,9 +13,6 @@ type Props = {
 };
 
 const WifiMarker = ({ wifi, classes }: Props) => {
-
-  console.log('wifi')
-  console.log(wifi)
   return (
     <Marker
       icon={icon}

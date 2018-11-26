@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { createActions } from 'redux-actions';
 
 type Actions = {

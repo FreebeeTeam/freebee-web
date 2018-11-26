@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { createSelector } from 'reselect';
 import type { Wifi } from '../../types/models';
 import type { State } from './reducer';

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 import misc from '../images/misc.png';
 import freebee from '../images/freebee.png';

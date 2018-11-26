@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FreebeeMapPage from './page';
 import { open } from '../../redux/actions/ui/feedback-sidebar';
-import { userActions, selectors } from '../../redux/user';
-import { isAllMarkersFetching } from '../../redux/selectors/markers';
+import { userActions, selectors as userSelectors } from '../../redux/user';
+import { actions, selectors as markersSelectors } from '../../redux/markers';
 
 type Props = {
   locationError: string,
@@ -49,14 +49,18 @@ class FreebeeMapPageContainer extends Component<Props, State> {
 }
 
 const mapState = state => ({
-  isFetching: isAllMarkersFetching(state),
-  currentUserLocation: selectors.selectUserCurrentLocation(state),
-  locationError: selectors.selectUserCurrentLocationError(state),
+  isFetching: markersSelectors.isAllMarkersFetching(state),
+  currentUserLocation: userSelectors.selectUserCurrentLocation(state),
+  locationError: userSelectors.selectUserCurrentLocationError(state),
+  selectedFilter: markersSelectors.filterSelector(state),
 });
+
+const { setFilter } = actions;
 
 const mapDispatch = dispatch => ({
   openFeedbackSidebar: () => dispatch(open()),
   setUserCurrentLocation: location => dispatch(userActions.setCurrentLocation(location)),
+  setFilter: filter => dispatch(setFilter(filter)),
 });
 
 const mergeProps = (propsFromState, propsFromDispatch) => {

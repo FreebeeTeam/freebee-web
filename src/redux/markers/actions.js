@@ -1,5 +1,7 @@
 // @flow
 import { createActions } from 'redux-actions';
+import { actions as toiletsActions } from './toilets';
+import { actions as wifiActions } from './wifi';
 
 const {
   markers: {
@@ -13,4 +15,6 @@ const {
 
 export {
   setFilter,
+  toiletsActions,
+  wifiActions,
 };

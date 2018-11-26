@@ -74,13 +74,13 @@ class FreebeeMap extends Component<Props, State> {
           attribution={mapConfig.MAP_ATTRIBUTION}
           url={mapConfig.TILE_LAYER_URL}
         />
-        {userLocation && <UserMarker location={userLocation} />}
+        {userLocation && <UserMarker key={userLocation.toString()} location={userLocation} />}
 
         {wifi.map(marker => (
-          <WifiMarker key={marker._id} wifi={marker} />
+          <WifiMarker key={marker.id} wifi={marker} />
         ))}
         {toilets.map(marker => (
-          <ToiletMarker key={marker._id} toilet={marker} />
+          <ToiletMarker key={marker.id} toilet={marker} />
         ))}
       </Map>
     );

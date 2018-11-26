@@ -1,7 +1,5 @@
 // @flow
-import axios from 'axios';
 import { createActions } from 'redux-actions';
-import { api } from '../../../config';
 
 const {
   markers: {
@@ -21,20 +19,7 @@ const {
   },
 });
 
-const getToiletMarkers = () => async (dispatch) => {
-  dispatch(getMarkersRequest());
-
-  try {
-    const response = await axios.get(api.toilets);
-    dispatch(getMarkersSuccess(response.data));
-  } catch (error) {
-    console.error(error);
-    dispatch(getMarkersError());
-  }
-};
-
-export default {
-  getToiletMarkers,
+export {
   getMarkersRequest,
   getMarkersSuccess,
   getMarkersError,

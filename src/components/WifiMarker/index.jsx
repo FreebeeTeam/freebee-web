@@ -13,6 +13,9 @@ type Props = {
 };
 
 const WifiMarker = ({ wifi, classes }: Props) => {
+
+  console.log('wifi')
+  console.log(wifi)
   return (
     <Marker
       icon={icon}

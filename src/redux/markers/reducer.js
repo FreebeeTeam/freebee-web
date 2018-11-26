@@ -1,6 +1,9 @@
 // @flow
+import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
-import { markersActions } from '../../actions';
+import * as markersActions from './actions';
+import toilets from './toilets';
+import wifi from './wifi';
 
 export type State = {
   +selected: string | null,
@@ -21,4 +24,9 @@ const reducer = handleActions({
   }),
 }, defaultState);
 
-export default reducer;
+
+export default combineReducers({
+  shared: reducer,
+  toilets,
+  wifi,
+});

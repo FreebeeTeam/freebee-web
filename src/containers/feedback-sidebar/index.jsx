@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { FeedbackSidebar } from '../../components';
 import { close, open } from '../../redux/actions/ui/feedback-sidebar';
-import { createFeedback } from '../../redux/actions/feedback/feedback';
+import { thunks } from '../../redux/feedback';
 import { isFeedbackSidebarOpenSelector } from '../../redux/selectors/ui';
 import type { Feedback } from '../../types/models';
 
@@ -90,6 +90,8 @@ class FeedbackSidebarContainer extends React.PureComponent<Props, State> {
     );
   }
 }
+
+const { createFeedback } = thunks;
 
 const mapState = state => ({
   isOpen: isFeedbackSidebarOpenSelector(state),

@@ -12,7 +12,8 @@ type Props = {
   toilet: Toilet,
 };
 
-const WifiMarker = ({ toilet, classes }: Props) => (
+const WifiMarker = ({ toilet, classes }: Props) => {
+  return (
   <Marker
     icon={icon}
     position={toilet.location}
@@ -31,6 +32,6 @@ const WifiMarker = ({ toilet, classes }: Props) => (
       </div>
     </Popup>
   </Marker>
-);
+)};
 
 export default withStyles(styles)(WifiMarker);

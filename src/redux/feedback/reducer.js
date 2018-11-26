@@ -1,17 +1,15 @@
 // @flow
 import { handleActions } from 'redux-actions';
-import { feedbackActions } from '../../actions';
+import {
+  createFeedbackRequest,
+  createFeedbackSuccess,
+  createFeedbackError,
+} from './actions';
 
 type State = {
   isLoading: boolean,
   error?: {},
 };
-
-const {
-  createFeedbackRequest,
-  createFeedbackSuccess,
-  createFeedbackError,
-} = feedbackActions;
 
 const defaultState: State = {
   feedback: [],

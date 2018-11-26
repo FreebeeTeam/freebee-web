@@ -1,9 +1,5 @@
 // @flow
-
-import api from './api';
 import map from './map';
 
-export {
-  api,
-  map,
-};
+// eslint-disable-next-line import/prefer-default-export
+export { map };

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { handleActions } from 'redux-actions';
 import { feedbackSidebarActions } from '../../actions/ui';
 
@@ -14,11 +14,11 @@ const defaultState: State = {
 
 const reducer = handleActions(
   {
-    [open]: (state: State) => ({
+    [open.toString()]: (state: State) => ({
       ...state,
       open: true,
     }),
-    [close]: (state: State) => ({
+    [close.toString()]: (state: State) => ({
       ...state,
       open: false,
     }),

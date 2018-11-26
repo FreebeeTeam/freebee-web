@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import type { Styles } from '../../types/styles';
 
 export default (): Styles => ({

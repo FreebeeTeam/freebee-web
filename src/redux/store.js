@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 import {
   createStore,
@@ -7,7 +7,7 @@ import {
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import rootReducer from './reducers';
+import rootReducer from './rootReducer';
 
 
 export default () => {

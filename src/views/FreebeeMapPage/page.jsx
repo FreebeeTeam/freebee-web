@@ -1,10 +1,10 @@
-// @flow
+/* @flow */
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles, Button, LinearProgress } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
-import { UserLocationButton, ErrorSnackbar } from '../../components';
-import { FeedbackSidebar, FilterButton } from '../../containers';
+import { UserLocationButton, ErrorSnackbar, FilterButton } from '../../components';
+import FeedbackSidebar from './FeedbackSidebar';
 import FreebeeMap from '../FreebeeMap';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
@@ -17,18 +17,26 @@ type Props = {
   openFeedbackSidebar: () => void,
   closeErrorSnackbar: () => void,
   setUserLocation: () => void,
+  setFilter: () => void,
   isFetching: boolean,
+  selectedFilter: string | null,
   currentUserLocation: number[] | null,
   classes: Classes,
 };
 
 const FreebeeMapPage = ({
   openFeedbackSidebar,
+
   errorSnackbarIsOpen,
-  locationError,
   closeErrorSnackbar,
+  locationError,
+
   setUserLocation,
   currentUserLocation,
+
+  setFilter,
+  selectedFilter,
+
   isFetching,
   classes,
 }: Props) => (
@@ -38,7 +46,7 @@ const FreebeeMapPage = ({
       : null
     }
     <FreebeeMap currentUserLocation={currentUserLocation} />
-    <FilterButton />
+    <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
     <Button
       className={classes.toIndexLink}
       variant="fab"
@@ -47,7 +55,11 @@ const FreebeeMapPage = ({
     >
       <ArrowBack color="action" />
     </Button>
-    <ErrorSnackbar isOpen={errorSnackbarIsOpen} message={locationError} handleClose={closeErrorSnackbar} />
+    <ErrorSnackbar
+      isOpen={errorSnackbarIsOpen}
+      message={locationError}
+      handleClose={closeErrorSnackbar}
+    />
 
     <div className={classes.userLocationButton}>
       <UserLocationButton onClick={setUserLocation} />

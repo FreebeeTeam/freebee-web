@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 import * as feedbackSidebarActions from './feedback-sidebar';
 

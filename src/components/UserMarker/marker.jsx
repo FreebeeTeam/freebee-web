@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import * as React from 'react';
 import { Marker } from 'react-leaflet';
 import icon from './icon';

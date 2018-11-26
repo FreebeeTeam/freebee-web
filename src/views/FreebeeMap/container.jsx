@@ -1,20 +1,17 @@
-// @flow
+/* @flow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FreebeeMap from './map';
-import { wifiActions, toiletsActions } from '../../redux/actions';
-import { wifisSelector, toiletsSelector, filterSelector } from '../../redux/selectors/markers';
-import { userActions, selectors as userSelectors } from '../../redux/user';
+import { selectors, thunks } from '../../redux/markers';
+import { userActions } from '../../redux/user';
 import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
   wifi?: Wifi[],
   toilets?: Toilet[],
-  getWifi: () => void,
+  getMarkers: () => void,
   setCurrentLocation: (position: number[] | string) => void,
-  getToilets: () => void,
   currentUserLocation: number[] | null,
-  locationError: string | null,
 };
 
 class MapContainer extends Component<Props> {
@@ -24,10 +21,9 @@ class MapContainer extends Component<Props> {
   }
 
   componentDidMount = () => {
-    const { getWifi, getToilets } = this.props;
+    const { getMarkers } = this.props;
 
-    getWifi();
-    getToilets();
+    getMarkers()
     this.getUserLocation();
   }
 
@@ -62,6 +58,12 @@ class MapContainer extends Component<Props> {
   }
 }
 
+const {
+  wifisSelector,
+  toiletsSelector,
+  filterSelector,
+} = selectors;
+
 const mapState = (state) => {
   const filter = filterSelector(state);
   let wifi = [];
@@ -87,13 +89,11 @@ const mapState = (state) => {
   };
 };
 
-const { getWifiMarkers } = wifiActions;
-const { getToiletMarkers } = toiletsActions;
+const { getMarkers } = thunks;
 const { setCurrentLocation } = userActions;
 
 const mapDispatch = dispatch => ({
-  getWifi: () => dispatch(getWifiMarkers()),
-  getToilets: () => dispatch(getToiletMarkers()),
+  getMarkers: () => dispatch(getMarkers()),
   setCurrentLocation: (position: [] | string) => dispatch(setCurrentLocation(position)),
 });
 

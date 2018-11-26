@@ -1,5 +1,5 @@
 /* @flow */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Button, withStyles } from '@material-ui/core';
 import {
   FilterList,
@@ -26,7 +26,7 @@ const WcOptionIcon = () => <WcIcon color="action" />;
 const WifiOptionIcon = () => <WifiIcon color="action" />;
 const ClearAllOptionIcon = () => <ClearAllIcon color="action" />;
 
-class FilterButton extends PureComponent<Props, State> {
+class FilterButton extends Component<Props, State> {
   state = {
     open: false,
   }

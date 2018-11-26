@@ -14,24 +14,25 @@ type Props = {
 
 const WifiMarker = ({ toilet, classes }: Props) => {
   return (
-  <Marker
-    icon={icon}
-    position={toilet.location}
-  >
-    <Popup>
-      <div className={classes.content}>
-        <span className={classes.title}>Туалет</span>
-        <br />
-        <br />
-        <span className={classes.point}>Адрес: </span>
-        <span>{toilet.address}</span>
-        <br />
-        <br />
-        <span className={classes.point}>Описание: </span>
-        <span>{toilet.description || 'Отсутствует'}</span>
-      </div>
-    </Popup>
-  </Marker>
-)};
+    <Marker
+      icon={icon}
+      position={toilet.location}
+    >
+      <Popup>
+        <div className={classes.content}>
+          <span className={classes.title}>Туалет</span>
+          <br />
+          <br />
+          <span className={classes.point}>Адрес: </span>
+          <span>{toilet.address}</span>
+          <br />
+          <br />
+          <span className={classes.point}>Описание: </span>
+          <span>{toilet.description || 'Отсутствует'}</span>
+        </div>
+      </Popup>
+    </Marker>
+  );
+};
 
 export default withStyles(styles)(WifiMarker);

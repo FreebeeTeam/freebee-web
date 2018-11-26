@@ -64,7 +64,7 @@ const mapDispatch = dispatch => ({
 });
 
 const mergeProps = (propsFromState, propsFromDispatch) => {
-  const { currentUserLocation, ...rest } = propsFromState;
+  const { currentUserLocation } = propsFromState;
   const setUserLocation = () => {
     if (currentUserLocation) {
       propsFromDispatch.setUserCurrentLocation(currentUserLocation.slice());
@@ -73,7 +73,7 @@ const mergeProps = (propsFromState, propsFromDispatch) => {
 
   return {
     ...propsFromState,
-    ...rest,
+    ...propsFromDispatch,
     setUserLocation,
   };
 };

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { withStyles, Button, LinearProgress } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import { UserLocationButton, ErrorSnackbar, FilterButton } from '../../components';
-import { FeedbackSidebar } from '../../containers';
+import FeedbackSidebar from './FeedbackSidebar';
 import FreebeeMap from '../FreebeeMap';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
@@ -19,18 +19,24 @@ type Props = {
   setUserLocation: () => void,
   setFilter: () => void,
   isFetching: boolean,
+  selectedFilter: string | null,
   currentUserLocation: number[] | null,
   classes: Classes,
 };
 
 const FreebeeMapPage = ({
   openFeedbackSidebar,
+
   errorSnackbarIsOpen,
-  locationError,
   closeErrorSnackbar,
+  locationError,
+
   setUserLocation,
-  setFilter,
   currentUserLocation,
+
+  setFilter,
+  selectedFilter,
+
   isFetching,
   classes,
 }: Props) => (
@@ -40,7 +46,7 @@ const FreebeeMapPage = ({
       : null
     }
     <FreebeeMap currentUserLocation={currentUserLocation} />
-    <FilterButton setFilter={setFilter} />
+    <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
     <Button
       className={classes.toIndexLink}
       variant="fab"

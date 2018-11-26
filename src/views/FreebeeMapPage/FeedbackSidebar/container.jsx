@@ -1,11 +1,11 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FeedbackSidebar } from '../../components';
-import { close, open } from '../../redux/actions/ui/feedback-sidebar';
-import { thunks } from '../../redux/feedback';
-import { isFeedbackSidebarOpenSelector } from '../../redux/selectors/ui';
-import type { Feedback } from '../../types/models';
+import FeedbackSidebar from './sidebar';
+import { close, open } from '../../../redux/actions/ui/feedback-sidebar';
+import { thunks } from '../../../redux/feedback';
+import { isFeedbackSidebarOpenSelector } from '../../../redux/selectors/ui';
+import type { Feedback } from '../../../types/models';
 
 type Props = {
   closeSidebar: () => void,
@@ -16,7 +16,7 @@ type Props = {
 
 type State = {
   address: string,
-  type: string,
+  type: string[],
   author: string,
   description?: string,
 };
@@ -24,7 +24,7 @@ type State = {
 class FeedbackSidebarContainer extends React.PureComponent<Props, State> {
   state = {
     address: '',
-    type: '',
+    type: [''],
     author: '',
     description: '',
   }
@@ -46,7 +46,7 @@ class FeedbackSidebarContainer extends React.PureComponent<Props, State> {
 
     const feedback: Feedback = {
       address,
-      type,
+      type: [type],
       author,
       description,
     };

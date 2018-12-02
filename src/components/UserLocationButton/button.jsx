@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react';
-import { Button } from '@material-ui/core';
+import { Fab } from '@material-ui/core';
 import { MyLocation as MyLocationIcon } from '@material-ui/icons';
 
 type Props = {
@@ -9,13 +9,12 @@ type Props = {
 
 const UserLocationButton = ({ onClick }: Props) => {
   return (
-    <Button
-      variant="fab"
+    <Fab
       color="primary"
       onClick={onClick}
     >
       <MyLocationIcon color="action" />
-    </Button>
+    </Fab>
   );
 };
 

@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Button, withStyles } from '@material-ui/core';
+import { Button, withStyles, Fab } from '@material-ui/core';
 import {
   FilterList,
   Wc as WcIcon,
@@ -45,14 +45,13 @@ class FilterButton extends Component<Props, State> {
 
     return (
       <div className={cn(classes.filter)}>
-        <Button
+        <Fab
           className={cn(classes.button, classes.mainButton)}
-          variant="fab"
           color="primary"
           onClick={this.toogle}
         >
           <FilterList color="action" />
-        </Button>
+        </Fab>
         <div className={cn((open ? classes.open : classes.close), classes.drop)}>
           <Option
             isSelected={selectedFilter === null}

@@ -4,13 +4,18 @@ import { connect } from 'react-redux';
 import FreebeeMap from './map';
 import { selectors, thunks } from '../../redux/markers';
 import { userActions } from '../../redux/user';
-import { thunks as routingThunks } from '../../redux/routing';
+import {
+  thunks as routingThunks,
+  selectors as routingSelectors,
+} from '../../redux/routing';
 import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
   wifi?: Wifi[],
   toilets?: Toilet[],
+  routeComponents: [],
   getMarkers: () => void,
+  getRoute: (number[], number[]) => void,
   setCurrentLocation: (position: number[] | string) => void,
   currentUserLocation: number[] | null,
 };
@@ -47,13 +52,17 @@ class MapContainer extends Component<Props> {
 
   render() {
     const {
-      wifi, toilets, currentUserLocation,
+      wifi,
+      toilets,
+      currentUserLocation,
+      routeComponents,
     } = this.props;
 
     return (
       <FreebeeMap
         wifi={wifi}
         toilets={toilets}
+        routeComponents={routeComponents}
         userLocation={currentUserLocation}
       />
     );
@@ -88,6 +97,7 @@ const mapState = (state) => {
     wifi,
     toilets,
     filter,
+    routeComponents: routingSelectors.selectRouteComponents(state),
   };
 };
 

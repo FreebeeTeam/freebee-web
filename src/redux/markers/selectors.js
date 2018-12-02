@@ -7,17 +7,17 @@ type Selector = (state: {}) => any;
 
 const rootSelector: Selector = (state): State => state.markers;
 
-const wifisSelector: Selector = createSelector(
+export const selectWifi: Selector = createSelector(
   rootSelector,
   (markers: State): Wifi[] => markers.wifi.markers,
 );
 
-const toiletsSelector: Selector = createSelector(
+export const selectToilets: Selector = createSelector(
   rootSelector,
   (markers: State) => markers.toilets.markers,
 );
 
-const isAllMarkersFetching: Selector = createSelector(
+export const selectIsAllMarkersFetching: Selector = createSelector(
   rootSelector,
   (markers: State): boolean => {
     return (
@@ -27,14 +27,7 @@ const isAllMarkersFetching: Selector = createSelector(
   },
 );
 
-const filterSelector: Selector = createSelector(
+export const selectFilter: Selector = createSelector(
   rootSelector,
   (markers: State) => markers.shared.selected,
 );
-
-export {
-  wifisSelector,
-  toiletsSelector,
-  isAllMarkersFetching,
-  filterSelector,
-};

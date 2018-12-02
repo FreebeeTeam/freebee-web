@@ -1,11 +1,20 @@
 /* @flow */
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core';
-import { Map, TileLayer } from 'react-leaflet';
+import {
+  Map,
+  TileLayer,
+  FeatureGroup,
+  Polyline,
+} from 'react-leaflet';
 import { map as mapConfig } from '../../config';
 import { ToiletMarker, WifiMarker, UserMarker } from '../../components';
-import styles from './styles';
+
+import { getPositionsForPolyline } from './helpers';
+
+import styles, { ROUTE_COLOR } from './styles';
 import 'leaflet/dist/leaflet.css';
+
 import type { Classes } from '../../types/styles';
 import type { Wifi, Toilet } from '../../types/models';
 
@@ -14,6 +23,8 @@ type Props = {
   wifi?: Wifi[],
   userLocation: number[] | null,
   toilets?: Toilet[],
+  route: any,
+  buildRoute: (location: number[]) => void,
 };
 
 type State = {
@@ -51,6 +62,12 @@ class FreebeeMap extends Component<Props, State> {
     }
   }
 
+  buildRouteToMarker = (location: number[]) => (e) => {
+    const { buildRoute } = this.props;
+
+    buildRoute(location);
+  }
+
   render() {
     const { center, zoom } = this.state;
     const {
@@ -58,14 +75,13 @@ class FreebeeMap extends Component<Props, State> {
       wifi,
       toilets,
       userLocation,
+      route,
     } = this.props;
-
-    const position = [center.lat, center.lng];
 
     return (
       <Map
         className={classes.map}
-        center={position}
+        center={[center.lat, center.lng]}
         zoom={zoom}
         zoomControl={false}
         ref={this.setMapRef}
@@ -74,14 +90,23 @@ class FreebeeMap extends Component<Props, State> {
           attribution={mapConfig.MAP_ATTRIBUTION}
           url={mapConfig.TILE_LAYER_URL}
         />
-        {userLocation && <UserMarker key={userLocation.toString()} location={userLocation} />}
-
-        {wifi.map(marker => (
-          <WifiMarker key={marker.id} wifi={marker} />
-        ))}
-        {toilets.map(marker => (
-          <ToiletMarker key={marker.id} toilet={marker} />
-        ))}
+        <FeatureGroup>
+          {userLocation && <UserMarker key={userLocation.toString()} location={userLocation} />}
+        </FeatureGroup>
+        <FeatureGroup>
+          {wifi.map(marker => (
+            <WifiMarker key={marker.id} buildRoute={this.buildRouteToMarker} wifi={marker} />
+          ))}
+          {toilets.map(marker => (
+            <ToiletMarker key={marker.id} buildRoute={this.buildRouteToMarker} toilet={marker} />
+          ))}
+        </FeatureGroup>
+        <FeatureGroup>
+          <Polyline
+            color={ROUTE_COLOR}
+            positions={getPositionsForPolyline(route)}
+          />
+        </FeatureGroup>
       </Map>
     );
   }

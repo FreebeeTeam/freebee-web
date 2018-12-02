@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import FeedbackSidebar from './sidebar';
 import { close, open } from '../../../redux/actions/ui/feedback-sidebar';
 import { thunks } from '../../../redux/feedback';
-import { isFeedbackSidebarOpenSelector } from '../../../redux/selectors/ui';
 import type { Feedback } from '../../../types/models';
 
 type Props = {
@@ -94,7 +93,7 @@ class FeedbackSidebarContainer extends React.PureComponent<Props, State> {
 const { createFeedback } = thunks;
 
 const mapState = state => ({
-  isOpen: isFeedbackSidebarOpenSelector(state),
+  isOpen: state.ui.feedbackSidebar.open,
 });
 
 const mapDispatch = dispatch => ({

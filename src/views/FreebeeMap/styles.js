@@ -13,3 +13,5 @@ export default (): Styles => ({
     },
   },
 });
+
+export const ROUTE_COLOR = '#3f51b5';

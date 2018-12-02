@@ -2,7 +2,7 @@
 import * as React from 'react';
 import type { ElementType } from 'react';
 import cn from 'classnames';
-import { Button, withStyles } from '@material-ui/core';
+import { Fab, withStyles } from '@material-ui/core';
 import styles from './styles';
 
 import type { Classes } from '../../types/styles';
@@ -23,15 +23,14 @@ const Option = ({
   isSelected,
 }: Props) => {
   return (
-    <Button
+    <Fab
       className={cn(classes.button, classes.optionButton)}
-      mini
-      variant="fab"
       color={isSelected ? 'primary' : 'secondary'}
       onClick={onClick(filter)}
+      size="small"
     >
       <Icon />
-    </Button>
+    </Fab>
   );
 };
 

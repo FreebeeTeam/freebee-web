@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { withStyles, Button, LinearProgress } from '@material-ui/core';
+import { withStyles, Button, Fab, LinearProgress } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import { UserLocationButton, ErrorSnackbar, FilterButton } from '../../components';
 import FeedbackSidebar from './FeedbackSidebar';
@@ -47,14 +47,13 @@ const FreebeeMapPage = ({
     }
     <FreebeeMap currentUserLocation={currentUserLocation} />
     <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
-    <Button
+    <Fab
       className={classes.toIndexLink}
-      variant="fab"
       color="primary"
       component={ToIndexLink}
     >
       <ArrowBack color="action" />
-    </Button>
+    </Fab>
     <ErrorSnackbar
       isOpen={errorSnackbarIsOpen}
       message={locationError}

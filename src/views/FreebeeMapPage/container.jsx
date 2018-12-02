@@ -49,10 +49,10 @@ class FreebeeMapPageContainer extends Component<Props, State> {
 }
 
 const mapState = state => ({
-  isFetching: markersSelectors.isAllMarkersFetching(state),
+  isFetching: markersSelectors.selectIsAllMarkersFetching(state),
   currentUserLocation: userSelectors.selectUserCurrentLocation(state),
   locationError: userSelectors.selectUserCurrentLocationError(state),
-  selectedFilter: markersSelectors.filterSelector(state),
+  selectedFilter: markersSelectors.selectFilter(state),
 });
 
 const { setFilter } = actions;

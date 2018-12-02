@@ -61,27 +61,27 @@ class MapContainer extends Component<Props> {
 }
 
 const {
-  wifisSelector,
-  toiletsSelector,
-  filterSelector,
+  selectWifi,
+  selectToilets,
+  selectFilter,
 } = selectors;
 
 const mapState = (state) => {
-  const filter = filterSelector(state);
+  const filter = selectFilter(state);
   let wifi = [];
   let toilets = [];
 
   if (filter === null) {
-    wifi = wifisSelector(state);
-    toilets = toiletsSelector(state);
+    wifi = selectWifi(state);
+    toilets = selectToilets(state);
   }
 
   if (filter === 'wifi') {
-    wifi = wifisSelector(state);
+    wifi = selectWifi(state);
   }
 
   if (filter === 'toilet') {
-    toilets = toiletsSelector(state);
+    toilets = selectToilets(state);
   }
 
   return {

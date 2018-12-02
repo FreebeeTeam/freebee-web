@@ -27,10 +27,9 @@ class MapContainer extends Component<Props> {
   }
 
   componentDidMount = () => {
-    const { getMarkers, getRoute } = this.props;
+    const { getMarkers } = this.props;
 
     getMarkers();
-    getRoute([54.2983344, 26.8481812], [54.3001637, 26.8466809]);
     this.getUserLocation();
   }
 
@@ -50,6 +49,14 @@ class MapContainer extends Component<Props> {
     nativeGeolocation.getCurrentPosition(successCallback, errorCallback);
   }
 
+  buildRoute = (markerLocation) => {
+    const { getRoute, currentUserLocation } = this.props;
+
+    if (currentUserLocation !== null) {
+      getRoute(currentUserLocation, markerLocation);
+    }
+  }
+
   render() {
     const {
       wifi,
@@ -64,6 +71,7 @@ class MapContainer extends Component<Props> {
         toilets={toilets}
         routeComponents={routeComponents}
         userLocation={currentUserLocation}
+        buildRoute={this.buildRoute}
       />
     );
   }

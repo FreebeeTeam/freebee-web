@@ -24,6 +24,7 @@ type Props = {
   userLocation: number[] | null,
   toilets?: Toilet[],
   routeComponents: [],
+  buildRoute: (location: number[]) => void,
 };
 
 type State = {
@@ -61,6 +62,12 @@ class FreebeeMap extends Component<Props, State> {
     }
   }
 
+  buildRouteToMarker = (location: number[]) => (e) => {
+    const { buildRoute } = this.props;
+
+    buildRoute(location);
+  }
+
   render() {
     const { center, zoom } = this.state;
     const {
@@ -88,14 +95,14 @@ class FreebeeMap extends Component<Props, State> {
         </FeatureGroup>
         <FeatureGroup>
           {wifi.map(marker => (
-            <WifiMarker key={marker.id} wifi={marker} />
+            <WifiMarker key={marker.id} buildRoute={this.buildRouteToMarker} wifi={marker} />
           ))}
           {toilets.map(marker => (
-            <ToiletMarker key={marker.id} toilet={marker} />
+            <ToiletMarker key={marker.id} buildRoute={this.buildRouteToMarker} toilet={marker} />
           ))}
         </FeatureGroup>
         <FeatureGroup>
-          <Polyline color={ROUTE_COLOR} positions={getPositionsForPolyline(routeComponents)} />
+          <Polyline color={ROUTE_COLOR} positions={getPositionsForPolyline(userLocation, routeComponents)} />
         </FeatureGroup>
       </Map>
     );

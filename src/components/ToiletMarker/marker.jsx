@@ -10,16 +10,17 @@ import type { Classes } from '../../types/styles';
 type Props = {
   classes: Classes,
   toilet: Toilet,
+  buildRoute: (location: number[]) => void,
 };
 
-const WifiMarker = ({ toilet, classes }: Props) => {
+const WifiMarker = ({ toilet, classes, buildRoute }: Props) => {
   return (
     <Marker
       icon={icon}
       position={toilet.location}
     >
       <Popup>
-        <div className={classes.content}>
+        <div className={classes.content} onClick={buildRoute(toilet.location)}>
           <span className={classes.title}>Туалет</span>
           <br />
           <br />

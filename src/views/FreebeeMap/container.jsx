@@ -15,7 +15,7 @@ type Props = {
   toilets?: Toilet[],
   route: any,
   getMarkers: () => void,
-  getRoute: (number[], number[]) => void,
+  getRoute: (number[], any) => void,
   setCurrentLocation: (position: number[] | string) => void,
   currentUserLocation: number[] | null,
 };
@@ -49,11 +49,11 @@ class MapContainer extends Component<Props> {
     nativeGeolocation.getCurrentPosition(successCallback, errorCallback);
   }
 
-  buildRoute = (markerLocation) => {
+  buildRoute = (marker) => {
     const { getRoute, currentUserLocation } = this.props;
 
     if (currentUserLocation !== null) {
-      getRoute(currentUserLocation, markerLocation);
+      getRoute(currentUserLocation, marker);
     }
   }
 

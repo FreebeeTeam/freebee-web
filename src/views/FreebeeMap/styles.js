@@ -4,8 +4,8 @@ import type { Styles } from '../../types/styles';
 export default (): Styles => ({
   map: {
     width: '100%',
-    // 36px - medium height button
-    height: 'calc(100% - 36px)',
+    // 70px - route panel height
+    height: 'calc(100% - 70px)',
   },
   '@media only screen and (min-width: 768px)': {
     map: {

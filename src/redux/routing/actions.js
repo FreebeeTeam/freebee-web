@@ -9,7 +9,7 @@ const {
   },
 } = createActions({
   ROUTING: {
-    GET_ROUTE_REQUEST: () => {},
+    GET_ROUTE_REQUEST: marker => ({ marker }),
     GET_ROUTE_SUCCESS: route => ({ route }),
     GET_ROUTE_ERROR: error => ({ error }),
   },

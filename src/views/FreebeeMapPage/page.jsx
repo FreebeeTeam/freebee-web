@@ -1,15 +1,12 @@
 /* @flow */
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { withStyles, Button, Fab, LinearProgress } from '@material-ui/core';
-import { ArrowBack } from '@material-ui/icons';
+import { withStyles, Button, LinearProgress } from '@material-ui/core';
 import { UserLocationButton, ErrorSnackbar, FilterButton } from '../../components';
 import FeedbackSidebar from './FeedbackSidebar';
 import FreebeeMap from '../FreebeeMap';
+import RoutePanel from './RouteInformationPanel';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
-
-const ToIndexLink = (props: {}) => (<Link to="/" {...props} />);
 
 type Props = {
   errorSnackbarIsOpen: boolean,
@@ -22,6 +19,7 @@ type Props = {
   selectedFilter: string | null,
   currentUserLocation: number[] | null,
   classes: Classes,
+  route: any,
 };
 
 const FreebeeMapPage = ({
@@ -37,6 +35,8 @@ const FreebeeMapPage = ({
   setFilter,
   selectedFilter,
 
+  routeSummary,
+
   isFetching,
   classes,
 }: Props) => (
@@ -46,14 +46,9 @@ const FreebeeMapPage = ({
       : null
     }
     <FreebeeMap currentUserLocation={currentUserLocation} />
-    <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
-    <Fab
-      className={classes.toIndexLink}
-      color="primary"
-      component={ToIndexLink}
-    >
-      <ArrowBack color="action" />
-    </Fab>
+    <div className={classes.filterButton}>
+      <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
+    </div>
     <ErrorSnackbar
       isOpen={errorSnackbarIsOpen}
       message={locationError}
@@ -66,13 +61,19 @@ const FreebeeMapPage = ({
 
     <FeedbackSidebar />
 
-    <Button
+    {routeSummary && (
+    <div className={classes.routePanel}>
+      <RoutePanel summary={routeSummary} />
+    </div>
+    )}
+
+    {/* <Button
       variant="contained"
       onClick={openFeedbackSidebar}
       className={classes.contactUs}
     >
       {'Нашли халяву?'}
-    </Button>
+    </Button> */}
     <Button
       variant="contained"
       onClick={openFeedbackSidebar}

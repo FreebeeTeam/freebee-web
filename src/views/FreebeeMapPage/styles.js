@@ -7,11 +7,14 @@ export default (): Styles => ({
     width: '100%',
     zIndex: 1005,
   },
-  toIndexLink: {
+  filterButton: {
     position: 'absolute',
     top: '2%',
     right: '4%',
     zIndex: 1001,
+  },
+  routePanel: {
+    height: '100%',
   },
   userLocationButton: {
     position: 'absolute',
@@ -28,13 +31,13 @@ export default (): Styles => ({
     display: 'none',
   },
   '@media only screen and (min-width: 768px)': {
-    toIndexLink: {
-      right: '2%',
-    },
     contactUs: {
       display: 'none',
     },
     userLocationButton: {
+      right: '2%',
+    },
+    filterButton: {
       right: '2%',
     },
     contactUsDesktop: {

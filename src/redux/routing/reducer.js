@@ -9,19 +9,22 @@ import {
 import { actions as markersActions } from '../markers';
 
 type State = {
+  selectedMarker: any,
   route: any,
   isFetching: boolean,
   error: any,
 };
 
 const defaultState: State = {
+  marker: null,
   route: null,
   isFetching: false,
   error: null,
 };
 
 const reducer = handleActions({
-  [getRouteRequest]: (state: State) => update(state, {
+  [getRouteRequest]: (state: State, { payload: { marker } }) => update(state, {
+    marker: { $set: marker },
     isFetching: { $set: true },
     error: { $set: defaultState.error },
   }),

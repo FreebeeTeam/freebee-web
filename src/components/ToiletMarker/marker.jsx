@@ -11,10 +11,10 @@ import type { Classes } from '../../types/styles';
 type Props = {
   classes: Classes,
   toilet: Toilet,
-  buildRoute: (location: number[]) => void,
+  buildRoute: (any) => void,
 };
 
-const WifiMarker = ({ toilet, classes, buildRoute }: Props) => {
+const ToiletMarker = ({ toilet, classes, buildRoute }: Props) => {
   return (
     <Marker
       icon={icon}
@@ -45,4 +45,4 @@ const WifiMarker = ({ toilet, classes, buildRoute }: Props) => {
   );
 };
 
-export default withStyles(styles)(WifiMarker);
+export default withStyles(styles)(ToiletMarker);

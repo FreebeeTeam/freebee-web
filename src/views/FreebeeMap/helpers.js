@@ -1,18 +1,23 @@
 /* @flow */
+
+const getFlatPosition = (location) => {
+  const { latitude, longitude } = location;
+
+  return [latitude, longitude];
+};
+
 // eslint-disable-next-line import/prefer-default-export
-export const getPositionsForPolyline = (
-  userLocation: number[],
-  routeComponents: [],
-): Array<number[]> => {
-  if (!userLocation) {
+export const getPositionsForPolyline = (route: any): Array<number[]> => {
+  if (!route) {
     return [];
   }
 
-  const buildedRoutes: Array<number[]> = routeComponents.map((component) => {
-    const { position: { latitude, longitude } } = component;
+  const buildedRoutes: Array<number[]> = route.maneuver.map(
+    ({ position }) => getFlatPosition(position),
+  );
 
-    return [latitude, longitude];
-  });
+  const startPosition = getFlatPosition(route.start.originalPosition);
+  const endPosition = getFlatPosition(route.end.originalPosition);
 
-  return [userLocation, ...buildedRoutes];
+  return [startPosition, ...buildedRoutes, endPosition];
 };

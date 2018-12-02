@@ -13,7 +13,7 @@ import type { Wifi, Toilet } from '../../types/models';
 type Props = {
   wifi?: Wifi[],
   toilets?: Toilet[],
-  routeComponents: [],
+  route: any,
   getMarkers: () => void,
   getRoute: (number[], number[]) => void,
   setCurrentLocation: (position: number[] | string) => void,
@@ -62,14 +62,14 @@ class MapContainer extends Component<Props> {
       wifi,
       toilets,
       currentUserLocation,
-      routeComponents,
+      route,
     } = this.props;
 
     return (
       <FreebeeMap
         wifi={wifi}
         toilets={toilets}
-        routeComponents={routeComponents}
+        route={route}
         userLocation={currentUserLocation}
         buildRoute={this.buildRoute}
       />
@@ -105,7 +105,7 @@ const mapState = (state) => {
     wifi,
     toilets,
     filter,
-    routeComponents: routingSelectors.selectRouteComponents(state),
+    route: routingSelectors.selectRoute(state),
   };
 };
 

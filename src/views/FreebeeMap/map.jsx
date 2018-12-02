@@ -23,7 +23,7 @@ type Props = {
   wifi?: Wifi[],
   userLocation: number[] | null,
   toilets?: Toilet[],
-  routeComponents: [],
+  route: any,
   buildRoute: (location: number[]) => void,
 };
 
@@ -75,7 +75,7 @@ class FreebeeMap extends Component<Props, State> {
       wifi,
       toilets,
       userLocation,
-      routeComponents,
+      route,
     } = this.props;
 
     return (
@@ -102,7 +102,10 @@ class FreebeeMap extends Component<Props, State> {
           ))}
         </FeatureGroup>
         <FeatureGroup>
-          <Polyline color={ROUTE_COLOR} positions={getPositionsForPolyline(userLocation, routeComponents)} />
+          <Polyline
+            color={ROUTE_COLOR}
+            positions={getPositionsForPolyline(route)}
+          />
         </FeatureGroup>
       </Map>
     );

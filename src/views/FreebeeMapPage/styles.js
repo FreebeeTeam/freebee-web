@@ -9,7 +9,6 @@ export default (): Styles => ({
   },
   filterButton: {
     position: 'absolute',
-    top: '2%',
     zIndex: 1001,
   },
   routePanel: {
@@ -38,6 +37,7 @@ export default (): Styles => ({
       bottom: '10%'
     },
     filterButton: {
+      top: '2%',
       right: '2%',
     },
     contactUsDesktop: {
@@ -53,16 +53,17 @@ export default (): Styles => ({
     routePanel: {
       left: '2%',
       top: '2%',
-      width: '15em'
+      width: '15em',
     },
   },
   '@media only screen and (max-width: 768px)': {
     userLocationButton: {
-      left: '4%',
+      right: '4%',
       top: '2%',
     },
     filterButton: {
-      right: '4%',
+      left: '4%',
+      top: '2%',
     },
     routePanel: {
       bottom: '0',

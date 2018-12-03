@@ -50,5 +50,13 @@ export default (): Styles => ({
       fontFamily: "'Roboto Condensed', Arial, Helvetica, sans-serif",
       fontWeight: 'bold',
     },
+    routePanel: {
+      position: 'absolute',
+      zIndex: '1000',
+      left: '2%',
+      top: '2%',
+      width: '15em',
+      height: 'auto'
+    },
   },
 });

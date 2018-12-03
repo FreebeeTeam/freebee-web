@@ -1,7 +1,8 @@
 /* @flow */
 import * as React from 'react';
 import { Marker, Popup } from 'react-leaflet';
-import { withStyles } from '@material-ui/core';
+import { withStyles, IconButton } from '@material-ui/core';
+import { Directions as RouteIcon } from '@material-ui/icons';
 import icon from './icon';
 import styles from './styles';
 import type { Wifi } from '../../types/models';
@@ -18,13 +19,21 @@ const WifiMarker = ({ wifi, classes, buildRoute }: Props) => {
     <Marker
       icon={icon}
       position={wifi.location}
+      onDblclick={() => { buildRoute(wifi.location)(); }}
     >
       <Popup>
-        <div className={classes.content} onClick={buildRoute(wifi.location)}>
+        <div className={classes.content}>
           <span className={classes.point}>Название: </span>
           <span className={classes.title}>
             {wifi.title}
           </span>
+          <IconButton
+            disableRipple
+            className={classes.routeButton}
+            onClick={buildRoute(wifi.location)}
+          >
+            <RouteIcon />
+          </IconButton>
           <br />
           <br />
           <span className={classes.point}>Адрес: </span>

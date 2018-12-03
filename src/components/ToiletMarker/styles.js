@@ -3,6 +3,8 @@ import type { Styles } from '../../types/styles';
 
 export default (): Styles => ({
   routeButton: {
+    paddingTop: 0,
+    paddingBottom: 0,
     '&:hover': {
       backgroundColor: 'transparent',
     },

@@ -1,6 +1,16 @@
 // @flow
 import React, { PureComponent } from 'react';
-import { Paper, withStyles, Typography } from '@material-ui/core';
+import { 
+  Divider,
+  Paper,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+  withStyles
+} from '@material-ui/core';
+import { DirectionsWalk, Place } from '@material-ui/icons';
 import { getTimeFromSummary, getDistanceFromSummary } from './helpers';
 
 import styles from './styles';
@@ -16,9 +26,25 @@ class RoutePanel extends PureComponent {
         <Typography variant="subtitle1" gutterBottom>
           {`Адрес: ${marker.address}`}
         </Typography>
-        <Typography variant="body1" gutterBottom className={classes.routeInfo}>
-          {`${distance}, ${time}`}
-        </Typography>
+        <Divider/>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <Place />
+            </ListItemIcon>
+            <ListItemText>
+              {distance}
+            </ListItemText>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <DirectionsWalk />
+            </ListItemIcon>
+            <ListItemText>
+              {time}
+            </ListItemText>
+          </ListItem>
+        </List>
       </Paper>
     );
   }

@@ -10,17 +10,16 @@ export default (): Styles => ({
   filterButton: {
     position: 'absolute',
     top: '2%',
-    right: '4%',
     zIndex: 1001,
   },
   routePanel: {
-    height: '100%',
+    position: 'absolute',
+    height: 'auto',
+    zIndex: 1001,
   },
   userLocationButton: {
     position: 'absolute',
-    right: '4%',
-    bottom: '10%',
-    zIndex: 1001,
+    zIndex: 1002,
   },
   contactUs: {
     fontFamily: '\'Roboto Condensed\', Arial, Helvetica, sans-serif',
@@ -36,6 +35,7 @@ export default (): Styles => ({
     },
     userLocationButton: {
       right: '2%',
+      bottom: '10%'
     },
     filterButton: {
       right: '2%',
@@ -51,12 +51,22 @@ export default (): Styles => ({
       fontWeight: 'bold',
     },
     routePanel: {
-      position: 'absolute',
-      zIndex: '1000',
       left: '2%',
       top: '2%',
-      width: '15em',
-      height: 'auto'
+      width: '15em'
     },
   },
+  '@media only screen and (max-width: 768px)': {
+    userLocationButton: {
+      left: '4%',
+      top: '2%',
+    },
+    filterButton: {
+      right: '4%',
+    },
+    routePanel: {
+      bottom: '0',
+      width: '100%',
+    },
+  }
 });

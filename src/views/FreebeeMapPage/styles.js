@@ -7,34 +7,44 @@ export default (): Styles => ({
     width: '100%',
     zIndex: 1005,
   },
-  toIndexLink: {
+  filterButton: {
     position: 'absolute',
-    top: '2%',
-    right: '4%',
+    zIndex: 1001,
+  },
+  routePanel: {
+    position: 'absolute',
+    height: 'auto',
     zIndex: 1001,
   },
   userLocationButton: {
     position: 'absolute',
-    right: '4%',
-    bottom: '10%',
-    zIndex: 1001,
+    zIndex: 1002,
+  },
+  contactUsWrapper: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    zIndex: 1000,
   },
   contactUs: {
+    width: '100%',
+    borderRadius: 0,
     fontFamily: '\'Roboto Condensed\', Arial, Helvetica, sans-serif',
     fontWeight: 'bold',
-    width: '100%',
   },
   contactUsDesktop: {
     display: 'none',
   },
   '@media only screen and (min-width: 768px)': {
-    toIndexLink: {
-      right: '2%',
-    },
     contactUs: {
       display: 'none',
     },
     userLocationButton: {
+      right: '2%',
+      bottom: '10%',
+    },
+    filterButton: {
+      top: '2%',
       right: '2%',
     },
     contactUsDesktop: {
@@ -46,6 +56,25 @@ export default (): Styles => ({
       color: 'black',
       fontFamily: "'Roboto Condensed', Arial, Helvetica, sans-serif",
       fontWeight: 'bold',
+    },
+    routePanel: {
+      left: '2%',
+      top: '2%',
+      width: '15em',
+    },
+  },
+  '@media only screen and (max-width: 768px)': {
+    userLocationButton: {
+      right: '4%',
+      top: '2%',
+    },
+    filterButton: {
+      left: '4%',
+      top: '2%',
+    },
+    routePanel: {
+      bottom: '0',
+      width: '100%',
     },
   },
 });

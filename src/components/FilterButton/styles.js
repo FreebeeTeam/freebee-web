@@ -1,15 +1,8 @@
 /* @flow */
 import type { Styles } from '../../types/styles';
 
-const styles = (theme: {}): Styles => ({
+const styles = (theme: any): Styles => ({
   filter: {
-    position: 'absolute',
-    top: '2%',
-    left: '4%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    zIndex: 1001,
   },
   drop: {
     display: 'flex',

@@ -11,15 +11,15 @@ import type { Classes } from '../../types/styles';
 type Props = {
   classes: Classes,
   toilet: Toilet,
-  buildRoute: (location: number[]) => void,
+  buildRoute: (any) => void,
 };
 
-const WifiMarker = ({ toilet, classes, buildRoute }: Props) => {
+const ToiletMarker = ({ toilet, classes, buildRoute }: Props) => {
   return (
     <Marker
       icon={icon}
       position={toilet.location}
-      onDblclick={() => { buildRoute(toilet.location)(); }}
+      onDblclick={() => { buildRoute(toilet)(); }}
     >
       <Popup>
         <div className={classes.content}>
@@ -27,7 +27,7 @@ const WifiMarker = ({ toilet, classes, buildRoute }: Props) => {
           <IconButton
             disableRipple
             className={classes.routeButton}
-            onClick={buildRoute(toilet.location)}
+            onClick={buildRoute(toilet)}
           >
             <RouteIcon />
           </IconButton>
@@ -45,4 +45,4 @@ const WifiMarker = ({ toilet, classes, buildRoute }: Props) => {
   );
 };
 
-export default withStyles(styles)(WifiMarker);
+export default withStyles(styles)(ToiletMarker);

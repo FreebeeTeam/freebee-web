@@ -19,7 +19,7 @@ const ToiletMarker = ({ toilet, classes, buildRoute }: Props) => {
     <Marker
       icon={icon}
       position={toilet.location}
-      onDblclick={() => { buildRoute(toilet.location)(); }}
+      onDblclick={() => { buildRoute(toilet)(); }}
     >
       <Popup>
         <div className={classes.content}>
@@ -27,7 +27,7 @@ const ToiletMarker = ({ toilet, classes, buildRoute }: Props) => {
           <IconButton
             disableRipple
             className={classes.routeButton}
-            onClick={buildRoute(toilet.location)}
+            onClick={buildRoute(toilet)}
           >
             <RouteIcon />
           </IconButton>

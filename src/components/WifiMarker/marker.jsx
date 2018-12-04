@@ -19,7 +19,7 @@ const WifiMarker = ({ wifi, classes, buildRoute }: Props) => {
     <Marker
       icon={icon}
       position={wifi.location}
-      onDblclick={() => { buildRoute(wifi.location)(); }}
+      onDblclick={() => { buildRoute(wifi)(); }}
     >
       <Popup>
         <div className={classes.content}>
@@ -30,7 +30,7 @@ const WifiMarker = ({ wifi, classes, buildRoute }: Props) => {
           <IconButton
             disableRipple
             className={classes.routeButton}
-            onClick={buildRoute(wifi.location)}
+            onClick={buildRoute(wifi)}
           >
             <RouteIcon />
           </IconButton>

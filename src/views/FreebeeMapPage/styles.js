@@ -20,10 +20,17 @@ export default (): Styles => ({
     position: 'absolute',
     zIndex: 1002,
   },
+  contactUsWrapper: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    zIndex: 1000,
+  },
   contactUs: {
+    width: '100%',
+    borderRadius: 0,
     fontFamily: '\'Roboto Condensed\', Arial, Helvetica, sans-serif',
     fontWeight: 'bold',
-    width: '100%',
   },
   contactUsDesktop: {
     display: 'none',
@@ -34,7 +41,7 @@ export default (): Styles => ({
     },
     userLocationButton: {
       right: '2%',
-      bottom: '10%'
+      bottom: '10%',
     },
     filterButton: {
       top: '2%',
@@ -69,5 +76,5 @@ export default (): Styles => ({
       bottom: '0',
       width: '100%',
     },
-  }
+  },
 });

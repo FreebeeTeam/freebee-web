@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FreebeeMapPage from './page';
 import { open } from '../../redux/actions/ui/feedback-sidebar';
-import { selectors as routingSelectors } from '../../redux/routing';
+import { selectors as routingSelectors, routingActions } from '../../redux/routing';
 import { userActions, selectors as userSelectors } from '../../redux/user';
 import { actions, selectors as markersSelectors } from '../../redux/markers';
 
@@ -58,11 +58,13 @@ const mapState = state => ({
 });
 
 const { setFilter } = actions;
+const { resetRoute } = routingActions;
 
 const mapDispatch = dispatch => ({
   openFeedbackSidebar: () => dispatch(open()),
   setUserCurrentLocation: location => dispatch(userActions.setCurrentLocation(location)),
   setFilter: filter => dispatch(setFilter(filter)),
+  resetRoute: () => dispatch(resetRoute()),
 });
 
 const mergeProps = (propsFromState, propsFromDispatch) => {

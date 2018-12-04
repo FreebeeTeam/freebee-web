@@ -15,6 +15,7 @@ type Props = {
   closeErrorSnackbar: () => void,
   setUserLocation: () => void,
   setFilter: () => void,
+  resetRoute: () => void,
   isFetching: boolean,
   selectedFilter: string | null,
   currentUserLocation: number[] | null,
@@ -36,6 +37,7 @@ const FreebeeMapPage = ({
   selectedFilter,
 
   routeSummary,
+  resetRoute,
 
   isFetching,
   classes,
@@ -63,17 +65,19 @@ const FreebeeMapPage = ({
 
     {routeSummary && (
     <div className={classes.routePanel}>
-      <RoutePanel summary={routeSummary} />
+      <RoutePanel summary={routeSummary} resetRoute={resetRoute} />
     </div>
     )}
 
-    {/* <Button
-      variant="contained"
-      onClick={openFeedbackSidebar}
-      className={classes.contactUs}
-    >
-      {'Нашли халяву?'}
-    </Button> */}
+    <div className={classes.contactUsWrapper}>
+      <Button
+        variant="contained"
+        onClick={openFeedbackSidebar}
+        className={classes.contactUs}
+      >
+        {'Нашли халяву?'}
+      </Button>
+    </div>
     <Button
       variant="contained"
       onClick={openFeedbackSidebar}

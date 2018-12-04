@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
-import { 
+import {
   Divider,
   Paper,
   List,
@@ -8,37 +8,51 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-  withStyles
+  IconButton,
+  withStyles,
 } from '@material-ui/core';
-import { DirectionsWalk, Place } from '@material-ui/icons';
+import {
+  DirectionsWalk as DirectionsWalkIcon,
+  Place as PlaceIcon,
+  Close as CloseIcon,
+} from '@material-ui/icons';
 import { getTimeFromSummary, getDistanceFromSummary } from './helpers';
 
 import styles from './styles';
 
 class RoutePanel extends PureComponent {
   render() {
-    const { classes, summary: { summary, marker } } = this.props;
+    const { classes, summary: { summary, marker }, resetRoute } = this.props;
     const time = getTimeFromSummary(summary);
     const distance = getDistanceFromSummary(summary);
 
     return (
       <Paper className={classes.root}>
-        <Typography variant="subtitle1" gutterBottom>
-          {`Адрес: ${marker.address}`}
-        </Typography>
-        <Divider/>
+        <div className={classes.header}>
+          <Typography variant="subtitle1" gutterBottom>
+            {`Адрес: ${marker.address}`}
+          </Typography>
+          <IconButton
+            onClick={resetRoute}
+            classes={{ root: classes.closeButtonRoot }}
+            className={classes.closeButton}
+          >
+            <CloseIcon />
+          </IconButton>
+        </div>
+        <Divider />
         <List>
-          <ListItem>
+          <ListItem disableGutters>
             <ListItemIcon>
-              <Place />
+              <PlaceIcon />
             </ListItemIcon>
             <ListItemText>
               {distance}
             </ListItemText>
           </ListItem>
-          <ListItem>
+          <ListItem disableGutters>
             <ListItemIcon>
-              <DirectionsWalk />
+              <DirectionsWalkIcon />
             </ListItemIcon>
             <ListItemText>
               {time}

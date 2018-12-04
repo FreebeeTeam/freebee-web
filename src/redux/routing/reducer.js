@@ -5,6 +5,7 @@ import {
   getRouteRequest,
   getRouteSuccess,
   getRouteError,
+  resetRoute,
 } from './actions';
 import { actions as markersActions } from '../markers';
 
@@ -36,6 +37,7 @@ const reducer = handleActions({
     isFetching: { $set: false },
     error: { $set: error },
   }),
+  [resetRoute]: (state: State) => update(state, { route: { $set: null } }),
   [markersActions.setFilter]: (state: State, { payload: { filter } }) => {
     return !filter
       ? state

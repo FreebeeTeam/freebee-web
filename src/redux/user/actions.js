@@ -3,13 +3,22 @@ import { createActions } from 'redux-actions';
 
 type Actions = {
   user: {
-    setCurrentLocation: (locationOrError: [] | string) => void,
+    setCurrentLocation: (locationOrError: [] | {}) => void,
   },
 };
 
 const { user }: Actions = createActions({
   USER: {
-    SET_CURRENT_LOCATION: (locationOrError: [] | string) => ({ locationOrError }),
+    SET_CURRENT_LOCATION: (locationOrError: [] | {}) => {
+      if (!locationOrError.length) {
+        return {
+          error: true,
+          geolocationErrorCode: locationOrError.code,
+          currentLocation: null,
+        };
+      }
+      return { currentLocation: locationOrError };
+    },
   },
 });
 

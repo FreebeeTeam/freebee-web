@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { withStyles, Button, LinearProgress } from '@material-ui/core';
-import { UserLocationButton, ErrorSnackbar, FilterButton } from '../../components';
+import { UserLocationButton, FilterButton } from '../../components';
 import FeedbackSidebar from './FeedbackSidebar';
 import FreebeeMap from '../FreebeeMap';
 import RoutePanel from './RouteInformationPanel';
@@ -9,14 +9,11 @@ import styles from './styles';
 import type { Classes } from '../../types/styles';
 
 type Props = {
-  errorSnackbarIsOpen: boolean,
-  locationError: string | null,
   openFeedbackSidebar: () => void,
-  closeErrorSnackbar: () => void,
   setUserLocation: () => void,
   setFilter: () => void,
   resetRoute: () => void,
-  isFetching: boolean,
+  isMarkersFetching: boolean,
   selectedFilter: string | null,
   currentUserLocation: number[] | null,
   classes: Classes,
@@ -25,10 +22,6 @@ type Props = {
 
 const FreebeeMapPage = ({
   openFeedbackSidebar,
-
-  errorSnackbarIsOpen,
-  closeErrorSnackbar,
-  locationError,
 
   setUserLocation,
   currentUserLocation,
@@ -39,57 +32,54 @@ const FreebeeMapPage = ({
   routeSummary,
   resetRoute,
 
-  isFetching,
+  isMarkersFetching,
   classes,
-}: Props) => (
-  <>
-    {isFetching
-      ? <LinearProgress className={classes.progress} />
-      : null
-    }
-    <FreebeeMap currentUserLocation={currentUserLocation} />
-    <div className={classes.filterButton}>
-      <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
-    </div>
-    <ErrorSnackbar
-      isOpen={errorSnackbarIsOpen}
-      message={locationError}
-      handleClose={closeErrorSnackbar}
-    />
+}: Props) => {
+  return (
+    <>
+      {isMarkersFetching
+        ? <LinearProgress className={classes.progress} />
+        : null
+      }
+      <FreebeeMap currentUserLocation={currentUserLocation} />
+      <div className={classes.filterButton}>
+        <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
+      </div>
 
-    <div className={classes.userLocationButton}>
-      <UserLocationButton onClick={setUserLocation} />
-    </div>
+      <div className={classes.userLocationButton}>
+        <UserLocationButton onClick={setUserLocation} />
+      </div>
 
-    <FeedbackSidebar />
+      <FeedbackSidebar />
 
-    {routeSummary && (
-    <div className={classes.routePanel}>
-      <RoutePanel summary={routeSummary} resetRoute={resetRoute} />
-    </div>
-    )}
+      {routeSummary && (
+        <div className={classes.routePanel}>
+          <RoutePanel summary={routeSummary} resetRoute={resetRoute} />
+        </div>
+      )}
 
-    <div className={classes.contactUsWrapper}>
+      <div className={classes.contactUsWrapper}>
+        <Button
+          variant="contained"
+          onClick={openFeedbackSidebar}
+          className={classes.contactUs}
+        >
+          {'Нашли халяву?'}
+        </Button>
+      </div>
       <Button
         variant="contained"
         onClick={openFeedbackSidebar}
-        className={classes.contactUs}
+        className={classes.contactUsDesktop}
       >
         {'Нашли халяву?'}
       </Button>
-    </div>
-    <Button
-      variant="contained"
-      onClick={openFeedbackSidebar}
-      className={classes.contactUsDesktop}
-    >
-      {'Нашли халяву?'}
-    </Button>
-  </>
-);
+    </>
+  );
+};
 
 FreebeeMapPage.defaultProps = {
-  isFetching: true,
+  isMarkersFetching: true,
 };
 
 export default withStyles(styles)(FreebeeMapPage);

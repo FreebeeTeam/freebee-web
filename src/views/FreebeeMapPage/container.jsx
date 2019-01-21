@@ -1,10 +1,14 @@
 /* @flow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withSnackbar } from 'notistack';
+import _ from 'lodash';
 import FreebeeMapPage from './page';
 import { open } from '../../redux/actions/ui/feedback-sidebar';
+import { LOCATION_ACCESS_DENIED_CODE } from '../../redux/middlewares/const';
 import { selectors as routingSelectors, routingActions } from '../../redux/routing';
 import { userActions, selectors as userSelectors } from '../../redux/user';
+import { selectors as errorsSelectors } from '../../redux/errors';
 import { actions, selectors as markersSelectors } from '../../redux/markers';
 
 type Props = {
@@ -16,45 +20,32 @@ type State = {
 };
 
 class FreebeeMapPageContainer extends Component<Props, State> {
-  state = {
-    errorSnackbarIsOpen: false,
-  }
+  componentDidUpdate(prevProps): void {
+    const { lastGlobalError, enqueueSnackbar } = this.props;
 
-  componentWillReceiveProps = (nextProps) => {
-    const { locationError } = this.props;
+    const oldErrorId = _.get(prevProps.lastGlobalError, 'errorId', null);
+    const newErrorId = _.get(lastGlobalError, 'errorId', null);
 
-    if (nextProps.locationError !== null && nextProps.locationError !== locationError) {
-      this.setState({ errorSnackbarIsOpen: true });
+    if (oldErrorId !== newErrorId && newErrorId !== null) {
+      const { errorMessage } = lastGlobalError;
+      enqueueSnackbar(errorMessage, { variant: 'error' });
     }
   }
 
-  openSnackbar = () => {
-    this.setState({ errorSnackbarIsOpen: true });
-  }
-
-  closeSnackbar = () => {
-    this.setState({ errorSnackbarIsOpen: false });
-  }
-
   render() {
-    const { errorSnackbarIsOpen } = this.state;
-
     return (
-      <FreebeeMapPage
-        closeErrorSnackbar={this.closeSnackbar}
-        errorSnackbarIsOpen={errorSnackbarIsOpen}
-        {...this.props}
-      />
+      <FreebeeMapPage {...this.props} />
     );
   }
 }
 
 const mapState = state => ({
-  isFetching: markersSelectors.selectIsAllMarkersFetching(state),
+  isMarkersFetching: markersSelectors.selectIsAllMarkersFetching(state),
   currentUserLocation: userSelectors.selectUserCurrentLocation(state),
   locationError: userSelectors.selectUserCurrentLocationError(state),
   selectedFilter: markersSelectors.selectFilter(state),
   routeSummary: routingSelectors.selectRouteSummary(state),
+  lastGlobalError: errorsSelectors.selectLastError(state),
 });
 
 const { setFilter } = actions;
@@ -72,6 +63,10 @@ const mergeProps = (propsFromState, propsFromDispatch) => {
   const setUserLocation = () => {
     if (currentUserLocation) {
       propsFromDispatch.setUserCurrentLocation(currentUserLocation.slice());
+    } else {
+      propsFromDispatch.setUserCurrentLocation({
+        code: LOCATION_ACCESS_DENIED_CODE,
+      });
     }
   };
 
@@ -82,4 +77,4 @@ const mergeProps = (propsFromState, propsFromDispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch, mergeProps)(FreebeeMapPageContainer);
+export default connect(mapState, mapDispatch, mergeProps)(withSnackbar(FreebeeMapPageContainer));

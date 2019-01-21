@@ -1,5 +1,8 @@
 /* @flow */
 import map from './map';
+import * as notification from './notification';
 
-// eslint-disable-next-line import/prefer-default-export
-export { map };
+export {
+  map,
+  notification,
+};

@@ -18,11 +18,12 @@ const defaultState: State = {
 };
 
 const reducer = handleActions({
-  [setCurrentLocation.toString()]: (state: State, { payload: { locationOrError } }) => {
-    if (typeof locationOrError === 'string') {
-      return update(state, { locationError: { $set: locationOrError } });
-    }
-    return update(state, { currentLocation: { $set: locationOrError } });
+  [setCurrentLocation.toString()]: (state: State, { payload: { currentLocation } }) => {
+    return update(state, {
+      currentLocation: {
+        $set: currentLocation,
+      },
+    });
   },
 }, defaultState);
 

@@ -7,23 +7,28 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-
+import { SnackbarProvider } from 'notistack';
 import { createStore } from './redux';
+import { notification } from './config';
 
 import IndexPage from './views/index-page';
 import FreebeeMapPage from './views/FreebeeMapPage';
 
-
 const App = () => (
   <Provider store={createStore()}>
-    <Router>
-      <>
-        <Switch>
-          <Route exact path="/" component={IndexPage} />
-          <Route path="/map" component={FreebeeMapPage} />
-        </Switch>
-      </>
-    </Router>
+    <SnackbarProvider
+      maxSnack={notification.MAX_SNACK}
+      anchorOrigin={notification.ANCHOR}
+    >
+      <Router>
+        <>
+          <Switch>
+            <Route exact path="/" component={IndexPage} />
+            <Route path="/map" component={FreebeeMapPage} />
+          </Switch>
+        </>
+      </Router>
+    </SnackbarProvider>
   </Provider>
 );
 

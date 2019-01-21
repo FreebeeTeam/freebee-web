@@ -13,12 +13,15 @@ export const getRoute = (userLocation, marker) => async (dispatch) => {
   dispatch(getRouteRequest(marker));
 
   try {
-    const { data } = await routingService.getRoute(userLocation, location);
-    const route = getFormattedRoute(data);
+    const data = await routingService.getRoute(userLocation, location);
+    console.log('routing')
+    console.log(data)
+    const route = getFormattedRoute(data.data);
 
     dispatch(getRouteSuccess(route));
   } catch (error) {
     console.error(error);
+    console.log(error);
     dispatch(getRouteError(error));
   }
 };

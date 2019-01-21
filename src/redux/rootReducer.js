@@ -6,6 +6,7 @@ import markers from './markers';
 import feedback from './feedback';
 import user from './user';
 import routing from './routing';
+import errors from './errors';
 
 type State = {
   user: any,
@@ -13,6 +14,7 @@ type State = {
   markers: any,
   feedback: any,
   routing: any,
+  errors: any,
 };
 
 const reducers: State = {
@@ -21,6 +23,7 @@ const reducers: State = {
   markers,
   feedback,
   routing,
+  errors,
 };
 
 export default combineReducers(reducers);

@@ -1,5 +1,5 @@
 /* @flow */
-import * as React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import FeedbackSidebar from './sidebar';
 import { close, open } from '../../../redux/actions/ui/feedback-sidebar';
@@ -20,19 +20,19 @@ type State = {
   description?: string,
 };
 
-class FeedbackSidebarContainer extends React.PureComponent<Props, State> {
+class FeedbackSidebarContainer extends PureComponent<Props, State> {
   state = {
     address: '',
     type: [''],
     author: '',
     description: '',
-  }
+  };
 
   handleFieldChange = (name: string) => (e: Event) => {
     this.setState({
       [name]: e.target.value,
     });
-  }
+  };
 
   handleSubmit = (): void => {
     const { closeSidebar, sendFeedback } = this.props;
@@ -52,13 +52,13 @@ class FeedbackSidebarContainer extends React.PureComponent<Props, State> {
 
     sendFeedback(feedback);
     closeSidebar();
-  }
+  };
 
   handleCancel = (): void => {
     const { closeSidebar } = this.props;
 
     closeSidebar();
-  }
+  };
 
   render() {
     const { isOpen, closeSidebar, openSidebar } = this.props;

@@ -39,7 +39,7 @@ class FreebeeMap extends Component<Props, State> {
   static defaultProps = {
     wifi: [],
     toilets: [],
-  }
+  };
 
   state = {
     center: {
@@ -47,13 +47,9 @@ class FreebeeMap extends Component<Props, State> {
       lng: 27.5429,
     },
     zoom: 12,
-  }
+  };
 
-  setMapRef = (element) => {
-    this.map = element;
-  }
-
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     const { userLocation } = this.props;
     const map = this.map.leafletElement;
 
@@ -62,11 +58,15 @@ class FreebeeMap extends Component<Props, State> {
     }
   }
 
-  buildRouteToMarker = (location: number[]) => (e) => {
+  setMapRef = (element) => {
+    this.map = element;
+  };
+
+  buildRouteToMarker = (location: number[]) => () => {
     const { buildRoute } = this.props;
 
     buildRoute(location);
-  }
+  };
 
   render() {
     const { center, zoom } = this.state;

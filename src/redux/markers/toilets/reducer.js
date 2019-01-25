@@ -30,7 +30,7 @@ const reducer = handleActions({
   [getMarkersSuccess]: (state: State, { payload: { toilets } }) => {
     const toiletsToUpdate = toilets.map((w) => {
       const { location, ...rest } = w;
-      const newLocation = location.values;
+      const newLocation = location.coordinates;
 
       return {
         ...rest,

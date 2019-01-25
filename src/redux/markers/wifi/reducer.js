@@ -31,7 +31,7 @@ const reducer = handleActions({
   [getMarkersSuccess]: (state: State, { payload: { wifi } }) => {
     const wifiToUpdate = wifi.map((w) => {
       const { location, ...rest } = w;
-      const newLocation = location.values;
+      const newLocation = location.coordinates;
 
       return {
         ...rest,

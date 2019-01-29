@@ -13,7 +13,10 @@ type Props = {
   setUserLocation: () => void,
   setFilter: () => void,
   resetRoute: () => void,
+  setCreationMapMode: (mode: string) => void,
   isMarkersFetching: boolean,
+  mapMode: string,
+  routeSummary: any,
   selectedFilter: string | null,
   currentUserLocation: number[] | null,
   classes: Classes,
@@ -21,7 +24,7 @@ type Props = {
 };
 
 const FreebeeMapPage = ({
-  openFeedbackSidebar,
+  setCreationMapMode,
 
   setUserLocation,
   currentUserLocation,
@@ -61,7 +64,7 @@ const FreebeeMapPage = ({
       <div className={classes.contactUsWrapper}>
         <Button
           variant="contained"
-          onClick={openFeedbackSidebar}
+          onClick={setCreationMapMode}
           className={classes.contactUs}
         >
           {'Нашли халяву?'}
@@ -69,7 +72,7 @@ const FreebeeMapPage = ({
       </div>
       <Button
         variant="contained"
-        onClick={openFeedbackSidebar}
+        onClick={setCreationMapMode}
         className={classes.contactUsDesktop}
       >
         {'Нашли халяву?'}

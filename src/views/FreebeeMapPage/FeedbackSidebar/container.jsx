@@ -1,13 +1,18 @@
 /* @flow */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FeedbackSidebar from './sidebar';
+import { MAP_MODES } from '../../../config/map';
+
 import { close, open } from '../../../redux/actions/ui/feedback-sidebar';
 import { thunks } from '../../../redux/feedback';
+import { sharedActions } from '../../../redux/shared';
+
 import type { Feedback } from '../../../types/models';
 
 type Props = {
   closeSidebar: () => void,
+  setReadMapMode: () => void,
   openSidebar: () => void,
   sendFeedback: () => void,
   isOpen: boolean,
@@ -27,7 +32,7 @@ const defaultState = {
   description: '',
 };
 
-class FeedbackSidebarContainer extends PureComponent<Props, State> {
+class FeedbackSidebarContainer extends Component<Props, State> {
   state = defaultState;
 
   handleFieldChange = (name: string) => (e: Event) => {
@@ -37,7 +42,7 @@ class FeedbackSidebarContainer extends PureComponent<Props, State> {
   };
 
   handleSubmit = (): void => {
-    const { closeSidebar, sendFeedback } = this.props;
+    const { closeSidebar, sendFeedback, setReadMapMode } = this.props;
     const {
       type,
       address,
@@ -53,13 +58,15 @@ class FeedbackSidebarContainer extends PureComponent<Props, State> {
     };
 
     sendFeedback(feedback);
+    setReadMapMode();
     closeSidebar();
     this.setState({ ...defaultState });
   };
 
   handleCancel = (): void => {
-    const { closeSidebar } = this.props;
+    const { closeSidebar, setReadMapMode } = this.props;
 
+    setReadMapMode();
     closeSidebar();
     this.setState({ ...defaultState });
   };
@@ -100,10 +107,11 @@ const mapState = state => ({
   isOpen: state.ui.feedbackSidebar.open,
 });
 
-const mapDispatch = dispatch => ({
-  closeSidebar: () => dispatch(close()),
-  openSidebar: () => dispatch(open()),
-  sendFeedback: (feedback: Feedback) => dispatch(createFeedback(feedback)),
-});
+const mapDispatch = {
+  closeSidebar: close,
+  openSidebar: open,
+  sendFeedback: createFeedback,
+  setReadMapMode: () => sharedActions.setMapMode(MAP_MODES.READ),
+};
 
 export default connect(mapState, mapDispatch)(FeedbackSidebarContainer);

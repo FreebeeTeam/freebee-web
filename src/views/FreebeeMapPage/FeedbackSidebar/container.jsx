@@ -20,13 +20,15 @@ type State = {
   description?: string,
 };
 
+const defaultState = {
+  address: '',
+  type: [''],
+  author: '',
+  description: '',
+};
+
 class FeedbackSidebarContainer extends PureComponent<Props, State> {
-  state = {
-    address: '',
-    type: [''],
-    author: '',
-    description: '',
-  };
+  state = defaultState;
 
   handleFieldChange = (name: string) => (e: Event) => {
     this.setState({
@@ -52,12 +54,14 @@ class FeedbackSidebarContainer extends PureComponent<Props, State> {
 
     sendFeedback(feedback);
     closeSidebar();
+    this.setState({ ...defaultState });
   };
 
   handleCancel = (): void => {
     const { closeSidebar } = this.props;
 
     closeSidebar();
+    this.setState({ ...defaultState });
   };
 
   render() {

@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import type { ElementType } from 'react';
-import cn from 'classnames';
+import cc from 'classcat';
 import { Fab, withStyles } from '@material-ui/core';
 import styles from './styles';
 
@@ -24,7 +24,7 @@ const Option = ({
 }: Props) => {
   return (
     <Fab
-      className={cn(classes.button, classes.optionButton)}
+      className={cc(classes.button, classes.optionButton)}
       color={isSelected ? 'primary' : 'secondary'}
       onClick={onClick(filter)}
       size="small"

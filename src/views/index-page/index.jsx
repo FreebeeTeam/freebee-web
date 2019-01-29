@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react';
-import cn from 'classnames';
+import cc from 'classcat';
 import { withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import styles from './styles';
@@ -31,11 +31,11 @@ const IndexPage = ({ classes }: Props) => (
 
         <div className={classes.plates}>
           <div className={classes.plateTop}>
-            <div className={cn(classes.plateInner, classes.red)}>
+            <div className={cc(classes.plateInner, classes.red)}>
               <div className={classes.nail1} />
               <a href="http://cyclowiki.org/wiki/%D0%A5%D0%B0%D0%BB%D1%8F%D0%B2%D0%B0">
                 <img
-                  className={cn(classes.plateImage, classes.freebee)}
+                  className={cc(classes.plateImage, classes.freebee)}
                   alt="freebee cyclowiki"
                   src={freebee}
                 />
@@ -43,7 +43,7 @@ const IndexPage = ({ classes }: Props) => (
             </div>
           </div>
           <div className={classes.plateBottom}>
-            <div className={cn(classes.plateInner, classes.yellow)}>
+            <div className={cc(classes.plateInner, classes.yellow)}>
               <h3 className={classes.mapRedirect}>
                 <Link
                   className={classes.mapRedirectLink}
@@ -55,7 +55,7 @@ const IndexPage = ({ classes }: Props) => (
               <Link to="/map">
                 <img
                   alt="map marker"
-                  className={cn(classes.plateImage, classes.misc)}
+                  className={cc(classes.plateImage, classes.misc)}
                   src={misc}
                 />
               </Link>

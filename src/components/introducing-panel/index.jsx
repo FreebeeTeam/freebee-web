@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
-import cn from 'classnames';
+import cc from 'classcat';
 import { map } from '../../themes/images';
 import styles from './styles';
 import type { Styles } from '../../types/styles';
@@ -35,19 +35,19 @@ const IntroducingPanel = ({ classes }: Props) => (
         <div className={classes.icons}>
           <div className={classes.iconContainer}>
             <a
-              className={cn(classes.icon, classes.github)}
+              className={cc(classes.icon, classes.github)}
               href="https://github.com/FreebeeTeam"
             >
               {''}
             </a>
             <a
-              className={cn(classes.icon, classes.vk)}
+              className={cc(classes.icon, classes.vk)}
               href="https://vk.com/freebeeapp"
             >
               {''}
             </a>
             <Link
-              className={cn(classes.icon, classes.mapIcon)}
+              className={cc(classes.icon, classes.mapIcon)}
               to="/map"
             >
               <img

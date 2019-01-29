@@ -7,7 +7,7 @@
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
-    "classnames": "^2.2.6",
+    "classcat": "^3.2.5",
     "immutability-helper": "^2.9.0",
     "leaflet": "^1.4.0",
     "lodash": "^4.17.11",

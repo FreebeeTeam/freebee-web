@@ -1,22 +1,28 @@
 /* @flow */
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { withStyles } from '@material-ui/core';
 import {
   Map,
   TileLayer,
   FeatureGroup,
   Polyline,
+  Marker,
 } from 'react-leaflet';
 import { map as mapConfig } from '../../config';
-import { ToiletMarker, WifiMarker, UserMarker } from '../../components';
+import {
+  ToiletMarker, WifiMarker, UserMarker,
+} from '../../components';
 
 import { getPositionsForPolyline } from './helpers';
+import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from './const';
+import { MAP_MODES } from '../../config/map';
 
 import styles, { ROUTE_COLOR } from './styles';
 import 'leaflet/dist/leaflet.css';
 
 import type { Classes } from '../../types/styles';
 import type { Wifi, Toilet } from '../../types/models';
+import icon from '../../components/NewMarker/icon';
 
 type Props = {
   classes: Classes,
@@ -24,6 +30,7 @@ type Props = {
   userLocation: number[] | null,
   toilets?: Toilet[],
   route: any,
+  mapMode: string,
   buildRoute: (location: number[]) => void,
 };
 
@@ -42,24 +49,35 @@ class FreebeeMap extends Component<Props, State> {
   };
 
   state = {
-    center: {
-      lat: 53.9017,
-      lng: 27.5429,
-    },
-    zoom: 12,
+    center: DEFAULT_MAP_CENTER,
+    zoom: DEFAULT_MAP_ZOOM,
+    newMarkerPosition: DEFAULT_MAP_CENTER,
   };
 
-  componentDidUpdate() {
+  refNewMarker = createRef();
+
+  componentDidUpdate(prevProps) {
     const { userLocation } = this.props;
     const map = this.map.leafletElement;
 
-    if (userLocation !== null) {
+    if (userLocation !== null
+    && prevProps.userLocation !== userLocation
+    ) {
       map.panTo(userLocation);
     }
   }
 
   setMapRef = (element) => {
     this.map = element;
+  };
+
+  updateNewMarkerPosition = () => {
+    const marker = this.refNewMarker.current;
+    if (marker != null) {
+      this.setState({
+        newMarkerPosition: marker.leafletElement.getLatLng(),
+      });
+    }
   };
 
   buildRouteToMarker = (location: number[]) => () => {
@@ -69,13 +87,14 @@ class FreebeeMap extends Component<Props, State> {
   };
 
   render() {
-    const { center, zoom } = this.state;
+    const { center, zoom, newMarkerPosition } = this.state;
     const {
       classes,
       wifi,
       toilets,
       userLocation,
       route,
+      mapMode,
     } = this.props;
 
     return (
@@ -90,6 +109,19 @@ class FreebeeMap extends Component<Props, State> {
           attribution={mapConfig.MAP_ATTRIBUTION}
           url={mapConfig.TILE_LAYER_URL}
         />
+        {
+          mapMode === MAP_MODES.CREATE && (
+            <FeatureGroup>
+              <Marker
+                draggable
+                icon={icon}
+                position={newMarkerPosition}
+                onDragend={this.updateNewMarkerPosition}
+                ref={this.refNewMarker}
+              />
+            </FeatureGroup>
+          )
+        }
         <FeatureGroup>
           {userLocation && <UserMarker key={userLocation.toString()} location={userLocation} />}
         </FeatureGroup>

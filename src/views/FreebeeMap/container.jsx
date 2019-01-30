@@ -13,6 +13,7 @@ import type { Wifi, Toilet } from '../../types/models';
 type Props = {
   wifi?: Wifi[],
   toilets?: Toilet[],
+  mapMode: string,
   route: any,
   getMarkers: () => void,
   getRoute: (number[], any) => void,
@@ -63,6 +64,7 @@ class MapContainer extends Component<Props> {
       toilets,
       currentUserLocation,
       route,
+      mapMode,
     } = this.props;
 
     return (
@@ -71,6 +73,7 @@ class MapContainer extends Component<Props> {
         toilets={toilets}
         route={route}
         userLocation={currentUserLocation}
+        mapMode={mapMode}
         buildRoute={this.buildRoute}
       />
     );

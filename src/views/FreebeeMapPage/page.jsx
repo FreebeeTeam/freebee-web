@@ -7,14 +7,16 @@ import FreebeeMap from '../FreebeeMap';
 import RoutePanel from './RouteInformationPanel';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
+import { MAP_MODES } from '../../config/map';
 
 type Props = {
   openFeedbackSidebar: () => void,
   setUserLocation: () => void,
   setFilter: () => void,
   resetRoute: () => void,
-  setCreationMapMode: (mode: string) => void,
   isMarkersFetching: boolean,
+  setCreationMapMode: () => void,
+  setReadMapMode: () => void,
   mapMode: string,
   routeSummary: any,
   selectedFilter: string | null,
@@ -24,7 +26,9 @@ type Props = {
 };
 
 const FreebeeMapPage = ({
+  openFeedbackSidebar,
   setCreationMapMode,
+  mapMode,
 
   setUserLocation,
   currentUserLocation,
@@ -38,13 +42,15 @@ const FreebeeMapPage = ({
   isMarkersFetching,
   classes,
 }: Props) => {
+  const isReadMode = mapMode === MAP_MODES.READ;
+
   return (
     <>
       {isMarkersFetching
         ? <LinearProgress className={classes.progress} />
         : null
       }
-      <FreebeeMap currentUserLocation={currentUserLocation} />
+      <FreebeeMap mapMode={mapMode} currentUserLocation={currentUserLocation} />
       <div className={classes.filterButton}>
         <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
       </div>
@@ -64,10 +70,10 @@ const FreebeeMapPage = ({
       <div className={classes.contactUsWrapper}>
         <Button
           variant="contained"
-          onClick={setCreationMapMode}
+          onClick={isReadMode ? setCreationMapMode : openFeedbackSidebar}
           className={classes.contactUs}
         >
-          {'Нашли халяву?'}
+          { isReadMode ? 'Нашли халяву?' : 'Подтвердить' }
         </Button>
       </div>
       <Button

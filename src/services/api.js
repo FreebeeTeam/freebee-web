@@ -21,12 +21,17 @@ const toilets = {
   get: () => buildBackendApiUrl('/toilets'),
 };
 
+const markers = {
+  getTypes: () => buildBackendApiUrl('/markers/types'),
+};
+
 const routing = {
   getRoute: () => buildHereRoutingApiUrl(''),
 };
 
 export {
   feedback,
+  markers,
   wifi,
   toilets,
   routing,

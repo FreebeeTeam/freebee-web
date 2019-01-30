@@ -11,7 +11,11 @@ import { LOCATION_ACCESS_DENIED_CODE } from '../../redux/middlewares/const';
 import { selectors as routingSelectors, routingActions } from '../../redux/routing';
 import { userActions, selectors as userSelectors } from '../../redux/user';
 import { sharedActions, selectors as sharedSelectors } from '../../redux/shared';
-import { actions as markerActions, selectors as markersSelectors } from '../../redux/markers';
+import {
+  actions as markerActions,
+  selectors as markersSelectors,
+  thunks as markersThunks,
+} from '../../redux/markers';
 
 type Props = {
   locationError: string,
@@ -23,6 +27,12 @@ type State = {
 };
 
 class FreebeeMapPageContainer extends Component<Props, State> {
+  componentDidMount() {
+    const { getMarkerTypes } = this.props;
+
+    getMarkerTypes();
+  }
+
   componentDidUpdate(prevProps): void {
     const { lastGlobalError, enqueueSnackbar } = this.props;
 
@@ -36,7 +46,9 @@ class FreebeeMapPageContainer extends Component<Props, State> {
   }
 
   setCreationMapMode = () => {
-    this.props.setMapMode(MAP_MODES.CREATE);
+    const { setMapMode } = this.props;
+
+    setMapMode(MAP_MODES.CREATE);
   };
 
   render() {
@@ -63,6 +75,7 @@ const mapDispatch = dispatch => ({
   openFeedbackSidebar: () => dispatch(open()),
   setUserCurrentLocation: location => dispatch(userActions.setCurrentLocation(location)),
   setFilter: filter => dispatch(markerActions.setFilter(filter)),
+  getMarkerTypes: () => dispatch(markersThunks.getMarkerTypes()),
   resetRoute: () => dispatch(routingActions.resetRoute()),
   setMapMode: mode => dispatch(sharedActions.setMapMode(mode)),
 });

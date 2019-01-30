@@ -6,6 +6,7 @@ import { MAP_MODES } from '../../../config/map';
 
 import { close, open } from '../../../redux/actions/ui/feedback-sidebar';
 import { thunks } from '../../../redux/feedback';
+import { selectors as markersSelectors } from '../../../redux/markers';
 import { sharedActions } from '../../../redux/shared';
 
 import type { Feedback } from '../../../types/models';
@@ -16,6 +17,7 @@ type Props = {
   openSidebar: () => void,
   sendFeedback: () => void,
   isOpen: boolean,
+  location: any,
 };
 
 type State = {
@@ -42,7 +44,13 @@ class FeedbackSidebarContainer extends Component<Props, State> {
   };
 
   handleSubmit = (): void => {
-    const { closeSidebar, sendFeedback, setReadMapMode } = this.props;
+    const {
+      closeSidebar,
+      sendFeedback,
+      setReadMapMode,
+      location,
+    } = this.props;
+
     const {
       type,
       address,
@@ -51,6 +59,7 @@ class FeedbackSidebarContainer extends Component<Props, State> {
     } = this.state;
 
     const feedback: Feedback = {
+      location,
       address,
       type: [type],
       author,
@@ -105,6 +114,7 @@ const { createFeedback } = thunks;
 
 const mapState = state => ({
   isOpen: state.ui.feedbackSidebar.open,
+  location: markersSelectors.selectNewMarkerPositionInGeoJSON(state),
 });
 
 const mapDispatch = {

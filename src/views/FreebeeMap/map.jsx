@@ -32,6 +32,7 @@ type Props = {
   route: any,
   mapMode: string,
   buildRoute: (location: number[]) => void,
+  setNewMarkerPosition: (position: number[]) => void,
 };
 
 type State = {
@@ -77,6 +78,7 @@ class FreebeeMap extends Component<Props, State> {
       this.setState({
         newMarkerPosition: marker.leafletElement.getLatLng(),
       });
+      this.props.setNewMarkerPosition(marker.leafletElement.getLatLng());
     }
   };
 

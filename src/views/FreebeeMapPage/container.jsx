@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withSnackbar } from 'notistack';
 import _ from 'lodash';
-import { MAP_MODES } from "../../config/map";
+import { MAP_MODES } from '../../config/map';
 import FreebeeMapPage from './page';
-import { open } from '../../redux/actions/ui/feedback-sidebar';
 
+import { open } from '../../redux/actions/ui/feedback-sidebar';
 import { LOCATION_ACCESS_DENIED_CODE } from '../../redux/middlewares/const';
 import { selectors as routingSelectors, routingActions } from '../../redux/routing';
 import { userActions, selectors as userSelectors } from '../../redux/user';

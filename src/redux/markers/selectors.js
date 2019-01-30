@@ -31,3 +31,19 @@ export const selectFilter: Selector = createSelector(
   rootSelector,
   (markers: State) => markers.shared.selected,
 );
+
+const selectNewMarkerPosition = state => state.markers.shared.newMarkerPosition;
+
+export const selectNewMarkerPositionInGeoJSON = createSelector(
+  selectNewMarkerPosition,
+  (position) => {
+    if (!position) {
+      return null;
+    }
+
+    return {
+      type: 'Point',
+      coordinates: [position.lat, position.lng],
+    };
+  },
+);

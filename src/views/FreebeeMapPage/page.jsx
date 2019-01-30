@@ -78,10 +78,10 @@ const FreebeeMapPage = ({
       </div>
       <Button
         variant="contained"
-        onClick={setCreationMapMode}
+        onClick={isReadMode ? setCreationMapMode : openFeedbackSidebar}
         className={classes.contactUsDesktop}
       >
-        {'Нашли халяву?'}
+        { isReadMode ? 'Нашли халяву?' : 'Подтвердить' }
       </Button>
     </>
   );

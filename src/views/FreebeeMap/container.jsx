@@ -2,21 +2,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FreebeeMap from './map';
-import { selectors, thunks } from '../../redux/markers';
+
+import { actions as markerActions, selectors, thunks } from '../../redux/markers';
 import { userActions } from '../../redux/user';
 import {
   thunks as routingThunks,
   selectors as routingSelectors,
 } from '../../redux/routing';
+
 import type { Wifi, Toilet } from '../../types/models';
 
 type Props = {
   wifi?: Wifi[],
   toilets?: Toilet[],
+  mapMode: string,
   route: any,
   getMarkers: () => void,
   getRoute: (number[], any) => void,
   setCurrentLocation: (position: number[] | string) => void,
+  setNewMarkerPosition: (position: number[] | string) => void,
   currentUserLocation: number[] | null,
 };
 
@@ -63,6 +67,8 @@ class MapContainer extends Component<Props> {
       toilets,
       currentUserLocation,
       route,
+      mapMode,
+      setNewMarkerPosition,
     } = this.props;
 
     return (
@@ -71,7 +77,9 @@ class MapContainer extends Component<Props> {
         toilets={toilets}
         route={route}
         userLocation={currentUserLocation}
+        mapMode={mapMode}
         buildRoute={this.buildRoute}
+        setNewMarkerPosition={setNewMarkerPosition}
       />
     );
   }
@@ -117,6 +125,7 @@ const mapDispatch = dispatch => ({
   getMarkers: () => dispatch(getMarkers()),
   getRoute: (point0, point1) => dispatch(getRoute(point0, point1)),
   setCurrentLocation: (position: [] | string) => dispatch(setCurrentLocation(position)),
+  setNewMarkerPosition: position => dispatch(markerActions.setNewMarkerPosition(position)),
 });
 
 export default connect(mapState, mapDispatch)(MapContainer);

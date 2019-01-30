@@ -3,16 +3,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withSnackbar } from 'notistack';
 import _ from 'lodash';
+import { MAP_MODES } from '../../config/map';
 import FreebeeMapPage from './page';
+
 import { open } from '../../redux/actions/ui/feedback-sidebar';
 import { LOCATION_ACCESS_DENIED_CODE } from '../../redux/middlewares/const';
 import { selectors as routingSelectors, routingActions } from '../../redux/routing';
 import { userActions, selectors as userSelectors } from '../../redux/user';
-import { selectors as errorsSelectors } from '../../redux/errors';
-import { actions, selectors as markersSelectors } from '../../redux/markers';
+import { sharedActions, selectors as sharedSelectors } from '../../redux/shared';
+import { actions as markerActions, selectors as markersSelectors } from '../../redux/markers';
 
 type Props = {
   locationError: string,
+  setMapMode: (mode: string) => void,
 };
 
 type State = {
@@ -32,9 +35,16 @@ class FreebeeMapPageContainer extends Component<Props, State> {
     }
   }
 
+  setCreationMapMode = () => {
+    this.props.setMapMode(MAP_MODES.CREATE);
+  };
+
   render() {
     return (
-      <FreebeeMapPage {...this.props} />
+      <FreebeeMapPage
+        {...this.props}
+        setCreationMapMode={this.setCreationMapMode}
+      />
     );
   }
 }
@@ -45,17 +55,16 @@ const mapState = state => ({
   locationError: userSelectors.selectUserCurrentLocationError(state),
   selectedFilter: markersSelectors.selectFilter(state),
   routeSummary: routingSelectors.selectRouteSummary(state),
-  lastGlobalError: errorsSelectors.selectLastError(state),
+  lastGlobalError: sharedSelectors.selectLastError(state),
+  mapMode: sharedSelectors.selectMapMode(state),
 });
-
-const { setFilter } = actions;
-const { resetRoute } = routingActions;
 
 const mapDispatch = dispatch => ({
   openFeedbackSidebar: () => dispatch(open()),
   setUserCurrentLocation: location => dispatch(userActions.setCurrentLocation(location)),
-  setFilter: filter => dispatch(setFilter(filter)),
-  resetRoute: () => dispatch(resetRoute()),
+  setFilter: filter => dispatch(markerActions.setFilter(filter)),
+  resetRoute: () => dispatch(routingActions.resetRoute()),
+  setMapMode: mode => dispatch(sharedActions.setMapMode(mode)),
 });
 
 const mergeProps = (propsFromState, propsFromDispatch) => {

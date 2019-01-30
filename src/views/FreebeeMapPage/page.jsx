@@ -7,6 +7,7 @@ import FreebeeMap from '../FreebeeMap';
 import RoutePanel from './RouteInformationPanel';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
+import { MAP_MODES } from '../../config/map';
 
 type Props = {
   openFeedbackSidebar: () => void,
@@ -14,6 +15,10 @@ type Props = {
   setFilter: () => void,
   resetRoute: () => void,
   isMarkersFetching: boolean,
+  setCreationMapMode: () => void,
+  setReadMapMode: () => void,
+  mapMode: string,
+  routeSummary: any,
   selectedFilter: string | null,
   currentUserLocation: number[] | null,
   classes: Classes,
@@ -22,6 +27,8 @@ type Props = {
 
 const FreebeeMapPage = ({
   openFeedbackSidebar,
+  setCreationMapMode,
+  mapMode,
 
   setUserLocation,
   currentUserLocation,
@@ -35,13 +42,15 @@ const FreebeeMapPage = ({
   isMarkersFetching,
   classes,
 }: Props) => {
+  const isReadMode = mapMode === MAP_MODES.READ;
+
   return (
     <>
       {isMarkersFetching
         ? <LinearProgress className={classes.progress} />
         : null
       }
-      <FreebeeMap currentUserLocation={currentUserLocation} />
+      <FreebeeMap mapMode={mapMode} currentUserLocation={currentUserLocation} />
       <div className={classes.filterButton}>
         <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
       </div>
@@ -61,18 +70,18 @@ const FreebeeMapPage = ({
       <div className={classes.contactUsWrapper}>
         <Button
           variant="contained"
-          onClick={openFeedbackSidebar}
+          onClick={isReadMode ? setCreationMapMode : openFeedbackSidebar}
           className={classes.contactUs}
         >
-          {'Нашли халяву?'}
+          { isReadMode ? 'Нашли халяву?' : 'Подтвердить' }
         </Button>
       </div>
       <Button
         variant="contained"
-        onClick={openFeedbackSidebar}
+        onClick={isReadMode ? setCreationMapMode : openFeedbackSidebar}
         className={classes.contactUsDesktop}
       >
-        {'Нашли халяву?'}
+        { isReadMode ? 'Нашли халяву?' : 'Подтвердить' }
       </Button>
     </>
   );

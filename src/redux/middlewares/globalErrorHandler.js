@@ -4,7 +4,7 @@ import {
   NETWORK_ERROR_MESSAGE, NETWORK_ERROR_MESSAGE_RU,
   GEOLOCATION_ERRORS,
 } from './const';
-import { actions } from '../errors';
+import { sharedActions } from '../shared';
 
 const middleware = store => next => (action) => {
   const hasError = action.error
@@ -12,11 +12,11 @@ const middleware = store => next => (action) => {
   if (hasError) {
     const { payload } = action;
     if (payload.message && payload.message === NETWORK_ERROR_MESSAGE) {
-      store.dispatch(actions.setError(NETWORK_ERROR_MESSAGE_RU));
+      store.dispatch(sharedActions.setError(NETWORK_ERROR_MESSAGE_RU));
     }
     if (payload.geolocationErrorCode) {
       const errorMessage = GEOLOCATION_ERRORS[payload.geolocationErrorCode];
-      store.dispatch(actions.setError(errorMessage));
+      store.dispatch(sharedActions.setError(errorMessage));
     }
   }
 

@@ -20,6 +20,10 @@ import {
 type Props = {
   locationError: string,
   setMapMode: (mode: string) => void,
+  getMarkerTypes: (mode: string) => void,
+  enqueueSnackbar: (message: string) => void,
+  setNewMarkerPositionOnMapViewport: () => void,
+  lastGlobalError: any,
 };
 
 type State = {
@@ -46,8 +50,9 @@ class FreebeeMapPageContainer extends Component<Props, State> {
   }
 
   setCreationMapMode = () => {
-    const { setMapMode } = this.props;
+    const { setMapMode, setNewMarkerPositionOnMapViewport } = this.props;
 
+    setNewMarkerPositionOnMapViewport();
     setMapMode(MAP_MODES.CREATE);
   };
 
@@ -68,6 +73,7 @@ const mapState = state => ({
   selectedFilter: markersSelectors.selectFilter(state),
   routeSummary: routingSelectors.selectRouteSummary(state),
   lastGlobalError: sharedSelectors.selectLastError(state),
+  mapViewport: state.shared.mapViewport,
   mapMode: sharedSelectors.selectMapMode(state),
 });
 
@@ -75,13 +81,14 @@ const mapDispatch = dispatch => ({
   openFeedbackSidebar: () => dispatch(open()),
   setUserCurrentLocation: location => dispatch(userActions.setCurrentLocation(location)),
   setFilter: filter => dispatch(markerActions.setFilter(filter)),
+  setNewMarkerPosition: position => dispatch(markerActions.setNewMarkerPosition(position)),
   getMarkerTypes: () => dispatch(markersThunks.getMarkerTypes()),
   resetRoute: () => dispatch(routingActions.resetRoute()),
   setMapMode: mode => dispatch(sharedActions.setMapMode(mode)),
 });
 
 const mergeProps = (propsFromState, propsFromDispatch) => {
-  const { currentUserLocation } = propsFromState;
+  const { currentUserLocation, mapViewport } = propsFromState;
   const setUserLocation = () => {
     if (currentUserLocation) {
       propsFromDispatch.setUserCurrentLocation(currentUserLocation.slice());
@@ -92,10 +99,15 @@ const mergeProps = (propsFromState, propsFromDispatch) => {
     }
   };
 
+  const setNewMarkerPositionOnMapViewport = () => {
+    propsFromDispatch.setNewMarkerPosition(mapViewport.center);
+  };
+
   return {
     ...propsFromState,
     ...propsFromDispatch,
     setUserLocation,
+    setNewMarkerPositionOnMapViewport,
   };
 };
 

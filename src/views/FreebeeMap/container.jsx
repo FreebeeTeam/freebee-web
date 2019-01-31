@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import FreebeeMap from './map';
 
 import { actions as markerActions, selectors, thunks } from '../../redux/markers';
+import { sharedActions } from '../../redux/shared';
 import { userActions } from '../../redux/user';
 import {
   thunks as routingThunks,
@@ -63,12 +64,11 @@ class MapContainer extends Component<Props> {
 
   render() {
     const {
-      wifi,
-      toilets,
-      currentUserLocation,
-      route,
+      wifi, toilets,
+      currentUserLocation, route,
       mapMode,
-      setNewMarkerPosition,
+      setNewMarkerPosition, setMapViewport,
+      mapViewport, newMarkerPosition,
     } = this.props;
 
     return (
@@ -80,6 +80,9 @@ class MapContainer extends Component<Props> {
         mapMode={mapMode}
         buildRoute={this.buildRoute}
         setNewMarkerPosition={setNewMarkerPosition}
+        newMarkerPosition={newMarkerPosition}
+        setMapViewport={setMapViewport}
+        mapViewport={mapViewport}
       />
     );
   }
@@ -114,6 +117,8 @@ const mapState = (state) => {
     toilets,
     filter,
     route: routingSelectors.selectRoute(state),
+    mapViewport: state.shared.mapViewport,
+    newMarkerPosition: state.markers.shared.newMarkerPosition,
   };
 };
 
@@ -126,6 +131,7 @@ const mapDispatch = dispatch => ({
   getRoute: (point0, point1) => dispatch(getRoute(point0, point1)),
   setCurrentLocation: (position: [] | string) => dispatch(setCurrentLocation(position)),
   setNewMarkerPosition: position => dispatch(markerActions.setNewMarkerPosition(position)),
+  setMapViewport: viewport => dispatch(sharedActions.setMapViewport(viewport)),
 });
 
 export default connect(mapState, mapDispatch)(MapContainer);

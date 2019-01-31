@@ -1,12 +1,9 @@
 /* @flow */
 import * as React from 'react';
 import {
-  withStyles,
-  SwipeableDrawer,
-  Button,
-  TextField,
-  Typography,
-  Grid,
+  withStyles, SwipeableDrawer, Grid,
+  Button, TextField, Select, MenuItem, FormHelperText,
+  FormControl, FilledInput, InputLabel, Typography,
 } from '@material-ui/core';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
@@ -15,6 +12,7 @@ import type { Feedback } from '../../types/models';
 type Props = {
   +isOpen: boolean,
   feedback: Feedback,
+  freebeeTypes: [],
   +classes: Classes,
   open: () => void,
   close: () => void,
@@ -25,6 +23,7 @@ type Props = {
 
 const FeedbackSidebar = ({
   feedback,
+  freebeeTypes,
   isOpen,
   classes,
   open,
@@ -58,7 +57,7 @@ const FeedbackSidebar = ({
         </Grid>
         <Grid className={classes.fieldsContainer} container spacing={24}>
           <Grid item xs={12}>
-            <div className={classes.formField}>
+            <FormControl fullWidth className={classes.formField}>
               <TextField
                 placeholder="ул. Халявина, 7"
                 label="Место халявы"
@@ -70,25 +69,30 @@ const FeedbackSidebar = ({
                 }}
                 fullWidth
               />
-            </div>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <div className={classes.formField}>
-              <TextField
-                placeholder="Туалет"
-                label="Вид халявы"
-                required
+            <FormControl required fullWidth className={classes.formField}>
+              <InputLabel htmlFor="freebeeType">Вид халявы</InputLabel>
+              <Select
                 onChange={handleFieldChange('type')}
                 value={feedback.type}
-                InputLabelProps={{
-                  shrink: true,
+                inputProps={{
+                  id: 'freebeeType',
+                  name: 'freebeeType',
                 }}
                 fullWidth
-              />
-            </div>
+              >
+                {freebeeTypes.map(type => (
+                  <MenuItem key={type.value} value={type.value}>
+                    {type.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <div className={classes.formField}>
+            <FormControl fullWidth className={classes.formField}>
               <TextField
                 placeholder="Автор"
                 label="Freebee"
@@ -100,10 +104,10 @@ const FeedbackSidebar = ({
                 }}
                 fullWidth
               />
-            </div>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <div className={classes.formField}>
+            <FormControl fullWidth className={classes.formField}>
               <TextField
                 placeholder="Описание найденной халявы"
                 label="Описание"
@@ -114,7 +118,7 @@ const FeedbackSidebar = ({
                 }}
                 fullWidth
               />
-            </div>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <Grid container className={classes.buttonsContainer}>

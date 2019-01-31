@@ -1,14 +1,18 @@
 // @flow
-
 import { handleActions } from 'redux-actions';
 import update from 'immutability-helper';
-import { setError, setMapMode } from './actions';
-import { MAP_MODES } from '../../config/map';
+import { setError, setMapMode, setMapViewport } from './actions';
+import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM, MAP_MODES } from '../../config/map';
 
 const defaultState = {
   errorList: [],
 
   mapMode: MAP_MODES.READ,
+
+  mapViewport: {
+    zoom: DEFAULT_MAP_ZOOM,
+    center: DEFAULT_MAP_CENTER,
+  },
 };
 
 const reducer = handleActions({
@@ -26,6 +30,13 @@ const reducer = handleActions({
     return update(state, {
       mapMode: {
         $set: mode,
+      },
+    });
+  },
+  [setMapViewport]: (state, { payload: { viewport } }) => {
+    return update(state, {
+      mapViewport: {
+        $set: viewport,
       },
     });
   },

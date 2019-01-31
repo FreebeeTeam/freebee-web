@@ -14,7 +14,6 @@ import {
 } from '../../components';
 
 import { getPositionsForPolyline } from './helpers';
-import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from './const';
 import { MAP_MODES } from '../../config/map';
 
 import styles, { ROUTE_COLOR } from './styles';
@@ -36,23 +35,13 @@ type Props = {
 };
 
 type State = {
-  center: {
-    lat: number,
-    lng: number,
-  },
-  zoom: number,
+  viewport: any,
 };
 
 class FreebeeMap extends Component<Props, State> {
   static defaultProps = {
     wifi: [],
     toilets: [],
-  };
-
-  state = {
-    center: DEFAULT_MAP_CENTER,
-    zoom: DEFAULT_MAP_ZOOM,
-    newMarkerPosition: DEFAULT_MAP_CENTER,
   };
 
   refNewMarker = createRef();
@@ -75,11 +64,12 @@ class FreebeeMap extends Component<Props, State> {
   updateNewMarkerPosition = () => {
     const marker = this.refNewMarker.current;
     if (marker != null) {
-      this.setState({
-        newMarkerPosition: marker.leafletElement.getLatLng(),
-      });
       this.props.setNewMarkerPosition(marker.leafletElement.getLatLng());
     }
+  };
+
+  handleViewportChanged = (viewport) => {
+    this.props.setMapViewport(viewport);
   };
 
   buildRouteToMarker = (location: number[]) => () => {
@@ -89,21 +79,18 @@ class FreebeeMap extends Component<Props, State> {
   };
 
   render() {
-    const { center, zoom, newMarkerPosition } = this.state;
     const {
       classes,
-      wifi,
-      toilets,
-      userLocation,
-      route,
-      mapMode,
+      wifi, toilets,
+      userLocation, route, mapMode,
+      newMarkerPosition, mapViewport,
     } = this.props;
 
     return (
       <Map
         className={classes.map}
-        center={[center.lat, center.lng]}
-        zoom={zoom}
+        viewport={mapViewport}
+        onViewportChanged={this.handleViewportChanged}
         zoomControl={false}
         ref={this.setMapRef}
       >

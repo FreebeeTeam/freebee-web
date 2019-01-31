@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { withStyles, Button, LinearProgress } from '@material-ui/core';
 import { UserLocationButton, FilterButton } from '../../components';
-import FeedbackSidebar from './FeedbackSidebar';
+import FeedbackSidebar from '../FeedbackSidebar';
 import FreebeeMap from '../FreebeeMap';
 import RoutePanel from './RouteInformationPanel';
 import styles from './styles';
@@ -59,7 +59,7 @@ const FreebeeMapPage = ({
         <UserLocationButton onClick={setUserLocation} />
       </div>
 
-      <FeedbackSidebar />
+      {!isMarkersFetching && <FeedbackSidebar />}
 
       {routeSummary && (
         <div className={classes.routePanel}>
@@ -85,10 +85,6 @@ const FreebeeMapPage = ({
       </Button>
     </>
   );
-};
-
-FreebeeMapPage.defaultProps = {
-  isMarkersFetching: true,
 };
 
 export default withStyles(styles)(FreebeeMapPage);

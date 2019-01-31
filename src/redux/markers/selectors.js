@@ -1,5 +1,6 @@
 /* @flow */
 import { createSelector } from 'reselect';
+import { selectors as userSelectors } from '../user';
 import type { Wifi } from '../../types/models';
 import type { State } from './reducer';
 
@@ -35,10 +36,13 @@ export const selectFilter: Selector = createSelector(
 const selectNewMarkerPosition = state => state.markers.shared.newMarkerPosition;
 
 export const selectNewMarkerPositionInGeoJSON = createSelector(
-  selectNewMarkerPosition,
-  (position) => {
+  [selectNewMarkerPosition, userSelectors.selectUserCurrentLocation],
+  (position, userPosition) => {
     if (!position) {
-      return null;
+      return {
+        type: 'Point',
+        coordinates: userPosition,
+      };
     }
 
     return {

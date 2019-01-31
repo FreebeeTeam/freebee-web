@@ -23,6 +23,7 @@ export default (theme: Theme): Styles => ({
   },
   formField: {
     margin: sideMargin,
+    width: '93%',
   },
   buttonsContainer: {
     display: 'flex',

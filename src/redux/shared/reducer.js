@@ -1,5 +1,6 @@
 // @flow
 import { handleActions } from 'redux-actions';
+import _ from 'lodash';
 import update from 'immutability-helper';
 import { setError, setMapMode, setMapViewport } from './actions';
 import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM, MAP_MODES } from '../../config/map';
@@ -34,6 +35,10 @@ const reducer = handleActions({
     });
   },
   [setMapViewport]: (state, { payload: { viewport } }) => {
+    if (_.isEqual(_.sortBy(viewport), _.sortBy(state.mapViewport))) {
+      return state;
+    }
+    
     return update(state, {
       mapViewport: {
         $set: viewport,

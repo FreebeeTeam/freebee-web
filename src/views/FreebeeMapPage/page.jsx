@@ -4,7 +4,7 @@ import { withStyles, Button, LinearProgress } from '@material-ui/core';
 import { UserLocationButton, FilterButton } from '../../components';
 import FeedbackSidebar from '../FeedbackSidebar';
 import FreebeeMap from '../FreebeeMap';
-import RoutePanel from './RouteInformationPanel';
+import RoutePanel from '../RouteInformationPanel';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
 import { MAP_MODES } from '../../config/map';

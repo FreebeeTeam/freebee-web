@@ -21,7 +21,7 @@ const WifiMarker = ({ wifi, classes, buildRoute }: Props) => {
       position={wifi.location}
       onDblclick={() => { buildRoute(wifi)(); }}
     >
-      <Popup>
+      <Popup autoPan={false}>
         <div className={classes.content}>
           <span className={classes.point}>Название: </span>
           <span className={classes.title}>

@@ -8,13 +8,16 @@ import {
   Polyline,
   Marker,
 } from 'react-leaflet';
-import { map as mapConfig } from '../../config';
 import {
   ToiletMarker, WifiMarker, UserMarker,
 } from '../../components';
 
 import { getPositionsForPolyline } from './helpers';
-import { MAP_MODES } from '../../config/map';
+import {
+  MAP_MODES,
+  TILE_LAYER_URL,
+  MAP_ATTRIBUTION,
+} from '../../config/map';
 
 import styles, { ROUTE_COLOR } from './styles';
 import 'leaflet/dist/leaflet.css';
@@ -95,8 +98,8 @@ class FreebeeMap extends Component<Props, State> {
         ref={this.setMapRef}
       >
         <TileLayer
-          attribution={mapConfig.MAP_ATTRIBUTION}
-          url={mapConfig.TILE_LAYER_URL}
+          attribution={MAP_ATTRIBUTION}
+          url={TILE_LAYER_URL}
         />
         {
           mapMode === MAP_MODES.CREATE && (

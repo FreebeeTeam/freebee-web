@@ -1,5 +1,5 @@
 /* @flow */
-import map from './map';
+import * as map from './map';
 import * as notification from './notification';
 
 export {

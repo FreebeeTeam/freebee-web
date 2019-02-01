@@ -21,7 +21,7 @@ const ToiletMarker = ({ toilet, classes, buildRoute }: Props) => {
       position={toilet.location}
       onDblclick={() => { buildRoute(toilet)(); }}
     >
-      <Popup>
+      <Popup autoPan={false}>
         <div className={classes.content}>
           <span className={classes.title}>Туалет</span>
           <IconButton

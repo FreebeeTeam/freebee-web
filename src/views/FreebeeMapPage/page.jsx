@@ -70,6 +70,7 @@ const FreebeeMapPage = ({
       <div className={classes.contactUsWrapper}>
         <Button
           variant="contained"
+          color="primary"
           onClick={isReadMode ? setCreationMapMode : openFeedbackSidebar}
           className={classes.contactUs}
         >
@@ -78,6 +79,7 @@ const FreebeeMapPage = ({
       </div>
       <Button
         variant="contained"
+        color="primary"
         onClick={isReadMode ? setCreationMapMode : openFeedbackSidebar}
         className={classes.contactUsDesktop}
       >

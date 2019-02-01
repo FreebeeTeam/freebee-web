@@ -35,19 +35,19 @@ const IntroducingPanel = ({ classes }: Props) => (
         <div className={classes.icons}>
           <div className={classes.iconContainer}>
             <a
-              className={cc(classes.icon, classes.github)}
+              className={cc([classes.icon, classes.github])}
               href="https://github.com/FreebeeTeam"
             >
               {''}
             </a>
             <a
-              className={cc(classes.icon, classes.vk)}
+              className={cc([classes.icon, classes.vk])}
               href="https://vk.com/freebeeapp"
             >
               {''}
             </a>
             <Link
-              className={cc(classes.icon, classes.mapIcon)}
+              className={cc([classes.icon, classes.mapIcon])}
               to="/map"
             >
               <img

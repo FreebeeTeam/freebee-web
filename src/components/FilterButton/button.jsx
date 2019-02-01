@@ -22,9 +22,9 @@ type State = {
   open: boolean,
 };
 
-const WcOptionIcon = () => <WcIcon color="action" />;
-const WifiOptionIcon = () => <WifiIcon color="action" />;
-const ClearAllOptionIcon = () => <ClearAllIcon color="action" />;
+const WcOptionIcon = () => <WcIcon color="text.primary" />;
+const WifiOptionIcon = () => <WifiIcon color="text.primary" />;
+const ClearAllOptionIcon = () => <ClearAllIcon color="text.primary" />;
 
 class FilterButton extends Component<Props, State> {
   state = {
@@ -37,22 +37,22 @@ class FilterButton extends Component<Props, State> {
     setFilter(filter);
   };
 
-  toogle = () => this.setState((prevState: State) => ({ open: !prevState.open }))
+  toggle = () => this.setState((prevState: State) => ({ open: !prevState.open }))
 
   render() {
     const { classes, selectedFilter } = this.props;
     const { open } = this.state;
 
     return (
-      <div className={cc(classes.filter)}>
+      <div className={cc([classes.filter])}>
         <Fab
-          className={cc(classes.button, classes.mainButton)}
+          className={cc([classes.button, classes.mainButton])}
           color="primary"
-          onClick={this.toogle}
+          onClick={this.toggle}
         >
-          <FilterList color="action" />
+          <FilterList color="text.primary" />
         </Fab>
-        <div className={cc((open ? classes.open : classes.close), classes.drop)}>
+        <div className={cc([(open ? classes.open : classes.close), classes.drop])}>
           <Option
             isSelected={selectedFilter === null}
             filter={null}

@@ -13,7 +13,7 @@ const UserLocationButton = ({ onClick }: Props) => {
       color="primary"
       onClick={onClick}
     >
-      <MyLocationIcon color="action" />
+      <MyLocationIcon color="text.primary" />
     </Fab>
   );
 };

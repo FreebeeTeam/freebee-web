@@ -2,10 +2,11 @@
 import * as React from 'react';
 import {
   withStyles, SwipeableDrawer, Grid,
-  Button, TextField, Select, MenuItem, FormHelperText,
-  FormControl, FilledInput, InputLabel, Typography,
+  Button, TextField, Select, MenuItem,
+  FormControl, InputLabel, Typography,
+  MuiThemeProvider,
 } from '@material-ui/core';
-import styles from './styles';
+import styles, { theme } from './styles';
 import type { Classes } from '../../types/styles';
 import type { Feedback } from '../../types/models';
 
@@ -32,7 +33,7 @@ const FeedbackSidebar = ({
   submit,
   handleFieldChange,
 }: Props) => (
-  <>
+  <MuiThemeProvider theme={theme}>
     <SwipeableDrawer
       open={isOpen}
       onClose={close}
@@ -129,7 +130,7 @@ const FeedbackSidebar = ({
         </Grid>
       </Grid>
     </SwipeableDrawer>
-  </>
+  </MuiThemeProvider>
 );
 
 export default withStyles(styles)(FeedbackSidebar);

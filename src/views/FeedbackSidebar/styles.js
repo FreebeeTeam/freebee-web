@@ -1,4 +1,5 @@
 /* @flow */
+import { createMuiTheme } from '@material-ui/core';
 import type { Theme } from '@material-ui/core';
 import type { Styles } from '../../types/styles';
 
@@ -32,6 +33,18 @@ export default (theme: Theme): Styles => ({
   [theme.breakpoints.up('sm')]: {
     sidebarRoot: {
       width: sidebarDesctopSize,
+    },
+  },
+});
+
+export const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#4caf50',
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#d14942',
     },
   },
 });

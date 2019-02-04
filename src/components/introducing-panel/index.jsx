@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import cc from 'classcat';
-import { map } from '../../themes/images';
+import { map } from '../../styles/images';
 import styles from './styles';
 import type { Styles } from '../../types/styles';
 

@@ -2,10 +2,8 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import * as markersActions from './actions';
-import { setMapMode } from '../shared/actions';
 import toilets from './toilets';
 import wifi from './wifi';
-import { MAP_MODES, DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from '../../config/map';
 
 export type State = {
   +selected: string | null,

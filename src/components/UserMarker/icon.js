@@ -1,8 +1,8 @@
 /* @flow */
 import L from 'leaflet';
 import type { Icon } from 'leaflet';
-import { userMarker } from '../../themes/images';
-import { userMarkerIcon } from '../../themes/sizes';
+import { userMarker } from '../../styles/images';
+import { userMarkerIcon } from '../../styles/sizes';
 import type { IconOptions } from '../../types/markers';
 
 const options: IconOptions = {

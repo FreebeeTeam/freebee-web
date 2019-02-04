@@ -1,6 +1,6 @@
 
 /* @flow */
-import { vk, github } from '../../themes/images';
+import { vk, github } from '../../styles/images';
 
 import type { Styles } from '../../types/styles';
 

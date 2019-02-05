@@ -25,7 +25,7 @@ const Option = ({
   return (
     <Fab
       className={cc([classes.button, classes.optionButton])}
-      color={isSelected ? 'primary' : 'secondary'}
+      color={isSelected ? 'primary' : 'default'}
       onClick={onClick(filter)}
       size="small"
     >

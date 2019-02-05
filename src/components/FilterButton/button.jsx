@@ -22,9 +22,9 @@ type State = {
   open: boolean,
 };
 
-const WcOptionIcon = () => <WcIcon color="text.primary" />;
-const WifiOptionIcon = () => <WifiIcon color="text.primary" />;
-const ClearAllOptionIcon = () => <ClearAllIcon color="text.primary" />;
+const WcOptionIcon = () => <WcIcon color="inherit" />;
+const WifiOptionIcon = () => <WifiIcon color="inherit" />;
+const ClearAllOptionIcon = () => <ClearAllIcon color="inherit" />;
 
 class FilterButton extends Component<Props, State> {
   state = {
@@ -50,7 +50,7 @@ class FilterButton extends Component<Props, State> {
           color="primary"
           onClick={this.toggle}
         >
-          <FilterList color="text.primary" />
+          <FilterList color="inherit" />
         </Fab>
         <div className={cc([(open ? classes.open : classes.close), classes.drop])}>
           <Option

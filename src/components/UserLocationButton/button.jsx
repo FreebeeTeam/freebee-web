@@ -13,7 +13,7 @@ const UserLocationButton = ({ onClick }: Props) => {
       color="primary"
       onClick={onClick}
     >
-      <MyLocationIcon color="text.primary" />
+      <MyLocationIcon color="inherit" />
     </Fab>
   );
 };

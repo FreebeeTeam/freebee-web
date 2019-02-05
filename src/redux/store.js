@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 import {
   createStore,
@@ -6,13 +6,14 @@ import {
 } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import { globalErrorHandler } from './middlewares';
 
-import rootReducer from './reducers';
-
+import rootReducer from './rootReducer';
 
 export default () => {
   const middleware = applyMiddleware(
     thunk,
+    globalErrorHandler,
   );
 
   const composeEnhancers = composeWithDevTools({});
@@ -20,7 +21,5 @@ export default () => {
     middleware,
   );
 
-  const store = createStore(rootReducer, enhancer);
-
-  return store;
+  return createStore(rootReducer, enhancer);
 };

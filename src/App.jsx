@@ -1,29 +1,31 @@
-// @flow
+/* @flow */
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
-
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { MuiThemeProvider } from '@material-ui/core';
+import { SnackbarProvider } from 'notistack';
 import { createStore } from './redux';
-
-import IndexPage from './pages/index-page';
-import { MapPage } from './containers';
-
+import { notification } from './config';
+import theme from './styles/theme';
+import FreebeeMapPage from './views/FreebeeMapPage';
 
 const App = () => (
   <Provider store={createStore()}>
-    <Router>
-      <React.Fragment>
-        <Switch>
-          <Route exact path="/" component={IndexPage} />
-          <Route path="/map" component={MapPage} />
-        </Switch>
-      </React.Fragment>
-    </Router>
+    <MuiThemeProvider theme={theme}>
+      <SnackbarProvider
+        maxSnack={notification.MAX_SNACK}
+        anchorOrigin={notification.ANCHOR}
+      >
+        <BrowserRouter basename="/map">
+          <>
+            <Switch>
+              <Route path="/" component={FreebeeMapPage} />
+            </Switch>
+          </>
+        </BrowserRouter>
+      </SnackbarProvider>
+    </MuiThemeProvider>
   </Provider>
 );
 

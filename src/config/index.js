@@ -1,9 +1,8 @@
-// @flow
-
-import api from './api';
-import map from './map';
+/* @flow */
+import * as map from './map';
+import * as notification from './notification';
 
 export {
-  api,
   map,
+  notification,
 };

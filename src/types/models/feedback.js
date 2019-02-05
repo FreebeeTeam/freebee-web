@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 export type Feedback = {
   address: string,
   type: string,

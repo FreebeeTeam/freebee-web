@@ -27,6 +27,7 @@ node_modules
 *.jshintrc
 **/bin
 .vscode
+.idea
 
 
 # Created by https://www.gitignore.io/api/reactnative,visualstudiocode

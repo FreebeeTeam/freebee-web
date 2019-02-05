@@ -102,3 +102,5 @@ Currently, deploy is not configured 😢
 ## Developed by
 
 * **Артём Дадыченко** - [adadychenko](https://github.com/ArtemDadychenko) - Author, Frontend Development;
+
+* **Егор Пуйша** - [GitStearis](https://github.com/GitStearis) - Design, Testing.

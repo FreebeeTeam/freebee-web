@@ -41,7 +41,7 @@ export default (): Styles => ({
     },
     userLocationButton: {
       right: '2%',
-      bottom: '10%',
+      bottom: '4%',
     },
     filterButton: {
       top: '2%',
@@ -51,7 +51,7 @@ export default (): Styles => ({
       display: 'inline-flex',
       position: 'absolute',
       zIndex: 1001,
-      right: '2%',
+      left: '2%',
       bottom: '4%',
       color: 'black',
       fontFamily: "'Roboto Condensed', Arial, Helvetica, sans-serif",

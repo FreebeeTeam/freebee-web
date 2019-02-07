@@ -5,9 +5,6 @@
   <a href="https://codeclimate.com/github/FreebeeTeam/freebee-web/maintainability">
    <img src="https://api.codeclimate.com/v1/badges/db6c5c49537d58e96455/maintainability" />
   </a>
-  <a href="https://codeclimate.com/github/FreebeeTeam/freebee-web/test_coverage">
-    <img src="https://api.codeclimate.com/v1/badges/db6c5c49537d58e96455/test_coverage" />
-  </a>
  <a class="badge-align" href="https://www.codacy.com/app/ArtemDadychenko/freebee-web?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FreebeeTeam/freebee-web&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/1f4cddeec32a4024be30e636a7f17148"/></a>
 </p>
 

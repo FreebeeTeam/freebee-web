@@ -1,9 +1,9 @@
 /* @flow */
 
-import wifi from '../images/wifi-bordered.png';
-import toilet from '../images/toilet-bordered.png';
-import userMarker from '../images/freebee-user-green.png';
-import newMarker from '../images/empty-landmark-green.png';
+import wifi from '../images/wifi.svg';
+import toilet from '../images/toilet.svg';
+import userMarker from '../images/user.svg';
+import newMarker from '../images/empty-landmark.svg';
 
 export {
   wifi,

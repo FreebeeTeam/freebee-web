@@ -100,7 +100,10 @@ const mergeProps = (propsFromState, propsFromDispatch) => {
   };
 
   const setNewMarkerPositionOnMapViewport = () => {
-    propsFromDispatch.setNewMarkerPosition(mapViewport.center);
+    propsFromDispatch.setNewMarkerPosition({
+      lat: mapViewport.center[0],
+      lng: mapViewport.center[1]
+    });
   };
 
   return {

@@ -8,7 +8,7 @@ import { SnackbarProvider } from 'notistack';
 import { createStore } from './redux';
 import { notification } from './config';
 import theme from './styles/theme';
-import FreebeeMapPage from './views/FreebeeMapPage';
+import MapPage from './views/MapPage';
 
 const App = () => (
   <Provider store={createStore()}>
@@ -20,7 +20,7 @@ const App = () => (
         <BrowserRouter basename="/map">
           <>
             <Switch>
-              <Route path="/" component={FreebeeMapPage} />
+              <Route path="/" component={MapPage} />
             </Switch>
           </>
         </BrowserRouter>

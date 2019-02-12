@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withSnackbar } from 'notistack';
 import _ from 'lodash';
 import { MAP_MODES } from '../../config/map';
-import FreebeeMapPage from './page';
+import MapPage from './page';
 
 import { open } from '../../redux/actions/ui/feedback-sidebar';
 import { LOCATION_ACCESS_DENIED_CODE } from '../../redux/middlewares/const';
@@ -30,7 +30,7 @@ type State = {
   errorSnackbarIsOpen: boolean,
 };
 
-class FreebeeMapPageContainer extends Component<Props, State> {
+class MapPageContainer extends Component<Props, State> {
   componentDidMount() {
     const { getMarkerTypes } = this.props;
 
@@ -58,7 +58,7 @@ class FreebeeMapPageContainer extends Component<Props, State> {
 
   render() {
     return (
-      <FreebeeMapPage
+      <MapPage
         {...this.props}
         setCreationMapMode={this.setCreationMapMode}
       />
@@ -100,7 +100,10 @@ const mergeProps = (propsFromState, propsFromDispatch) => {
   };
 
   const setNewMarkerPositionOnMapViewport = () => {
-    propsFromDispatch.setNewMarkerPosition(mapViewport.center);
+    propsFromDispatch.setNewMarkerPosition({
+      lat: mapViewport.center[0],
+      lng: mapViewport.center[1]
+    });
   };
 
   return {
@@ -111,4 +114,4 @@ const mergeProps = (propsFromState, propsFromDispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch, mergeProps)(withSnackbar(FreebeeMapPageContainer));
+export default connect(mapState, mapDispatch, mergeProps)(withSnackbar(MapPageContainer));

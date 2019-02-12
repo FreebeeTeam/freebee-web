@@ -6,6 +6,7 @@ export default () => ({
   header: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   closeButton: {
     color: 'red',
@@ -13,5 +14,6 @@ export default () => ({
   },
   closeButtonRoot: {
     padding: 0,
+    height: 25,
   },
 });

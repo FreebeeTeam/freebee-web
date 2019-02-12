@@ -90,7 +90,7 @@ $ yarn start
 
 ## Deployment
 
-https://finds.by
+Currently deployed here: https://finds.by/map
 
 ## Built With
 
@@ -101,5 +101,5 @@ https://finds.by
 
 ## Developed by
 
-* **Артём Дадыченко** - [adadychenko](https://github.com/ArtemDadychenko) - Software Engineer;
-* **Егор Пуйша** - [GitStearis](https://github.com/GitStearis) - Software Engineer;
+* **Артём Дадыченко** - [adadychenko](https://github.com/ArtemDadychenko);
+* **Егор Пуйша** - [GitStearis](https://github.com/GitStearis).

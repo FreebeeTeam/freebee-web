@@ -74,13 +74,13 @@ const FeedbackSidebar = ({
           </Grid>
           <Grid item xs={12}>
             <FormControl required fullWidth className={classes.formField}>
-              <InputLabel htmlFor="freebeeType">Вид халявы</InputLabel>
+              <InputLabel htmlFor="freebieType">Вид халявы</InputLabel>
               <Select
                 onChange={handleFieldChange('type')}
                 value={feedback.type}
                 inputProps={{
-                  id: 'freebeeType',
-                  name: 'freebeeType',
+                  id: 'freebieType',
+                  name: 'freebieType',
                 }}
                 fullWidth
               >

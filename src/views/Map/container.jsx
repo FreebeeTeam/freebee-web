@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FreebeeMap from './map';
+import Map from './map';
 
 import { actions as markerActions, selectors, thunks } from '../../redux/markers';
 import { sharedActions } from '../../redux/shared';
@@ -72,7 +72,7 @@ class MapContainer extends Component<Props> {
     } = this.props;
 
     return (
-      <FreebeeMap
+      <Map
         wifi={wifi}
         toilets={toilets}
         route={route}

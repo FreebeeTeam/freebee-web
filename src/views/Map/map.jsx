@@ -41,7 +41,7 @@ type State = {
   viewport: any,
 };
 
-class FreebeeMap extends Component<Props, State> {
+class FreeOpportunitiesMap extends Component<Props, State> {
   static defaultProps = {
     wifi: [],
     toilets: [],
@@ -136,4 +136,4 @@ class FreebeeMap extends Component<Props, State> {
   }
 }
 
-export default withStyles(styles)(FreebeeMap);
+export default withStyles(styles)(FreeOpportunitiesMap);

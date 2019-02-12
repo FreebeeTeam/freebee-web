@@ -3,7 +3,7 @@ import * as React from 'react';
 import { withStyles, Button, LinearProgress } from '@material-ui/core';
 import { UserLocationButton, FilterButton } from '../../components';
 import FeedbackSidebar from '../FeedbackSidebar';
-import FreebeeMap from '../FreebeeMap';
+import Map from '../Map';
 import RoutePanel from '../RouteInformationPanel';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
@@ -25,7 +25,7 @@ type Props = {
   route: any,
 };
 
-const FreebeeMapPage = ({
+const MapPage = ({
   openFeedbackSidebar,
   setCreationMapMode,
   mapMode,
@@ -50,7 +50,7 @@ const FreebeeMapPage = ({
         ? <LinearProgress className={classes.progress} />
         : null
       }
-      <FreebeeMap mapMode={mapMode} currentUserLocation={currentUserLocation} />
+      <Map mapMode={mapMode} currentUserLocation={currentUserLocation} />
       <div className={classes.filterButton}>
         <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
       </div>
@@ -89,4 +89,4 @@ const FreebeeMapPage = ({
   );
 };
 
-export default withStyles(styles)(FreebeeMapPage);
+export default withStyles(styles)(MapPage);

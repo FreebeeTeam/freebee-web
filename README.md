@@ -1,34 +1,34 @@
 <p align="center"> 
-  <img src='https://drive.google.com/uc?id=1albVAA6GrHQaG0EvN3a1WFCs9irSv5Lk' alt='Freebee logo' width="200" />
+  <img src='https://drive.google.com/uc?id=1albVAA6GrHQaG0EvN3a1WFCs9irSv5Lk' alt='Finds logo' width="200" />
 </p>
 <p align="center"> 
-  <a href="https://codeclimate.com/github/FreebeeTeam/freebee-web/maintainability">
+  <a href="https://codeclimate.com/github/FindsTeam/Finds.Web/maintainability">
    <img src="https://api.codeclimate.com/v1/badges/db6c5c49537d58e96455/maintainability" />
   </a>
-  <a href="https://codeclimate.com/github/FreebeeTeam/freebee-web/test_coverage">
+  <a href="https://codeclimate.com/github/FindsTeam/Finds.Web/test_coverage">
     <img src="https://api.codeclimate.com/v1/badges/db6c5c49537d58e96455/test_coverage" />
   </a>
- <a class="badge-align" href="https://www.codacy.com/app/ArtemDadychenko/freebee-web?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FreebeeTeam/freebee-web&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/1f4cddeec32a4024be30e636a7f17148"/></a>
+ <a class="badge-align" href="https://www.codacy.com/app/ArtemDadychenko/Finds.Web?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FindsTeam/Finds.Web&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/1f4cddeec32a4024be30e636a7f17148"/></a>
 </p>
 
-# Freebee WEB
+# Finds.Web
 
 It's a web client to help people finding free facilities (simply put, *freebies*) on the map 🌍.
 
-* [Small VK public page](https://vk.com/freebeeapp);
-* [Freebee at Social Weekend Hackathon](http://telegra.ph/Social-Weekend-Hackathon--kak-ehto-bylo-02-26).
+* [Small VK public page](https://vk.com/findsapp);
+* [Finds(Freebee) at Social Weekend Hackathon](http://telegra.ph/Social-Weekend-Hackathon--kak-ehto-bylo-02-26).
 
 ## Getting started
 
 Clone project to your computer.
 
 ```
-$ git clone https://github.com/FreebeeTeam/freebee-web.git
+$ git clone https://github.com/FindsTeam/Finds.Web.git
 ```
 
 ### Prerequisites
 
-To start with Freebee WEB, you should have [Node](https://nodejs.org/en/download/package-manager/) installed.
+To start with Finds.Web, you should have [Node](https://nodejs.org/en/download/package-manager/) installed.
 
 ### Code style
 
@@ -90,7 +90,7 @@ $ yarn start
 
 ## Deployment
 
-Currently, deploy is not configured 😢
+https://finds.by
 
 ## Built With
 
@@ -101,4 +101,5 @@ Currently, deploy is not configured 😢
 
 ## Developed by
 
-* **Артём Дадыченко** - [adadychenko](https://github.com/ArtemDadychenko) - Author, Frontend Development;
+* **Артём Дадыченко** - [adadychenko](https://github.com/ArtemDadychenko) - Software Engineer;
+* **Егор Пуйша** - [GitStearis](https://github.com/GitStearis) - Software Engineer;

@@ -18,7 +18,7 @@ type Props = {
   sendFeedback: () => void,
   isOpen: boolean,
   location: any,
-  freebeeTypes: [],
+  freebieTypes: [],
 };
 
 type State = {
@@ -40,8 +40,8 @@ class FeedbackSidebarContainer extends Component<Props, State> {
 
   componentDidUpdate() {
     if (this.state.type === defaultState.type
-    && this.props.freebeeTypes.length !== 0) {
-      this.setState({ type: this.props.freebeeTypes[0].value });
+    && this.props.freebieTypes.length !== 0) {
+      this.setState({ type: this.props.freebieTypes[0].value });
     }
   }
 
@@ -90,7 +90,7 @@ class FeedbackSidebarContainer extends Component<Props, State> {
 
   render() {
     const {
-      isOpen, closeSidebar, openSidebar, freebeeTypes,
+      isOpen, closeSidebar, openSidebar, freebieTypes,
     } = this.props;
 
     const {
@@ -100,7 +100,7 @@ class FeedbackSidebarContainer extends Component<Props, State> {
       description,
     } = this.state;
 
-    if (freebeeTypes.length === 0) {
+    if (freebieTypes.length === 0) {
       return null;
     }
 
@@ -114,7 +114,7 @@ class FeedbackSidebarContainer extends Component<Props, State> {
     return (
       <FeedbackSidebar
         feedback={feedback}
-        freebeeTypes={freebeeTypes}
+        freebieTypes={freebieTypes}
         isOpen={isOpen}
         close={closeSidebar}
         open={openSidebar}
@@ -131,7 +131,7 @@ const { createFeedback } = thunks;
 const mapState = state => ({
   isOpen: state.ui.feedbackSidebar.open,
   location: markersSelectors.selectNewMarkerPositionInGeoJSON(state),
-  freebeeTypes: state.markers.shared.markerTypes,
+  freebieTypes: state.markers.shared.markerTypes,
 });
 
 const mapDispatch = {

@@ -13,7 +13,7 @@ import type { Feedback } from '../../types/models';
 type Props = {
   +isOpen: boolean,
   feedback: Feedback,
-  freebeeTypes: [],
+  freebieTypes: [],
   +classes: Classes,
   open: () => void,
   close: () => void,
@@ -24,7 +24,7 @@ type Props = {
 
 const FeedbackSidebar = ({
   feedback,
-  freebeeTypes,
+  freebieTypes,
   isOpen,
   classes,
   open,
@@ -84,7 +84,7 @@ const FeedbackSidebar = ({
                 }}
                 fullWidth
               >
-                {freebeeTypes.map(type => (
+                {freebieTypes.map(type => (
                   <MenuItem key={type.value} value={type.value}>
                     {type.label}
                   </MenuItem>

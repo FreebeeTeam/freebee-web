@@ -38,16 +38,6 @@ const selectNewMarkerPosition = state => state.markers.shared.newMarkerPosition;
 export const selectNewMarkerPositionInGeoJSON = createSelector(
   [selectNewMarkerPosition, userSelectors.selectUserCurrentLocation],
   (position, userPosition) => {
-    if (!position) {
-      return {
-        type: 'Point',
-        coordinates: userPosition,
-      };
-    }
-
-    return {
-      type: 'Point',
-      coordinates: [position.lat, position.lng],
-    };
+    return !position ? userPosition : position;
   },
 );

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FeedbackSidebar from './sidebar';
 import { MAP_MODES } from '../../config/map';
-
+import { validateFeedback } from './helpers';
 import { close, open } from '../../redux/actions/ui/feedback-sidebar';
 import { thunks } from '../../redux/feedback';
 import { selectors as markersSelectors } from '../../redux/markers';
@@ -33,15 +33,17 @@ const defaultState = {
   type: [''],
   author: '',
   description: '',
+  errors: [],
 };
 
 class FeedbackSidebarContainer extends Component<Props, State> {
   state = defaultState;
 
   componentDidUpdate() {
-    if (this.state.type === defaultState.type
-    && this.props.freebieTypes.length !== 0) {
-      this.setState({ type: this.props.freebieTypes[0].value });
+    const { type } = this.state;
+    const { freebieTypes } = this.props;
+    if (type === defaultState.type && freebieTypes.length !== 0) {
+      this.setState({ type: freebieTypes[0].value });
     }
   }
 
@@ -74,10 +76,18 @@ class FeedbackSidebarContainer extends Component<Props, State> {
       description,
     };
 
-    sendFeedback(feedback);
-    setReadMapMode();
-    closeSidebar();
-    this.setState({ ...defaultState });
+    const state = validateFeedback(feedback);
+
+    if (state.hasErrors) {
+      this.setState({
+        errors: state.errors,
+      });
+    } else {
+      sendFeedback(feedback);
+      setReadMapMode();
+      closeSidebar();
+      this.setState({ ...defaultState });
+    }
   };
 
   handleCancel = (): void => {
@@ -90,7 +100,9 @@ class FeedbackSidebarContainer extends Component<Props, State> {
 
   render() {
     const {
-      isOpen, closeSidebar, openSidebar, freebieTypes,
+      isOpen,
+      closeSidebar, openSidebar,
+      freebieTypes,
     } = this.props;
 
     const {
@@ -98,6 +110,7 @@ class FeedbackSidebarContainer extends Component<Props, State> {
       author,
       type,
       description,
+      errors,
     } = this.state;
 
     if (freebieTypes.length === 0) {
@@ -114,6 +127,7 @@ class FeedbackSidebarContainer extends Component<Props, State> {
     return (
       <FeedbackSidebar
         feedback={feedback}
+        errors={errors}
         freebieTypes={freebieTypes}
         isOpen={isOpen}
         close={closeSidebar}

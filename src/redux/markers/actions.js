@@ -15,7 +15,10 @@ const {
 } = createActions({
   MARKERS: {
     SET_FILTER: (filter: string | null): {} => ({ filter }),
-    SET_NEW_MARKER_POSITION: (position: number[]) => ({ position }),
+    SET_NEW_MARKER_POSITION: (position: any) => {
+      const location = [position.lat, position.lng];
+      return { location };
+    },
 
     GET_TYPES_REQUEST: () => {},
     GET_TYPES_SUCCESS: types => ({ types }),

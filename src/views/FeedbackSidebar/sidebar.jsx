@@ -6,6 +6,7 @@ import {
   FormControl, InputLabel, Typography,
   MuiThemeProvider,
 } from '@material-ui/core';
+import { getFieldValidationChecker } from './helpers';
 import styles, { theme } from './styles';
 import type { Classes } from '../../types/styles';
 import type { Feedback } from '../../types/models';
@@ -14,6 +15,7 @@ type Props = {
   +isOpen: boolean,
   feedback: Feedback,
   freebieTypes: [],
+  errors: String[],
   +classes: Classes,
   open: () => void,
   close: () => void,
@@ -23,114 +25,139 @@ type Props = {
 };
 
 const FeedbackSidebar = ({
-  feedback,
-  freebieTypes,
-  isOpen,
+  feedback, freebieTypes,
+  errors,
+  open, isOpen, close,
+  cancel, submit, handleFieldChange,
   classes,
-  open,
-  close,
-  cancel,
-  submit,
-  handleFieldChange,
-}: Props) => (
-  <MuiThemeProvider theme={theme}>
-    <SwipeableDrawer
-      open={isOpen}
-      onClose={close}
-      onOpen={open}
-      anchor="left"
-      classes={{
-        paper: classes.sidebarRoot,
-      }}
-    >
-      <Grid container>
-        <Grid item xs={12}>
-          <div className={classes.sidebarTitle}>
-            <Typography
-              className={classes.sidebarTitleContent}
-              variant="headline"
-              gutterBottom
-              align="center"
-            >
-              {'Поделитесь халявой с другими!'}
-            </Typography>
-          </div>
-        </Grid>
-        <Grid className={classes.fieldsContainer} container spacing={24}>
+}: Props) => {
+  const isValidField = getFieldValidationChecker(errors);
+
+  return (
+    <MuiThemeProvider theme={theme}>
+      <SwipeableDrawer
+        open={isOpen}
+        onClose={close}
+        onOpen={open}
+        anchor="left"
+        classes={{
+          paper: classes.sidebarRoot,
+        }}
+      >
+        <Grid container>
           <Grid item xs={12}>
-            <FormControl fullWidth className={classes.formField}>
-              <TextField
-                placeholder="ул. Халявина, 7"
-                label="Место халявы"
-                required
-                onChange={handleFieldChange('address')}
-                value={feedback.address}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                fullWidth
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl required fullWidth className={classes.formField}>
-              <InputLabel htmlFor="freebieType">Вид халявы</InputLabel>
-              <Select
-                onChange={handleFieldChange('type')}
-                value={feedback.type}
-                inputProps={{
-                  id: 'freebieType',
-                  name: 'freebieType',
-                }}
-                fullWidth
+            <div className={classes.sidebarTitle}>
+              <Typography
+                className={classes.sidebarTitleContent}
+                variant="headline"
+                gutterBottom
+                align="center"
               >
-                {freebieTypes.map(type => (
-                  <MenuItem key={type.value} value={type.value}>
-                    {type.label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+                {'Поделитесь халявой с другими!'}
+              </Typography>
+            </div>
           </Grid>
-          <Grid item xs={12}>
-            <FormControl fullWidth className={classes.formField}>
-              <TextField
-                placeholder="Автор"
-                label="Freebee"
+          <Grid className={classes.fieldsContainer} container spacing={24}>
+            <Grid item xs={12}>
+              <FormControl
+                error={isValidField('address')}
                 required
-                onChange={handleFieldChange('author')}
-                value={feedback.author}
-                InputLabelProps={{
-                  shrink: true,
-                }}
                 fullWidth
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl fullWidth className={classes.formField}>
-              <TextField
-                placeholder="Описание найденной халявы"
-                label="Описание"
-                onChange={handleFieldChange('description')}
-                value={feedback.description}
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                className={classes.formField}
+              >
+                <TextField
+                  error={isValidField('address')}
+                  required
+                  onChange={handleFieldChange('address')}
+                  value={feedback.address}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  placeholder="ул. Халявина, 7"
+                  label="Место халявы"
+                  fullWidth
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl
+                error={isValidField('type')}
+                required
                 fullWidth
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container className={classes.buttonsContainer}>
-              <Button onClick={cancel} variant="contained" color="secondary">Отменить</Button>
-              <Button variant="contained" type="submit" color="primary" onClick={submit}>Отправить</Button>
+                className={classes.formField}
+              >
+                <InputLabel
+                  required
+                  error={isValidField('type')}
+                  htmlFor="freebieType"
+                >
+                  {'Вид халявы'}
+                </InputLabel>
+                <Select
+                  error={isValidField('type')}
+                  onChange={handleFieldChange('type')}
+                  value={feedback.type}
+                  inputProps={{
+                    id: 'freebieType',
+                    name: 'freebieType',
+                  }}
+                  fullWidth
+                >
+                  {freebieTypes.map(type => (
+                    <MenuItem key={type.value} value={type.value}>
+                      {type.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl
+                error={isValidField('author')}
+                required
+                fullWidth
+                className={classes.formField}
+              >
+                <TextField
+                  error={isValidField('author')}
+                  required
+                  onChange={handleFieldChange('author')}
+                  value={feedback.author}
+                  placeholder="Автор"
+                  label="Freebee"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl fullWidth className={classes.formField}>
+                <TextField
+                  onChange={handleFieldChange('description')}
+                  value={feedback.description}
+                  placeholder="Описание найденной халявы"
+                  label="Описание"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container className={classes.buttonsContainer}>
+                <Button onClick={cancel} variant="contained" color="secondary">Отменить</Button>
+                <Button variant="contained" type="submit" color="primary" onClick={submit}>Отправить</Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </SwipeableDrawer>
-  </MuiThemeProvider>
-);
+      </SwipeableDrawer>
+    </MuiThemeProvider>
+  );
+};
+
 
 export default withStyles(styles)(FeedbackSidebar);

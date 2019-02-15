@@ -37,9 +37,9 @@ const reducer = handleActions({
     ...state,
     selected: filter,
   }),
-  [setNewMarkerPosition]: (state: State, { payload: { position } }) => ({
+  [setNewMarkerPosition]: (state: State, { payload: { location } }) => ({
     ...state,
-    newMarkerPosition: position,
+    newMarkerPosition: location,
   }),
 
   [getTypesRequest]: (state: State) => ({

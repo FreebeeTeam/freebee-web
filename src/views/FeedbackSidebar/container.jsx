@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withSnackbar } from 'notistack';
 import FeedbackSidebar from './sidebar';
 import { MAP_MODES } from '../../config/map';
 import { validateFeedback } from './helpers';
@@ -16,6 +17,7 @@ type Props = {
   setReadMapMode: () => void,
   openSidebar: () => void,
   sendFeedback: () => void,
+  enqueueSnackbar: (message: string, options: any) => void,
   isOpen: boolean,
   location: any,
   freebieTypes: [],
@@ -83,7 +85,17 @@ class FeedbackSidebarContainer extends Component<Props, State> {
         errors: state.errors,
       });
     } else {
-      sendFeedback(feedback);
+      sendFeedback(feedback)
+        .then(() => {
+          this.props.enqueueSnackbar('Халява успешно отправлена!', {
+            variant: 'success',
+          });
+        })
+        .catch(() => {
+          this.props.enqueueSnackbar('Ошибка при отправке халявы!', {
+            variant: 'error',
+          });
+        });
       setReadMapMode();
       closeSidebar();
       this.setState({ ...defaultState });
@@ -155,4 +167,4 @@ const mapDispatch = {
   setReadMapMode: () => sharedActions.setMapMode(MAP_MODES.READ),
 };
 
-export default connect(mapState, mapDispatch)(FeedbackSidebarContainer);
+export default connect(mapState, mapDispatch)(withSnackbar(FeedbackSidebarContainer));

@@ -7,7 +7,7 @@ import {
 } from './actions';
 import type { Feedback } from '../../types/models';
 
-const createFeedback = (feedback: Feedback) => async (dispatch) => {
+export const createFeedback = (feedback: Feedback) => async (dispatch) => {
   dispatch(createFeedbackRequest());
 
   try {
@@ -16,9 +16,7 @@ const createFeedback = (feedback: Feedback) => async (dispatch) => {
   } catch (error) {
     console.error(error);
     dispatch(createFeedbackError(error));
-  }
-};
 
-export {
-  createFeedback,
+    throw error;
+  }
 };

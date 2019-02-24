@@ -17,6 +17,7 @@ import {
   MAP_MODES,
   TILE_LAYER_URL,
   MAP_ATTRIBUTION,
+  MAX_ZOOM,
 } from '../../config/map';
 
 import styles, { ROUTE_COLOR } from './styles';
@@ -33,8 +34,10 @@ type Props = {
   toilets?: Toilet[],
   route: any,
   mapMode: string,
+  mapViewport: { center: number[], zoom: number },
   buildRoute: (location: number[]) => void,
   setNewMarkerPosition: (position: number[]) => void,
+  setMapViewport: (viewport: any) => void,
 };
 
 type State = {
@@ -64,15 +67,20 @@ class FreeOpportunitiesMap extends Component<Props, State> {
     this.map = element;
   };
 
-  updateNewMarkerPosition = () => {
-    const marker = this.refNewMarker.current;
-    if (marker != null) {
-      this.props.setNewMarkerPosition(marker.leafletElement.getLatLng());
-    }
-  };
-
   handleViewportChanged = (viewport) => {
-    this.props.setMapViewport(viewport);
+    const {
+      setMapViewport, setNewMarkerPosition,
+      mapMode,
+    } = this.props;
+
+    setMapViewport(viewport);
+    if (mapMode === MAP_MODES.CREATE) {
+      const marker = this.refNewMarker.current;
+      if (marker) {
+        setNewMarkerPosition(viewport.center);
+        marker.leafletElement.setLatLng(viewport.center);
+      }
+    }
   };
 
   buildRouteToMarker = (location: number[]) => () => {
@@ -86,7 +94,7 @@ class FreeOpportunitiesMap extends Component<Props, State> {
       classes,
       wifi, toilets,
       userLocation, route, mapMode,
-      newMarkerPosition, mapViewport,
+      mapViewport,
     } = this.props;
 
     return (
@@ -96,6 +104,7 @@ class FreeOpportunitiesMap extends Component<Props, State> {
         onViewportChanged={this.handleViewportChanged}
         zoomControl={false}
         ref={this.setMapRef}
+        maxZoom={MAX_ZOOM}
       >
         <TileLayer
           attribution={MAP_ATTRIBUTION}
@@ -105,10 +114,9 @@ class FreeOpportunitiesMap extends Component<Props, State> {
           mapMode === MAP_MODES.CREATE && (
             <FeatureGroup>
               <Marker
-                draggable
+                zIndexOffset={1100}
                 icon={icon}
-                position={newMarkerPosition}
-                onDragend={this.updateNewMarkerPosition}
+                position={mapViewport.center}
                 ref={this.refNewMarker}
               />
             </FeatureGroup>

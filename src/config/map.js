@@ -10,3 +10,4 @@ export const MAP_MODES = {
 export const DEFAULT_MAP_CENTER = [53.9017, 27.5429];
 
 export const DEFAULT_MAP_ZOOM = 12;
+export const MAX_ZOOM = 19;

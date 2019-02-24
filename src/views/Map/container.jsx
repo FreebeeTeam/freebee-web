@@ -67,8 +67,8 @@ class MapContainer extends Component<Props> {
       wifi, toilets,
       currentUserLocation, route,
       mapMode,
-      setNewMarkerPosition, setMapViewport,
-      mapViewport, newMarkerPosition,
+      setNewMarkerPosition,
+      mapViewport, setMapViewport,
     } = this.props;
 
     return (
@@ -80,7 +80,6 @@ class MapContainer extends Component<Props> {
         mapMode={mapMode}
         buildRoute={this.buildRoute}
         setNewMarkerPosition={setNewMarkerPosition}
-        newMarkerPosition={newMarkerPosition}
         setMapViewport={setMapViewport}
         mapViewport={mapViewport}
       />

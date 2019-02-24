@@ -16,8 +16,7 @@ const {
   MARKERS: {
     SET_FILTER: (filter: string | null): {} => ({ filter }),
     SET_NEW_MARKER_POSITION: (position: any) => {
-      const location = [position.lat, position.lng];
-      return { location };
+      return { location: position };
     },
 
     GET_TYPES_REQUEST: () => {},

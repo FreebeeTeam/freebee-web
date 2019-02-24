@@ -105,6 +105,7 @@ class FreeOpportunitiesMap extends Component<Props, State> {
           mapMode === MAP_MODES.CREATE && (
             <FeatureGroup>
               <Marker
+                zIndexOffset={1100}
                 draggable
                 icon={icon}
                 position={newMarkerPosition}

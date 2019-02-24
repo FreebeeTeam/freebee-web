@@ -137,6 +137,7 @@ const FeedbackSidebar = ({
                 <TextField
                   onChange={handleFieldChange('description')}
                   value={feedback.description}
+                  multiline
                   placeholder="Описание найденной халявы"
                   label="Описание"
                   InputLabelProps={{

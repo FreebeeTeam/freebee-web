@@ -6,6 +6,7 @@ import {
   Wc as WcIcon,
   Wifi as WifiIcon,
   ClearAll as ClearAllIcon,
+  Power as PowerIcon,
 } from '@material-ui/icons';
 import cc from 'classcat';
 import Option from './option';
@@ -23,6 +24,7 @@ type State = {
 };
 
 const WcOptionIcon = () => <WcIcon color="inherit" />;
+const SocketOptionIcon = () => <PowerIcon color="inherit" />;
 const WifiOptionIcon = () => <WifiIcon color="inherit" />;
 const ClearAllOptionIcon = () => <ClearAllIcon color="inherit" />;
 
@@ -70,6 +72,12 @@ class FilterButton extends Component<Props, State> {
             filter="wifi"
             onClick={this.onFilterClick}
             Icon={WifiOptionIcon}
+          />
+          <Option
+            isSelected={selectedFilter === 'socket'}
+            filter="socket"
+            onClick={this.onFilterClick}
+            Icon={SocketOptionIcon}
           />
         </div>
       </div>

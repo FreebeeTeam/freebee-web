@@ -1,6 +1,6 @@
 /* @flow */
 import axios from 'axios';
-import { routing } from './api';
+import { routingApi } from './api';
 
 const PREFIX = 'geo!';
 const MODE_COMPONENTS = {
@@ -16,7 +16,7 @@ export const getRoute = (point0: number[], point1: number[]) => {
 
   const mode = Object.values(MODE_COMPONENTS).join(';');
 
-  return axios.get(routing.getRoute(), {
+  return axios.get(routingApi.getRoute(), {
     params: {
       waypoint0,
       waypoint1,

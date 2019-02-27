@@ -26,12 +26,14 @@ import 'leaflet/dist/leaflet.css';
 import type { Classes } from '../../types/styles';
 import type { Wifi, Toilet } from '../../types/models';
 import icon from '../../components/NewMarker/icon';
+import SocketMarker from '../../components/SocketMarker/marker';
 
 type Props = {
   classes: Classes,
   wifi?: Wifi[],
-  userLocation: number[] | null,
+  sockets?: [],
   toilets?: Toilet[],
+  userLocation: number[] | null,
   route: any,
   mapMode: string,
   mapViewport: { center: number[], zoom: number },
@@ -48,6 +50,7 @@ class FreeOpportunitiesMap extends Component<Props, State> {
   static defaultProps = {
     wifi: [],
     toilets: [],
+    sockets: [],
   };
 
   refNewMarker = createRef();
@@ -92,7 +95,7 @@ class FreeOpportunitiesMap extends Component<Props, State> {
   render() {
     const {
       classes,
-      wifi, toilets,
+      wifi, toilets, sockets,
       userLocation, route, mapMode,
       mapViewport,
     } = this.props;
@@ -131,6 +134,9 @@ class FreeOpportunitiesMap extends Component<Props, State> {
           ))}
           {toilets.map(marker => (
             <ToiletMarker key={marker.id} buildRoute={this.buildRouteToMarker} toilet={marker} />
+          ))}
+          {sockets.map(marker => (
+            <SocketMarker key={marker.id} buildRoute={this.buildRouteToMarker} socket={marker} />
           ))}
         </FeatureGroup>
         <FeatureGroup>

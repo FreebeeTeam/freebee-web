@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Map from './map';
+import { MARKER_FILTERS } from '../../components/FilterButton';
 
 import { actions as markerActions, selectors, thunks } from '../../redux/markers';
 import { sharedActions } from '../../redux/shared';
@@ -96,21 +97,21 @@ const mapState = (state) => {
   let toilets = [];
   let sockets = [];
 
-  if (filter === null) {
+  if (filter === MARKER_FILTERS.all.value) {
     wifi = selectors.selectWifi(state);
     toilets = selectors.selectToilets(state);
     sockets = selectors.selectSockets(state);
   }
 
-  if (filter === 'wifi') {
+  if (filter === MARKER_FILTERS.wifi.value) {
     wifi = selectors.selectWifi(state);
   }
 
-  if (filter === 'toilet') {
+  if (filter === MARKER_FILTERS.toilet.value) {
     toilets = selectors.selectToilets(state);
   }
 
-  if (filter === 'socket') {
+  if (filter === MARKER_FILTERS.socket.value) {
     sockets = selectors.selectSockets(state);
   }
 

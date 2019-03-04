@@ -4,6 +4,7 @@ import { handleActions } from 'redux-actions';
 import * as markersActions from './actions';
 import toilets from './toilets';
 import wifi from './wifi';
+import sockets from './sockets';
 
 export type State = {
   +selected: string | null,
@@ -64,4 +65,5 @@ export default combineReducers({
   shared: reducer,
   toilets,
   wifi,
+  sockets,
 });

@@ -1,10 +1,10 @@
 /* @flow */
 import axios from 'axios';
-import { feedback as api } from './api';
+import { feedbackApi } from './api';
 
 // eslint-disable-next-line import/prefer-default-export
 export const createFeedback = (feedback: any) => {
-  return axios.post(api.create(), {
+  return axios.post(feedbackApi.create(), {
     ...feedback,
     type: [feedback.type],
   });

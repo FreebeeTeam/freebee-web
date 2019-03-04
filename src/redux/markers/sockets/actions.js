@@ -4,7 +4,7 @@ import { createActions } from 'redux-actions';
 
 const {
   markers: {
-    wifi: {
+    sockets: {
       getMarkersRequest,
       getMarkersSuccess,
       getMarkersError,
@@ -12,9 +12,9 @@ const {
   },
 } = createActions({
   MARKERS: {
-    WIFI: {
+    SOCKETS: {
       GET_MARKERS_REQUEST: () => {},
-      GET_MARKERS_SUCCESS: wifi => ({ wifi }),
+      GET_MARKERS_SUCCESS: sockets => ({ sockets }),
       GET_MARKERS_ERROR: error => ({ error }),
     },
   },

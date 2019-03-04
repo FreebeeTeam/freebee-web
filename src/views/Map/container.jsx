@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Map from './map';
+import { MARKER_FILTERS } from '../../components/FilterButton';
 
 import { actions as markerActions, selectors, thunks } from '../../redux/markers';
 import { sharedActions } from '../../redux/shared';
@@ -16,6 +17,7 @@ import type { Wifi, Toilet } from '../../types/models';
 type Props = {
   wifi?: Wifi[],
   toilets?: Toilet[],
+  sockets?: [],
   mapMode: string,
   route: any,
   getMarkers: () => void,
@@ -29,6 +31,7 @@ class MapContainer extends Component<Props> {
   static defaultProps = {
     wifi: [],
     toilets: [],
+    sockets: [],
   };
 
   componentDidMount() {
@@ -64,7 +67,7 @@ class MapContainer extends Component<Props> {
 
   render() {
     const {
-      wifi, toilets,
+      wifi, toilets, sockets,
       currentUserLocation, route,
       mapMode,
       setNewMarkerPosition,
@@ -75,6 +78,7 @@ class MapContainer extends Component<Props> {
       <Map
         wifi={wifi}
         toilets={toilets}
+        sockets={sockets}
         route={route}
         userLocation={currentUserLocation}
         mapMode={mapMode}
@@ -87,33 +91,34 @@ class MapContainer extends Component<Props> {
   }
 }
 
-const {
-  selectWifi,
-  selectToilets,
-  selectFilter,
-} = selectors;
-
 const mapState = (state) => {
-  const filter = selectFilter(state);
+  const filter = selectors.selectFilter(state);
   let wifi = [];
   let toilets = [];
+  let sockets = [];
 
-  if (filter === null) {
-    wifi = selectWifi(state);
-    toilets = selectToilets(state);
+  if (filter === MARKER_FILTERS.all.value) {
+    wifi = selectors.selectWifi(state);
+    toilets = selectors.selectToilets(state);
+    sockets = selectors.selectSockets(state);
   }
 
-  if (filter === 'wifi') {
-    wifi = selectWifi(state);
+  if (filter === MARKER_FILTERS.wifi.value) {
+    wifi = selectors.selectWifi(state);
   }
 
-  if (filter === 'toilet') {
-    toilets = selectToilets(state);
+  if (filter === MARKER_FILTERS.toilet.value) {
+    toilets = selectors.selectToilets(state);
+  }
+
+  if (filter === MARKER_FILTERS.socket.value) {
+    sockets = selectors.selectSockets(state);
   }
 
   return {
     wifi,
     toilets,
+    sockets,
     filter,
     route: routingSelectors.selectRoute(state),
     mapViewport: state.shared.mapViewport,

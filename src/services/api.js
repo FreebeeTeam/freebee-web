@@ -9,30 +9,26 @@ const buildApiUrl = (root: string) => (url: string) => `${root}${url}`;
 const buildBackendApiUrl: (url: string) => string = buildApiUrl(baseApi);
 const buildHereRoutingApiUrl: (url: string) => string = buildApiUrl(baseHereRoutingApi);
 
-const feedback = {
+export const feedbackApi = {
   create: () => buildBackendApiUrl('/feedback'),
 };
 
-const wifi = {
+export const wifiApi = {
   get: () => buildBackendApiUrl('/wifi'),
 };
 
-const toilets = {
+export const toiletsApi = {
   get: () => buildBackendApiUrl('/toilets'),
 };
 
-const markers = {
+export const socketsApi = {
+  get: () => buildBackendApiUrl('/sockets'),
+};
+
+export const markersApi = {
   getTypes: () => buildBackendApiUrl('/markers/types'),
 };
 
-const routing = {
+export const routingApi = {
   getRoute: () => buildHereRoutingApiUrl(''),
-};
-
-export {
-  feedback,
-  markers,
-  wifi,
-  toilets,
-  routing,
 };

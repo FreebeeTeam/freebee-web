@@ -1,14 +1,16 @@
 /* @flow */
 import React, { Component } from 'react';
 import { withStyles, Fab } from '@material-ui/core';
-import {
-  FilterList,
-  Wc as WcIcon,
-  Wifi as WifiIcon,
-  ClearAll as ClearAllIcon,
-} from '@material-ui/icons';
+import { FilterList } from '@material-ui/icons';
 import cc from 'classcat';
 import Option from './option';
+import { MARKER_FILTERS } from './filters';
+import {
+  ClearAllOptionIcon,
+  SocketOptionIcon,
+  WcOptionIcon,
+  WifiOptionIcon,
+} from './icons';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
 
@@ -22,10 +24,6 @@ type State = {
   open: boolean,
 };
 
-const WcOptionIcon = () => <WcIcon color="inherit" />;
-const WifiOptionIcon = () => <WifiIcon color="inherit" />;
-const ClearAllOptionIcon = () => <ClearAllIcon color="inherit" />;
-
 class FilterButton extends Component<Props, State> {
   state = {
     open: false,
@@ -37,7 +35,7 @@ class FilterButton extends Component<Props, State> {
     setFilter(filter);
   };
 
-  toggle = () => this.setState((prevState: State) => ({ open: !prevState.open }))
+  toggle = () => this.setState((prevState: State) => ({ open: !prevState.open }));
 
   render() {
     const { classes, selectedFilter } = this.props;
@@ -55,21 +53,27 @@ class FilterButton extends Component<Props, State> {
         <div className={cc([(open ? classes.open : classes.close), classes.drop])}>
           <Option
             isSelected={selectedFilter === null}
-            filter={null}
+            filter={MARKER_FILTERS.all.value}
             onClick={this.onFilterClick}
             Icon={ClearAllOptionIcon}
           />
           <Option
-            isSelected={selectedFilter === 'toilet'}
-            filter="toilet"
+            isSelected={selectedFilter === MARKER_FILTERS.toilet.value}
+            filter={MARKER_FILTERS.toilet.value}
             onClick={this.onFilterClick}
             Icon={WcOptionIcon}
           />
           <Option
-            isSelected={selectedFilter === 'wifi'}
-            filter="wifi"
+            isSelected={selectedFilter === MARKER_FILTERS.wifi.value}
+            filter={MARKER_FILTERS.wifi.value}
             onClick={this.onFilterClick}
             Icon={WifiOptionIcon}
+          />
+          <Option
+            isSelected={selectedFilter === MARKER_FILTERS.socket.value}
+            filter={MARKER_FILTERS.socket.value}
+            onClick={this.onFilterClick}
+            Icon={SocketOptionIcon}
           />
         </div>
       </div>

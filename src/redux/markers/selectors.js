@@ -18,12 +18,18 @@ export const selectToilets: Selector = createSelector(
   (markers: State) => markers.toilets.markers,
 );
 
+export const selectSockets: Selector = createSelector(
+  rootSelector,
+  (markers: State) => markers.sockets.markers,
+);
+
 export const selectIsAllMarkersFetching: Selector = createSelector(
   rootSelector,
   (markers: State): boolean => {
     return (
       markers.wifi.isFetching
     || markers.toilets.isFetching
+    || markers.sockets.isFetching
     );
   },
 );

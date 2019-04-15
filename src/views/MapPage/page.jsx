@@ -5,18 +5,17 @@ import { UserLocationButton, FilterButton } from '../../components';
 import FeedbackSidebar from '../FeedbackSidebar';
 import Map from '../Map';
 import RoutePanel from '../RouteInformationPanel';
+import { MAP_MODES } from '../../config/map';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
-import { MAP_MODES } from '../../config/map';
 
 type Props = {
-  openFeedbackSidebar: () => void,
+  submitFeedbackLocation: () => void,
   setUserLocation: () => void,
   setFilter: () => void,
   resetRoute: () => void,
   isMarkersFetching: boolean,
   setCreationMapMode: () => void,
-  setReadMapMode: () => void,
   mapMode: string,
   routeSummary: any,
   selectedFilter: string | null,
@@ -26,7 +25,7 @@ type Props = {
 };
 
 const MapPage = ({
-  openFeedbackSidebar,
+  submitFeedbackLocation,
   setCreationMapMode,
   mapMode,
 
@@ -39,8 +38,7 @@ const MapPage = ({
   routeSummary,
   resetRoute,
 
-  isMarkersFetching,
-  classes,
+  isMarkersFetching, classes,
 }: Props) => {
   const isReadMode = mapMode === MAP_MODES.READ;
 
@@ -59,7 +57,7 @@ const MapPage = ({
         <UserLocationButton onClick={setUserLocation} />
       </div>
 
-      {!isMarkersFetching && <FeedbackSidebar />}
+      {mapMode === MAP_MODES.CREATE && <FeedbackSidebar />}
 
       {routeSummary && (
         <div className={classes.routePanel}>
@@ -71,7 +69,7 @@ const MapPage = ({
         <Button
           variant="contained"
           color="primary"
-          onClick={isReadMode ? setCreationMapMode : openFeedbackSidebar}
+          onClick={isReadMode ? setCreationMapMode : submitFeedbackLocation}
           className={classes.contactUs}
         >
           { isReadMode ? 'Нашли халяву?' : 'Подтвердить' }
@@ -80,7 +78,7 @@ const MapPage = ({
       <Button
         variant="contained"
         color="primary"
-        onClick={isReadMode ? setCreationMapMode : openFeedbackSidebar}
+        onClick={isReadMode ? setCreationMapMode : submitFeedbackLocation}
         className={classes.contactUsDesktop}
       >
         { isReadMode ? 'Нашли халяву?' : 'Подтвердить' }

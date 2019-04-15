@@ -7,11 +7,18 @@ import {
   socketsApi,
 } from './api';
 
-// eslint-disable-next-line import/prefer-default-export
-export const getWifi = () => axios.get(wifiApi.get());
+export const getWifi = (): Promise<any> => {
+  return axios.get(wifiApi.get());
+};
 
-export const getToilets = () => axios.get(toiletsApi.get());
+export const getToilets = (): Promise<any> => {
+  return axios.get(toiletsApi.get());
+};
 
-export const getSockets = () => axios.get(socketsApi.get());
+export const getSockets = (): Promise<any> => {
+  return axios.get(socketsApi.get());
+};
 
-export const getMarkerTypes = () => axios.get(markersApi.getTypes());
+export const getMarkerTypes = (): Promise<any> => {
+  return axios.get(markersApi.getTypes());
+};

@@ -35,7 +35,11 @@ class FilterButton extends Component<Props, State> {
     setFilter(filter);
   };
 
-  toggle = () => this.setState((prevState: State) => ({ open: !prevState.open }));
+  toggle = (): void => {
+    this.setState((prevState: State) => ({
+      open: !prevState.open,
+    }));
+  };
 
   render() {
     const { classes, selectedFilter } = this.props;

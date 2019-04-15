@@ -4,7 +4,7 @@ import { Marker } from 'react-leaflet';
 import icon from './icon';
 
 type Props = {
-  location: [],
+  location: number[],
 };
 
 const UserMarker = ({ location }: Props) => {

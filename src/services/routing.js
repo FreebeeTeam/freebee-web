@@ -2,25 +2,17 @@
 import axios from 'axios';
 import { routingApi } from './api';
 
-const PREFIX = 'geo!';
-const MODE_COMPONENTS = {
-  type: 'balanced',
-  transportModes: 'pedestrian',
-  trafficMode: 'traffic:disabled',
+type GetRouteRequestData = {
+  point0: number[],
+  point1: number[],
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const getRoute = (point0: number[], point1: number[]) => {
-  const waypoint0 = `${PREFIX}${point0.join(',')}`;
-  const waypoint1 = `${PREFIX}${point1.join(',')}`;
+export const getRoute = (point0: number[], point1: number[]): Promise<any> => {
+  const data: GetRouteRequestData = {
+    point0,
+    point1,
+  };
 
-  const mode = Object.values(MODE_COMPONENTS).join(';');
-
-  return axios.get(routingApi.getRoute(), {
-    params: {
-      waypoint0,
-      waypoint1,
-      mode,
-    },
-  });
+  return axios.post(routingApi.getRoute(), data);
 };

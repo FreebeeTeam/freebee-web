@@ -32,3 +32,9 @@ export const markersApi = {
 export const routingApi = {
   getRoute: () => buildHereRoutingApiUrl(''),
 };
+
+export const geocodingApi = {
+  getAddressFromCoordinates: (lat: number, lng: number) => buildBackendApiUrl(
+    `/location/geocoding/reverse/${lat}/${lng}`,
+  ),
+};

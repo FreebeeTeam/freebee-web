@@ -5,6 +5,7 @@ import {
   Button, TextField, Select, MenuItem,
   FormControl, InputLabel, Typography,
   MuiThemeProvider,
+  LinearProgress,
 } from '@material-ui/core';
 import { getFieldValidationChecker } from './helpers';
 import styles, { theme } from './styles';
@@ -18,16 +19,17 @@ type Props = {
   errors: String[],
   +classes: Classes,
   open: () => void,
-  close: () => void,
   +cancel: () => void,
   +submit: () => void,
+  isFeedbackAddressLoading: boolean,
   handleFieldChange: (fields: string) => void,
 };
 
 const FeedbackSidebar = ({
   feedback, freebieTypes,
+  isFeedbackAddressLoading,
   errors,
-  open, isOpen, close,
+  open, isOpen,
   cancel, submit, handleFieldChange,
   classes,
 }: Props) => {
@@ -37,7 +39,7 @@ const FeedbackSidebar = ({
     <MuiThemeProvider theme={theme}>
       <SwipeableDrawer
         open={isOpen}
-        onClose={close}
+        onClose={cancel}
         onOpen={open}
         anchor="left"
         classes={{
@@ -46,6 +48,10 @@ const FeedbackSidebar = ({
       >
         <Grid container>
           <Grid item xs={12}>
+            {isFeedbackAddressLoading
+              ? <LinearProgress color="primary" />
+              : null
+            }
             <div className={classes.sidebarTitle}>
               <Typography
                 className={classes.sidebarTitleContent}
@@ -69,7 +75,7 @@ const FeedbackSidebar = ({
                   error={isValidField('address')}
                   required
                   onChange={handleFieldChange('address')}
-                  value={feedback.address}
+                  value={feedback.address || ''}
                   InputLabelProps={{
                     shrink: true,
                   }}

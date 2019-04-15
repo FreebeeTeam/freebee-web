@@ -1,3 +1,5 @@
+// @flow
+
 export const validateFeedback = (feedback) => {
   const errors = [];
 
@@ -18,4 +20,25 @@ export const validateFeedback = (feedback) => {
 
 export const getFieldValidationChecker = errors => (field) => {
   return errors.includes(field);
+};
+
+export const formatAddress = (suggestedAddress: any): string => {
+  let address = '';
+  address += suggestedAddress.street
+    ? `${suggestedAddress.street}, `
+    : '';
+
+  address += suggestedAddress.house
+    ? `${suggestedAddress.house}, `
+    : '';
+
+  address += suggestedAddress.city
+    ? `${suggestedAddress.city}`
+    : '';
+
+  console.log('format')
+  console.log(address)
+  console.log(suggestedAddress)
+
+  return address;
 };

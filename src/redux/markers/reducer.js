@@ -5,6 +5,7 @@ import * as markersActions from './actions';
 import toilets from './toilets';
 import wifi from './wifi';
 import sockets from './sockets';
+import water from './water';
 
 export type State = {
   +selected: string | null,
@@ -66,4 +67,5 @@ export default combineReducers({
   toilets,
   wifi,
   sockets,
+  water,
 });

@@ -18,6 +18,7 @@ type Props = {
   wifi?: Wifi[],
   toilets?: Toilet[],
   sockets?: [],
+  water?: [],
   mapMode: string,
   route: any,
   getMarkers: () => void,
@@ -32,6 +33,7 @@ class MapContainer extends Component<Props> {
     wifi: [],
     toilets: [],
     sockets: [],
+    water: [],
   };
 
   componentDidMount() {
@@ -67,7 +69,7 @@ class MapContainer extends Component<Props> {
 
   render() {
     const {
-      wifi, toilets, sockets,
+      wifi, toilets, sockets, water,
       currentUserLocation, route,
       mapMode,
       setNewMarkerPosition,
@@ -79,6 +81,7 @@ class MapContainer extends Component<Props> {
         wifi={wifi}
         toilets={toilets}
         sockets={sockets}
+        water={water}
         route={route}
         userLocation={currentUserLocation}
         mapMode={mapMode}
@@ -96,11 +99,13 @@ const mapState = (state) => {
   let wifi = [];
   let toilets = [];
   let sockets = [];
+  let water = [];
 
   if (filter === MARKER_FILTERS.all.value) {
     wifi = selectors.selectWifi(state);
     toilets = selectors.selectToilets(state);
     sockets = selectors.selectSockets(state);
+    water = selectors.selectWater(state);
   }
 
   if (filter === MARKER_FILTERS.wifi.value) {
@@ -115,10 +120,15 @@ const mapState = (state) => {
     sockets = selectors.selectSockets(state);
   }
 
+  if (filter === MARKER_FILTERS.water.value) {
+    water = selectors.selectWater(state);
+  }
+
   return {
     wifi,
     toilets,
     sockets,
+    water,
     filter,
     route: routingSelectors.selectRoute(state),
     mapViewport: state.shared.mapViewport,

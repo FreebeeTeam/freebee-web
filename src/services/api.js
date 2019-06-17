@@ -20,6 +20,10 @@ export const socketsApi = {
   get: () => buildBackendApiUrl('/sockets'),
 };
 
+export const waterApi = {
+  get: () => buildBackendApiUrl('/water'),
+};
+
 export const markersApi = {
   getTypes: () => buildBackendApiUrl('/markers/types'),
 };

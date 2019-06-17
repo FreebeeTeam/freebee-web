@@ -5,6 +5,7 @@ import {
   wifiApi,
   toiletsApi,
   socketsApi,
+  waterApi,
 } from './api';
 
 export const getWifi = (): Promise<any> => {
@@ -17,6 +18,10 @@ export const getToilets = (): Promise<any> => {
 
 export const getSockets = (): Promise<any> => {
   return axios.get(socketsApi.get());
+};
+
+export const getWater = (): Promise<any> => {
+  return axios.get(waterApi.get());
 };
 
 export const getMarkerTypes = (): Promise<any> => {

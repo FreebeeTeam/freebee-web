@@ -10,6 +10,7 @@ import {
   SocketOptionIcon,
   WcOptionIcon,
   WifiOptionIcon,
+  WaterOptionIcon,
 } from './icons';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
@@ -35,7 +36,11 @@ class FilterButton extends Component<Props, State> {
     setFilter(filter);
   };
 
-  toggle = () => this.setState((prevState: State) => ({ open: !prevState.open }));
+  toggle = (): void => {
+    this.setState((prevState: State) => ({
+      open: !prevState.open,
+    }));
+  };
 
   render() {
     const { classes, selectedFilter } = this.props;
@@ -74,6 +79,12 @@ class FilterButton extends Component<Props, State> {
             filter={MARKER_FILTERS.socket.value}
             onClick={this.onFilterClick}
             Icon={SocketOptionIcon}
+          />
+          <Option
+            isSelected={selectedFilter === MARKER_FILTERS.water.value}
+            filter={MARKER_FILTERS.water.value}
+            onClick={this.onFilterClick}
+            Icon={WaterOptionIcon}
           />
         </div>
       </div>

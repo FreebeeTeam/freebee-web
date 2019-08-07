@@ -6,6 +6,7 @@ import {
 import { thunks as toiletsThunks } from './toilets';
 import { thunks as wifiThunks } from './wifi';
 import { socketsThunks } from './sockets';
+import { waterThunks } from './water';
 import { markersService } from '../../services';
 
 export const getMarkers = () => async (dispatch) => {
@@ -13,6 +14,7 @@ export const getMarkers = () => async (dispatch) => {
     dispatch(wifiThunks.getWifi()),
     dispatch(toiletsThunks.getToilets()),
     dispatch(socketsThunks.getSockets()),
+    dispatch(waterThunks.getWater()),
   ]);
 };
 
@@ -32,4 +34,5 @@ export {
   wifiThunks,
   toiletsThunks,
   socketsThunks,
+  waterThunks,
 };

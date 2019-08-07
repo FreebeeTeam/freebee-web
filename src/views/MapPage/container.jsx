@@ -9,6 +9,7 @@ import MapPage from './page';
 import { open } from '../../redux/actions/ui/feedback-sidebar';
 import { LOCATION_ACCESS_DENIED_CODE } from '../../redux/middlewares/const';
 import { selectors as routingSelectors, routingActions } from '../../redux/routing';
+import { thunks as feedbackThunks } from '../../redux/feedback';
 import { userActions, selectors as userSelectors } from '../../redux/user';
 import { sharedActions, selectors as sharedSelectors } from '../../redux/shared';
 import {
@@ -24,10 +25,14 @@ type Props = {
   enqueueSnackbar: (message: string) => void,
   setNewMarkerPositionOnMapViewport: () => void,
   lastGlobalError: any,
+  openFeedbackSidebar: () => void,
+  getAddressFromCoordinates: (coordinates: number[]) => void,
+  mapViewport: {
+    center: number[],
+  },
 };
 
 type State = {
-  errorSnackbarIsOpen: boolean,
 };
 
 class MapPageContainer extends Component<Props, State> {
@@ -56,11 +61,19 @@ class MapPageContainer extends Component<Props, State> {
     setMapMode(MAP_MODES.CREATE);
   };
 
+  submitFeedbackLocation = () => {
+    const { openFeedbackSidebar, getAddressFromCoordinates, mapViewport } = this.props;
+
+    getAddressFromCoordinates(mapViewport.center);
+    openFeedbackSidebar();
+  };
+
   render() {
     return (
       <MapPage
         {...this.props}
         setCreationMapMode={this.setCreationMapMode}
+        submitFeedbackLocation={this.submitFeedbackLocation}
       />
     );
   }
@@ -85,6 +98,9 @@ const mapDispatch = dispatch => ({
   getMarkerTypes: () => dispatch(markersThunks.getMarkerTypes()),
   resetRoute: () => dispatch(routingActions.resetRoute()),
   setMapMode: mode => dispatch(sharedActions.setMapMode(mode)),
+  getAddressFromCoordinates: (coordinates: number[]) => dispatch(
+    feedbackThunks.getAddressFromCoordinates(coordinates),
+  ),
 });
 
 const mergeProps = (propsFromState, propsFromDispatch) => {
@@ -100,10 +116,7 @@ const mergeProps = (propsFromState, propsFromDispatch) => {
   };
 
   const setNewMarkerPositionOnMapViewport = () => {
-    propsFromDispatch.setNewMarkerPosition({
-      lat: mapViewport.center[0],
-      lng: mapViewport.center[1]
-    });
+    propsFromDispatch.setNewMarkerPosition(mapViewport.center);
   };
 
   return {

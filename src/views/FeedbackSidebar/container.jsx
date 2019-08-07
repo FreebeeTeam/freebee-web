@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { withSnackbar } from 'notistack';
 import FeedbackSidebar from './sidebar';
 import { MAP_MODES } from '../../config/map';
-import { validateFeedback } from './helpers';
+
 import { close, open } from '../../redux/actions/ui/feedback-sidebar';
-import { thunks } from '../../redux/feedback';
+import { thunks, actions as feedbackActions } from '../../redux/feedback';
 import { selectors as markersSelectors } from '../../redux/markers';
 import { sharedActions } from '../../redux/shared';
+
+import { validateFeedback, formatAddress } from './helpers';
 
 import type { Feedback } from '../../types/models';
 
@@ -17,10 +19,13 @@ type Props = {
   setReadMapMode: () => void,
   openSidebar: () => void,
   sendFeedback: () => void,
+  resetSuggestedAddress: () => void,
   enqueueSnackbar: (message: string, options: any) => void,
   isOpen: boolean,
   location: any,
+  suggestedAddress: any,
   freebieTypes: [],
+  isFeedbackAddressLoading: boolean,
 };
 
 type State = {
@@ -30,8 +35,8 @@ type State = {
   description?: string,
 };
 
-const defaultState = {
-  address: '',
+const defaultState: State = {
+  address: null,
   type: [''],
   author: '',
   description: '',
@@ -39,20 +44,24 @@ const defaultState = {
 };
 
 class FeedbackSidebarContainer extends Component<Props, State> {
-  state = defaultState;
+  state: State = defaultState;
 
   componentDidUpdate() {
-    const { type } = this.state;
-    const { freebieTypes } = this.props;
+    const { type, address } = this.state;
+    const { freebieTypes, suggestedAddress } = this.props;
     if (type === defaultState.type && freebieTypes.length !== 0) {
       this.setState({ type: freebieTypes[0].value });
+    }
+
+    if (address === null && suggestedAddress !== null) {
+      this.setState({
+        address: formatAddress(suggestedAddress.address),
+      });
     }
   }
 
   handleFieldChange = (name: string) => (e: Event) => {
-    this.setState({
-      [name]: e.target.value,
-    });
+    this.setState({ [name]: e.target.value });
   };
 
   handleSubmit = (): void => {
@@ -103,18 +112,22 @@ class FeedbackSidebarContainer extends Component<Props, State> {
   };
 
   handleCancel = (): void => {
-    const { closeSidebar, setReadMapMode } = this.props;
+    const {
+      closeSidebar, setReadMapMode, resetSuggestedAddress,
+    } = this.props;
 
     setReadMapMode();
-    closeSidebar();
+    resetSuggestedAddress();
     this.setState({ ...defaultState });
+    closeSidebar();
   };
 
   render() {
     const {
       isOpen,
-      closeSidebar, openSidebar,
+      openSidebar,
       freebieTypes,
+      isFeedbackAddressLoading,
     } = this.props;
 
     const {
@@ -139,10 +152,10 @@ class FeedbackSidebarContainer extends Component<Props, State> {
     return (
       <FeedbackSidebar
         feedback={feedback}
+        isFeedbackAddressLoading={isFeedbackAddressLoading}
         errors={errors}
         freebieTypes={freebieTypes}
         isOpen={isOpen}
-        close={closeSidebar}
         open={openSidebar}
         submit={this.handleSubmit}
         cancel={this.handleCancel}
@@ -158,12 +171,14 @@ const mapState = state => ({
   isOpen: state.ui.feedbackSidebar.open,
   location: markersSelectors.selectNewMarkerPositionInGeoJSON(state),
   freebieTypes: state.markers.shared.markerTypes,
+  ...state.feedback.feedbackAddress,
 });
 
 const mapDispatch = {
   closeSidebar: close,
   openSidebar: open,
   sendFeedback: createFeedback,
+  resetSuggestedAddress: () => feedbackActions.resetAddress(),
   setReadMapMode: () => sharedActions.setMapMode(MAP_MODES.READ),
 };
 

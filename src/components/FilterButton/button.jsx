@@ -10,6 +10,7 @@ import {
   SocketOptionIcon,
   WcOptionIcon,
   WifiOptionIcon,
+  WaterOptionIcon,
 } from './icons';
 import styles from './styles';
 import type { Classes } from '../../types/styles';
@@ -78,6 +79,12 @@ class FilterButton extends Component<Props, State> {
             filter={MARKER_FILTERS.socket.value}
             onClick={this.onFilterClick}
             Icon={SocketOptionIcon}
+          />
+          <Option
+            isSelected={selectedFilter === MARKER_FILTERS.water.value}
+            filter={MARKER_FILTERS.water.value}
+            onClick={this.onFilterClick}
+            Icon={WaterOptionIcon}
           />
         </div>
       </div>

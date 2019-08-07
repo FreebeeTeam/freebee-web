@@ -9,7 +9,7 @@ import {
   Marker,
 } from 'react-leaflet';
 import {
-  ToiletMarker, WifiMarker, UserMarker,
+  ToiletMarker, WifiMarker, SocketMarker, WaterMarker, UserMarker,
 } from '../../components';
 
 import { getPositionsForPolyline } from './helpers';
@@ -26,13 +26,13 @@ import 'leaflet/dist/leaflet.css';
 import type { Classes } from '../../types/styles';
 import type { Wifi, Toilet } from '../../types/models';
 import icon from '../../components/NewMarker/icon';
-import SocketMarker from '../../components/SocketMarker/marker';
 
 type Props = {
   classes: Classes,
   wifi?: Wifi[],
   sockets?: [],
   toilets?: Toilet[],
+  water?: [],
   userLocation: number[] | null,
   route: any,
   mapMode: string,
@@ -51,6 +51,7 @@ class FreeOpportunitiesMap extends Component<Props, State> {
     wifi: [],
     toilets: [],
     sockets: [],
+    water: [],
   };
 
   refNewMarker = createRef();
@@ -95,7 +96,7 @@ class FreeOpportunitiesMap extends Component<Props, State> {
   render() {
     const {
       classes,
-      wifi, toilets, sockets,
+      wifi, toilets, sockets, water,
       userLocation, route, mapMode,
       mapViewport,
     } = this.props;
@@ -137,6 +138,9 @@ class FreeOpportunitiesMap extends Component<Props, State> {
           ))}
           {sockets.map(marker => (
             <SocketMarker key={marker.id} buildRoute={this.buildRouteToMarker} socket={marker} />
+          ))}
+          {water.map(marker => (
+            <WaterMarker key={marker.id} buildRoute={this.buildRouteToMarker} water={marker} />
           ))}
         </FeatureGroup>
         <FeatureGroup>

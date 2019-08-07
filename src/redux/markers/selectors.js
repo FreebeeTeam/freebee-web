@@ -23,6 +23,11 @@ export const selectSockets: Selector = createSelector(
   (markers: State) => markers.sockets.markers,
 );
 
+export const selectWater: Selector = createSelector(
+  rootSelector,
+  (markers: State) => markers.water.markers,
+);
+
 export const selectIsAllMarkersFetching: Selector = createSelector(
   rootSelector,
   (markers: State): boolean => {
@@ -30,6 +35,7 @@ export const selectIsAllMarkersFetching: Selector = createSelector(
       markers.wifi.isFetching
     || markers.toilets.isFetching
     || markers.sockets.isFetching
+    || markers.water.isFetching
     );
   },
 );

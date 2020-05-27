@@ -94,6 +94,7 @@ const mapDispatch = dispatch => ({
   openFeedbackSidebar: () => dispatch(open()),
   setUserCurrentLocation: location => dispatch(userActions.setCurrentLocation(location)),
   setFilter: filter => dispatch(markerActions.setFilter(filter)),
+  setSearch: filter => dispatch(markerActions.setSearch(filter)),
   setNewMarkerPosition: position => dispatch(markerActions.setNewMarkerPosition(position)),
   getMarkerTypes: () => dispatch(markersThunks.getMarkerTypes()),
   resetRoute: () => dispatch(routingActions.resetRoute()),

@@ -36,9 +36,5 @@ export const formatAddress = (suggestedAddress: any): string => {
     ? `${suggestedAddress.city}`
     : '';
 
-  console.log('format')
-  console.log(address)
-  console.log(suggestedAddress)
-
   return address;
 };

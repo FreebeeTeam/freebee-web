@@ -1,7 +1,11 @@
 /* @flow */
 import * as React from 'react';
 import { withStyles, Button, LinearProgress } from '@material-ui/core';
-import { UserLocationButton, FilterButton } from '../../components';
+import {
+  UserLocationButton,
+  FilterButton,
+  SearchButton,
+} from '../../components';
 import FeedbackSidebar from '../FeedbackSidebar';
 import Map from '../Map';
 import RoutePanel from '../RouteInformationPanel';
@@ -13,6 +17,7 @@ type Props = {
   submitFeedbackLocation: () => void,
   setUserLocation: () => void,
   setFilter: () => void,
+  setSearch: () => void,
   resetRoute: () => void,
   isMarkersFetching: boolean,
   setCreationMapMode: () => void,
@@ -33,6 +38,7 @@ const MapPage = ({
   currentUserLocation,
 
   setFilter,
+  setSearch,
   selectedFilter,
 
   routeSummary,
@@ -49,6 +55,10 @@ const MapPage = ({
         : null
       }
       <Map mapMode={mapMode} currentUserLocation={currentUserLocation} />
+      <div className={classes.searchButton}>
+        <SearchButton onChange={setSearch} />
+      </div>
+
       <div className={classes.filterButton}>
         <FilterButton selectedFilter={selectedFilter} setFilter={setFilter} />
       </div>

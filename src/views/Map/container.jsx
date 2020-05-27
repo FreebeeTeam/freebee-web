@@ -94,8 +94,19 @@ class MapContainer extends Component<Props> {
   }
 }
 
+const filterBySearchString = (point, searchString) => {
+  const value = searchString.toLowerCase().trim();
+  const descriptionIncludes = point.description && point.description.toLowerCase().includes(value);
+  const titleIncludes = point.title && point.title.toLowerCase().includes(value);
+  const addressIncludes = point.address && point.address.toLowerCase().includes(value);
+
+  return descriptionIncludes || titleIncludes || addressIncludes;
+};
+
 const mapState = (state) => {
   const filter = selectors.selectFilter(state);
+  const { searchString } = state.markers.shared;
+
   let wifi = [];
   let toilets = [];
   let sockets = [];
@@ -122,6 +133,13 @@ const mapState = (state) => {
 
   if (filter === MARKER_FILTERS.water.value) {
     water = selectors.selectWater(state);
+  }
+
+  if (searchString) {
+    wifi = wifi.filter(point => filterBySearchString(point, searchString));
+    toilets = toilets.filter(point => filterBySearchString(point, searchString));
+    sockets = sockets.filter(point => filterBySearchString(point, searchString));
+    water = water.filter(point => filterBySearchString(point, searchString));
   }
 
   return {

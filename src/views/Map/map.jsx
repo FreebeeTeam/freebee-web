@@ -57,13 +57,32 @@ class FreeOpportunitiesMap extends Component<Props, State> {
   refNewMarker = createRef();
 
   componentDidUpdate(prevProps) {
-    const { userLocation } = this.props;
+    const {
+      userLocation, wifi, toilets, sockets, water,
+    } = this.props;
     const map = this.map.leafletElement;
 
     if (userLocation !== null
     && prevProps.userLocation !== userLocation
     ) {
       map.panTo(userLocation);
+    }
+
+
+    if (prevProps.wifi.length > wifi.length
+      || prevProps.toilets.length > toilets.length
+      || prevProps.sockets.length > sockets.length
+      || prevProps.water.length > water.length) {
+      const points = [
+        ...wifi,
+        ...toilets,
+        ...sockets,
+        ...water,
+      ];
+
+      if (points.length === 1) {
+        map.panTo(points[0].location);
+      }
     }
   }
 

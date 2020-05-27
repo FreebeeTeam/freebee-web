@@ -20,6 +20,10 @@ export default (): Styles => ({
     position: 'absolute',
     zIndex: 1002,
   },
+  searchButton: {
+    position: 'absolute',
+    zIndex: 1003,
+  },
   contactUsWrapper: {
     position: 'absolute',
     bottom: 0,
@@ -47,6 +51,10 @@ export default (): Styles => ({
       top: '2%',
       right: '2%',
     },
+    searchButton: {
+      top: '2%',
+      left: '2%',
+    },
     contactUsDesktop: {
       display: 'inline-flex',
       position: 'absolute',
@@ -71,6 +79,11 @@ export default (): Styles => ({
     filterButton: {
       left: '4%',
       top: '2%',
+    },
+    searchButton: {
+      top: '2%',
+      left: '50%',
+      transform: 'translateX(-50%)',
     },
     routePanel: {
       bottom: '0',

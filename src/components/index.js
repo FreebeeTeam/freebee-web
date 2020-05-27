@@ -5,6 +5,7 @@ import WaterMarker from './WaterMarker';
 import UserMarker from './UserMarker';
 import UserLocationButton from './UserLocationButton';
 import FilterButton from './FilterButton';
+import SearchButton from './SearchButton';
 
 export {
   ToiletMarker,
@@ -14,4 +15,5 @@ export {
   UserMarker,
   UserLocationButton,
   FilterButton,
+  SearchButton,
 };

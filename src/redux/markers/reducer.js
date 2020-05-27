@@ -18,6 +18,7 @@ export type State = {
 
 const {
   setFilter,
+  setSearch,
   setNewMarkerPosition,
 
   getTypesRequest,
@@ -32,12 +33,17 @@ const defaultState: State = {
   markerTypes: [],
   isMarkerTypesFetching: false,
   markerTypesError: null,
+  searchString: '',
 };
 
 const reducer = handleActions({
   [setFilter]: (state: State, { payload: { filter } }) => ({
     ...state,
     selected: filter,
+  }),
+  [setSearch]: (state: State, { payload: { filter } }) => ({
+    ...state,
+    searchString: filter,
   }),
   [setNewMarkerPosition]: (state: State, { payload: { location } }) => ({
     ...state,

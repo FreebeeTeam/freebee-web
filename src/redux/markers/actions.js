@@ -8,6 +8,7 @@ import { waterActions } from './water';
 const {
   markers: {
     setFilter,
+    setSearch,
     setNewMarkerPosition,
 
     getTypesRequest,
@@ -17,6 +18,7 @@ const {
 } = createActions({
   MARKERS: {
     SET_FILTER: (filter: string | null): {} => ({ filter }),
+    SET_SEARCH: (filter: string | null): {} => ({ filter }),
     SET_NEW_MARKER_POSITION: (position: any) => {
       return { location: position };
     },
@@ -29,6 +31,7 @@ const {
 
 export {
   setFilter,
+  setSearch,
   setNewMarkerPosition,
 
   getTypesRequest,

@@ -8,6 +8,8 @@
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "classcat": "^3.2.5",
+    "flow": "^0.2.3",
+    "global": "^4.4.0",
     "immutability-helper": "^3.0.0",
     "leaflet": "^1.4.0",
     "lodash": "^4.17.11",

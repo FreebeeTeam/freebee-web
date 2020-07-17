@@ -12,7 +12,7 @@
     "global": "^4.4.0",
     "immutability-helper": "^3.0.0",
     "leaflet": "^1.4.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "notistack": "^0.6.1",
     "react": "^16.8.6",
